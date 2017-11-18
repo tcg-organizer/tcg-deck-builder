@@ -1,0 +1,28 @@
+{
+  "name": "tcg-deck-builder",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "express-handlebars": "^3.0.0",
+    "mysql": "^2.15.0",
+    "sequelize": "^4.22.8"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "node server.js",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tcg-organizer/tcg-deck-builder.git"
+  },
+  "author": "Mike, Gene, Katie, Julie",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tcg-organizer/tcg-deck-builder/issues"
+  },
+  "homepage": "https://github.com/tcg-organizer/tcg-deck-builder#readme"
+}
