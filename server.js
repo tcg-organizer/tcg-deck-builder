@@ -18,6 +18,11 @@ app.set("view engine", "handlebars");
 
 app.use(express.static("public"));
 
+//html route
+var routes = require("./routes/html-routes");
+
+app.use("/", routes);
+
 //connects to DB before connection to server
 db.sequelize.sync().then(function() {
     app.listen(PORT, function() {
