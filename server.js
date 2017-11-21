@@ -4,7 +4,7 @@ const handlebars = require('express-handlebars');
 const db = require("./models");
 
 const app = express();
-var PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 8080;
 
 //bodyparser setup
 app.use(bodyParser.json());
@@ -17,6 +17,7 @@ app.engine("handlebars", hbars({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
 app.use(express.static("public"));
+
 
 //connects to DB before connection to server
 db.sequelize.sync().then(function() {
