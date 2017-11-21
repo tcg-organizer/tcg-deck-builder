@@ -3,7 +3,11 @@ var scraper = require('pokemon-tcg-scraper');
 
 // query for a list of cards including the query value
 // example within
+
+// var pokemon = $("#search").value().trim();
+// pokemon = pokemon.replace(" ","-");
 var pokemon = "blastoise-ex";
+var pokemonURL;
 
 scraper.scrapeSearchPage("http://www.pokemon.com/us/pokemon-tcg/pokemon-cards/?cardName=" + pokemon).then(function(card){
     // returns an object with the following information: numPages, cards
@@ -15,6 +19,7 @@ scraper.scrapeSearchPage("http://www.pokemon.com/us/pokemon-tcg/pokemon-cards/?c
         var newContainer;
     }
     // when clicked, the stored url will be used to query for the specific card for display
+
 });
 
 // query for a specific card based on a specific URL (can be received from the basic query above)
