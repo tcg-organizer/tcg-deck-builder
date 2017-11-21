@@ -1,7 +1,7 @@
 const express = require("express");
 const apiRouter = express.Router();
 
-var pokemon = { pokemon: "sandshrew"};
+const pokemon = { pokemon: "sandshrew"};
 
 apiRouter.get("/", function (req, res) {
     res.render("index", pokemon)
