@@ -2,4 +2,11 @@ body {
     background-color: #d4d4d4;
     height: auto;
     width: 100%;
+    position: relative;
+}
+
+.footer {
+    position: absolute;
+    left: 0 ; right: 0; bottom: 0;
+    height: 50px;
 }
