@@ -20,8 +20,7 @@ app.set("view engine", "handlebars");
 app.use(express.static(path.join(__dirname, "public")));
 
 //html route
-const routes = require("./routes");
-
+const routes = require("./routes/routes.js");
 //html route in use
 app.use("/", routes);
 
