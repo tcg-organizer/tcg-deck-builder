@@ -8,11 +8,11 @@ pageRouter.get("/", function (req, res) {
 });
 
 pageRouter.get("/deckList", function(req, res) {
-    // res.render("some handlebars page for deck list", some object);
+    res.render("deckList", );
 });
 
 pageRouter.get("/cardSearch", function(req, res) {
-    // res.render("some handlebars page card search", some object );
+    res.render("cardSearch", );
 });
 
 module.exports = pageRouter;
