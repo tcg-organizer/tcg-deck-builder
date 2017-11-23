@@ -15,9 +15,7 @@ app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
 //environment variables
 app.set('port', process.env.PORT || 8080);
-//Serve static content for the app from the "public" directory in the application directory.
-app.use(express.static(process.cwd() + '/public'));
-// app.use(express.static(path.join(__dirname, 'public')));
+app.set('views', path.join(__dirname, 'views'));
 
 
 
@@ -25,6 +23,14 @@ app.use(express.static(process.cwd() + '/public'));
 app.engine("handlebars", hbars({ defaultLayout: "main" }));
 //This will render handlebars files when res.render is called.
 app.set("view engine", "handlebars");
+
+/*
+// development only
+if ('development' == app.get('env')) {
+    app.use(express.errorHandler());
+}
+
+ */
 
 //html route
 var routes = require("./controller/routes");
