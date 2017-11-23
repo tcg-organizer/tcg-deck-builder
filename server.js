@@ -5,7 +5,7 @@ const db = require("./models");
 const path = require("path");
 
 const app = express();
-var PORT = process.env.PORT || 8080;
+// var PORT = process.env.PORT || 8080;
 
 //bodyparser setup
 app.use(bodyParser.json());
@@ -13,14 +13,21 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.text());
 app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
+//environment variables
+app.set('port', process.env.PORT || 8080);
+//Serve static content for the app from the "public" directory in the application directory.
+app.use(express.static(process.cwd() + '/public'));
+// app.use(express.static(path.join(__dirname, 'public')));
+
+
+
 //handlebars setup
 app.engine("handlebars", hbars({ defaultLayout: "main" }));
+//This will render handlebars files when res.render is called.
 app.set("view engine", "handlebars");
 
-app.use(express.static(path.join(__dirname, "public")));
-
 //html route
-var routes = require("./routes/routes");
+var routes = require("./controller/routes");
 
 //html route in use
 app.use("/", routes);
