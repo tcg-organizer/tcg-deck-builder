@@ -10,14 +10,20 @@ body {
     background: #d4d4d4;
     height: auto;
     width: 100%;
+    position: relative;
 }
 
 img {
     margin-top: 2px;
 }
 
-
-
 .card-description {
     margin-top : 25px;
+}
+
+
+.footer {
+    position: absolute;
+    left: 0 ; right: 0; bottom: 0;
+    height: 50px;
 }
