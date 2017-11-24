@@ -10,11 +10,11 @@ pokeRouter.get("/", function (req, res) {
 });
 
 pokeRouter.get("/deckList", function(req, res) {
-    res.render("deckList", );
+    res.render("deckList");
 });
 
 pokeRouter.get("/cardSearch", function(req, res) {
-    res.render("cardSearch", );
+    res.render("cardSearch");
 });
 
 

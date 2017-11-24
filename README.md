@@ -32,7 +32,9 @@ List of Packages
 | chai   :question:               | BDD/TDD assertion library.                                            |
 | supertest  :question:           | HTTP assertion library.                                               |
 
-
+Resources Referenced
+--------------------
+- [The Difference Between URLs and URIs](https://danielmiessler.com/study/url-uri/) - Rest APIs
 
 Compiled Design Resources
 -------------------------
@@ -45,3 +47,6 @@ Compiled Design Resources
 *   Model: Where the business logic of the app resides. Interacts with data store.
 *   View:  Where UI is managed.
 *   Controller: Where routes were created, and logic set up within those routes where required. User requests managed here and data from the model received and based on the users authorization the request or denied request is passed back to the view.
+
+
+
