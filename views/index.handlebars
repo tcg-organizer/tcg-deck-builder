@@ -1,26 +1,23 @@
 
-<nav class="extended">
-    <div class="nav-wrapper">
-        <a href="#" class="brand-logo">TCGMgr</a>
-        <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
-        <ul class="right hide-on-med-and-down">
-            <li><a href="#">Search Cards</a></li>
-            <li><a href="#">View Decklists</a></li>
-        </ul>
-        <ul class="side-nav" id="mobile-demo">
-            <li><a href="#">Search Cards</a></li>
-            <li><a href="#">View Decklists</a></li>
-        </ul>
+<nav class="navbar navbar-expand-lg bg-light navbar-light justify-content-between">
+    <a class="navbar-brand" href="/">
+        <img src="./assets/img/Pokeball.PNG" width="20" height="20" alt="pokeball">
+        TCGMgr
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+            <a class="nav-item nav-link active" href="/">Home <span class="sr-only">(current)</span></a>
+            <a class="nav-item nav-link" href="/cardSearch">Card Search</a>
+            <a class="nav-item nav-link" href="/deckList">Deck List</a>
+        </div>
     </div>
-    <div class="nav-content">
-        <form>
-            <div class="input-field">
-                <input id="search" type="search" required>
-                <label class="label-icon" for="search"><i class="material-icons">search</i></label>
-                <i class="material-icons">close</i>
-            </div>
-        </form>
-    </div>
+    <form class="form-inline">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
 </nav>
 <div class="container">
 

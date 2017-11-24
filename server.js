@@ -18,6 +18,7 @@ app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 app.set('port', process.env.PORT || 8080);
 app.set('views', path.join(__dirname, 'views'));
 
+app.use(express.static("public"));
 
 
 //handlebars setup
