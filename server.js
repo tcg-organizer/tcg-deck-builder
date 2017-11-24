@@ -5,7 +5,7 @@ const db = require("./models");
 const path = require("path");
 
 const app = express();
-var PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 8080;
 
 //bodyparser setup
 app.use(bodyParser.json());
@@ -20,8 +20,7 @@ app.set("view engine", "handlebars");
 app.use(express.static(path.join(__dirname, "public")));
 
 //html route
-var routes = require("./routes/routes");
-
+const routes = require("./routes/routes.js");
 //html route in use
 app.use("/", routes);
 
