@@ -23,7 +23,22 @@ pokeRouter.get("/cardSearch", function(req, res) {
 
 //adding a new card to your deck
 pokeRouter.post("/api/",function(req, res) {
-
+    db.userDeck.create({
+        deckName: req.body.deckName,
+        cardID: req.body.cardID,
+        cardName: req.body.cardName,
+        cardImg: req.body.cardImg,
+        cardData: req.body,
+        quantity: req.body.quantity
+    }).then(function(userDeck) {
+        console.log("\n");
+        console.log("------------------------");
+        console.log("the card has been logged");
+        console.log(userDeck);
+        console.log("------------------------");
+        console.log("\n");
+        res.send("card had been stored in your deck");
+    });
 });
 
 //updating a cards in your deck
