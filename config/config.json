@@ -1,6 +1,6 @@
 {
   "development": {
-    "username": "root",
+    "username": "root1",
     "password": null,
     "database": "cardsDB",
     "host": "127.0.0.1",

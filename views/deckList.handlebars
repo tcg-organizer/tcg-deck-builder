@@ -11,13 +11,13 @@
 <!--//add new quantity to a card (max out at 4) with the exception of energy cards (max of 60)-->
 
 
-
 <nav class="navbar navbar-expand-lg bg-light navbar-light justify-content-between navbar-dark bg-dark">
     <a class="navbar-brand" href="/">
         <img src="./assets/img/Pokeball.PNG" width="20" height="20" alt="pokeball">
         TCGMgr
     </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
@@ -26,32 +26,46 @@
             <a class="nav-item nav-link" href="/cardSearch">Card Search</a>
             <a class="nav-item nav-link active" href="/deckList">Deck List<span class="sr-only">(current)</span> </a>
         </div>
-    <form class="form-inline">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit" id="submit">Search</button>
-    </form>
+
     </div>
 </nav>
 <div class="container">
-    <div class="container">
-        <br>
-        <div class="row">
-            <img class="center-block" src="assets/img/giphy.gif"/>
+    <div class="jumbotron text-center">
+        <h1>Username's Decklists</h1>
+    </div>
+    <div class="row">
+        <div class="col-xl-4">
+            <div class="card" style="width: 20rem;">
+                <img class="card-img-top" src="./assets/img/cardBack.png" alt="Card image cap">
+                <div class="card-body">
+                    <h4 class="card-title">Deck 1</h4>
+                    <p class="card-text">Text describing decklist.</p>
+                    <a href="#" class="btn btn-primary">View Decklist</a>
+                </div>
+            </div>
         </div>
-        <br>
-
-        <br>
-        <br>
-
-
+        <div class="col-xl-4">
+            <div class="card" style="width: 20rem;">
+                <img class="card-img-top" src="./assets/img/cardBack.png" alt="Card image cap">
+                <div class="card-body">
+                    <h4 class="card-title">Deck 2</h4>
+                    <p class="card-text">Text describing decklist.</p>
+                    <a href="#" class="btn btn-primary">View Decklist</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-4">
+            <div class="card" style="width: 20rem;">
+                <img class="card-img-top" src="./assets/img/cardBack.png" alt="Card image cap">
+                <div class="card-body">
+                    <h4 class="card-title">Deck 3</h4>
+                    <p class="card-text">Text describing decklist.</p>
+                    <a href="#" class="btn btn-primary">View Decklist</a>
+                </div>
+            </div>
+        </div>
     </div>
 
-
-    <!--//causing error until fully completed-->
-        <!--{{#each}} -->
-    <!--{{if card something}}-->
-    <!--{{> card/cardpartial somethie else here}}-->
-        <!--{{/each}}-->
 </div>
 
 
