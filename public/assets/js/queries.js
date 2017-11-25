@@ -20,15 +20,17 @@ $(function() {
             pokemon = pokemon.replace(" ","-");
 
             //runs a query
-            initialQuery();
+            initialQuery(pokemon);
         }
     })
 });
 
-var pokemonExample = "blastoise-ex";
+// example variables for use in testing
+var pokemonExample = "blastoise";
+var cardURLExample ="http://www.pokemon.com/us/pokemon-tcg/pokemon-cards/bw-series/bw7/31/";
 
 // query for a list of cards including matching the query value, pokemon
-function initialQuery(){
+function initialQuery(pokemon){
     scraper.scrapeSearchPage("http://www.pokemon.com/us/pokemon-tcg/pokemon-cards/?cardName=" + pokemon).then(function(card){
 
         // returns an object with the following information: numPages, cards
