@@ -39,8 +39,8 @@ if ('development' == app.get('env')) {
 //html route
 
 var routes = require("./controller/routes");
-
-var routes = require("./routes/routes");
+// routes folder no longer exists, use above routes file path
+// var routes = require("./routes/routes");
 
 
 app.use("/", routes);
