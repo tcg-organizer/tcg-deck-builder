@@ -1,5 +1,6 @@
 // uses pokemon tcg scraper npm
-var scraper = require('pokemon-tcg-scraper');
+const scraper = require('pokemon-tcg-scraper');
+
 
 // declaration of variables for later use, pokemon for query value and cardURL from the query
 var pokemon;
