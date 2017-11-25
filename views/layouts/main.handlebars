@@ -43,3 +43,46 @@
 </body>
 
 </html>
+<div class="container">
+    <br>
+    <div class="row">
+        <img class="center-block" src="assets/img/giphy.gif"/>
+    </div>
+    <br>
+    {{{body}}}
+    <br>
+    <br>
+    <!-- Deck Creation/ Card(s) Form ...-->
+    <form action="deck/create/{{id}}" method="POST">
+
+        <div class="row">
+
+            <div class="col-md-3">
+
+            </div>
+
+            <!-- Enter Your Card Selection Here-->
+            <div class="form-group col-md-5">
+                <label for="new_card" class="card center-block"> Burgers Made WRITE To Order (bun I mean pun intended)</label>
+                <textarea class="form-control" rows="4" id="new_card" name="card_name" placeholder="Enter your card selection here"></textarea>
+            </div>
+
+            <div class="col-md-2"></div>
+
+        </div>
+
+        <!-- Submit Button -->
+        <div class="col-md-8"></div>
+
+        <button id="submit-button" type="submit" class="btn btn-danger">Place Order</button>
+
+    </form>
+
+    <br>
+
+</div>
+
+
+</body>
+
+
