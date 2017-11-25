@@ -1,17 +1,17 @@
 html {
-    background: url("../public/assets/img/giphy.gif") no-repeat center center fixed;
+    background: url("../public/assets/img/Pokeball.PNG") no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
 }
 
-body {
-    background: #d4d4d4;
-    height: auto;
-    width: 100%;
-    position: relative;
-}
+/*body {*/
+    /*background: #d4d4d4;*/
+    /*height: auto;*/
+    /*width: 100%;*/
+    /*position: relative;*/
+/*}*/
 
 img {
     margin-top: 2px;
