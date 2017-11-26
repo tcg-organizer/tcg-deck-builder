@@ -1,8 +1,5 @@
 <!--// this will display how many decks the user has and the deck names-->
 
-
-
-
 <!--//then the user will select a deck and then the cards from that deck will be displayed on the same page-->
 
 <!--//card back will be displayed at "top of page" representing each deck with the name of the deck below it-->
@@ -12,28 +9,63 @@
 <!--//remove cards from deck-->
 
 <!--//add new quantity to a card (max out at 4) with the exception of energy cards (max of 60)-->
-<!--var express = require('express');-->
-<!--var path = require('path');-->
-<!--var app = express();-->
-<!--var handlebars = require('express-handlebars') .create({ defaultLayout:'main' });-->
-<!--app.engine('handlebars', handlebars.engine);-->
-<!--app.set('view engine', 'handlebars');-->
-<!--app.set('port', process.env.PORT || 3000);-->
 
-<!--var options = {-->
-<!--dotfiles: 'ignore',-->
-<!--etag: false,-->
-<!--extensions: ['htm', 'html'],-->
-<!--index: false-->
-<!--};-->
 
-<!--app.use(express.static(path.join(__dirname, 'public') , options    ));-->
-<!--app.get('/', function(req, res)-->
-<!--{-->
-<!--res.render('hello');-->
-<!--});-->
-<!--app.listen(app.get('port'),  function () {-->
-<!--console.log('Hello express started on http://localhost:' +-->
-<!--app.get('port') + '; press Ctrl-C to terminate.' );-->
+<nav class="navbar navbar-expand-lg bg-light navbar-light justify-content-between navbar-dark bg-dark">
+    <a class="navbar-brand" href="/">
+        <img src="./assets/img/Pokeball.PNG" width="20" height="20" alt="pokeball">
+        TCGMgr
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+            <a class="nav-item nav-link" href="/">Home</a>
+            <a class="nav-item nav-link" href="/cardSearch">Card Search</a>
+            <a class="nav-item nav-link active" href="/deckList">Deck List<span class="sr-only">(current)</span> </a>
+        </div>
 
-<!--});-->
+    </div>
+</nav>
+<div class="container">
+    <div class="jumbotron text-center">
+        <h1>Username's Decklists</h1>
+    </div>
+    <div class="row">
+        <div class="col-xl-4">
+            <div class="card" style="width: 20rem;">
+                <img class="card-img-top" src="./assets/img/cardBack.png" alt="Card image cap">
+                <div class="card-body">
+                    <h4 class="card-title">Deck 1</h4>
+                    <p class="card-text">Text describing decklist.</p>
+                    <a href="#" class="btn btn-primary">View Decklist</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-4">
+            <div class="card" style="width: 20rem;">
+                <img class="card-img-top" src="./assets/img/cardBack.png" alt="Card image cap">
+                <div class="card-body">
+                    <h4 class="card-title">Deck 2</h4>
+                    <p class="card-text">Text describing decklist.</p>
+                    <a href="#" class="btn btn-primary">View Decklist</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-4">
+            <div class="card" style="width: 20rem;">
+                <img class="card-img-top" src="./assets/img/cardBack.png" alt="Card image cap">
+                <div class="card-body">
+                    <h4 class="card-title">Deck 3</h4>
+                    <p class="card-text">Text describing decklist.</p>
+                    <a href="#" class="btn btn-primary">View Decklist</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+

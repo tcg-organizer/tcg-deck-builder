@@ -1,29 +1,37 @@
-
-<nav class="extended">
-    <div class="nav-wrapper">
-        <a href="#" class="brand-logo">TCGMgr</a>
-        <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
-        <ul class="right hide-on-med-and-down">
-            <li><a href="#">Search Cards</a></li>
-            <li><a href="#">View Decklists</a></li>
-        </ul>
-        <ul class="side-nav" id="mobile-demo">
-            <li><a href="#">Search Cards</a></li>
-            <li><a href="#">View Decklists</a></li>
-        </ul>
-    </div>
-    <div class="nav-content">
-        <form>
-            <div class="input-field">
-                <input id="search" type="search" required>
-                <label class="label-icon" for="search"><i class="material-icons">search</i></label>
-                <i class="material-icons">close</i>
-            </div>
-        </form>
+<nav class="navbar navbar-expand-lg bg-light navbar-light justify-content-between navbar-dark bg-dark">
+    <a class="navbar-brand" href="/">
+        <img src="./assets/img/Pokeball.PNG" width="20" height="20" alt="pokeball">
+        TCGMgr
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+            <a class="nav-item nav-link active" href="/">Home <span class="sr-only">(current)</span></a>
+            <a class="nav-item nav-link" href="/cardSearch">Card Search</a>
+            <a class="nav-item nav-link" href="/deckList">Deck List</a>
+        </div>
     </div>
 </nav>
 <div class="container">
+    <div class="jumbotron text-center">
+        <h1>Pokemon TCG Card Organizer</h1>
+    </div>
+    <div class="row">
+        carousel goes here
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <img class="center-block" src="assets/img/giphy.gif"/>
+    </div>
+</div>
+<div>
 
-{{pokemon}}
+    {{pokemon}}
 
 </div>
+
+

@@ -2,85 +2,41 @@
 <html lang="en">
 
 <head>
+
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Deck Builder</title>
     <!--Tab Image-->
-    <link rel="icon" href="../assets/img/Pokeball.PNG"/>
+    <link rel="icon" href="./assets/img/Pokeball.PNG"/>
 
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
-    <!--link to icon file-->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
-    <!-- css-->
-    <link rel="stylesheet" href="assets/css/style.css" type="text/css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+
+    <!--link to public css-->
+
+    <link rel="stylesheet" href="./assets/css/style.css">
     <!--//link to jQuery-->
     <script
             src="https://code.jquery.com/jquery-3.2.1.min.js"
             integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-            crossorigin="anonymous" async></script>
+            crossorigin="anonymous"></script>
 
-    <!--&lt;!&ndash;//potential link to js needed for CSS Framework&ndash;&gt;-->
-    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>-->
+    <!--//potential link to js needed for CSS Framework-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
 
     <!--//option #1 for link to our client side JS file (see bottom of body for option #2-->
-    <script src="/assets/js/queries.js" async></script>
-    <!--
-         Bootstrap to replace Materialize as CSS Framework of choice.
-         https://getbootstrap.com/docs/3.3/javascript
-      -->
-    <script src="/assets/js/materialize.js" async></script>
-
+    <script src="/assets/js/queries.js"></script>
+    <script src="/assets/js/bootstrap.js"></script>
 </head>
-
+<!--//option #2 for link to our client side JS file-->
 <body>
-
 {{{body}}}
 
-<!--//option #2 for link to our client side JS file-->
-</body>
+<footer>
+{{{footer}}}
+</footer>
 
+
+</body>
 </html>
-<div class="container">
-    <br>
-    <div class="row">
-        <img class="center-block" src="assets/img/giphy.gif"/>
-    </div>
-    <br>
-    {{{body}}}
-    <br>
-    <br>
-    <!-- Deck Creation/ Card(s) Form ...-->
-    <form action="deck/create/{{id}}" method="POST">
-
-        <div class="row">
-
-            <div class="col-md-3">
-
-            </div>
-
-            <!-- Enter Your Card Selection Here-->
-            <div class="form-group col-md-5">
-                <label for="new_card" class="card center-block"> Burgers Made WRITE To Order (bun I mean pun intended)</label>
-                <textarea class="form-control" rows="4" id="new_card" name="card_name" placeholder="Enter your card selection here"></textarea>
-            </div>
-
-            <div class="col-md-2"></div>
-
-        </div>
-
-        <!-- Submit Button -->
-        <div class="col-md-8"></div>
-
-        <button id="submit-button" type="submit" class="btn btn-danger">Place Order</button>
-
-    </form>
-
-    <br>
-
-</div>
-
-
-</body>
-
-

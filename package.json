@@ -10,7 +10,7 @@
     "mysql": "^2.15.0",
     "mysql2": "^1.5.1",
     "pokemon-tcg-scraper": "0.0.5",
-    "sequelize": "^4.22.8"
+    "sequelize": "^4.22.11"
   },
   "devDependencies": {},
   "scripts": {
