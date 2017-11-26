@@ -2,7 +2,7 @@ const express = require("express");
 const pokeRouter = express.Router();
 
 // const pokemon = { pokemon: "sandshrew"};
-
+const cardData = require("../public/assets/js/queries");
 
 //this half handles the handlebars pages
 pokeRouter.get("/", function (req, res) {
@@ -14,7 +14,7 @@ pokeRouter.get("/deckList", function (req, res) {
 });
 
 pokeRouter.get("/cardSearch", function (req, res) {
-    res.render("cardSearch");
+    res.render("cardSearch", {cardData: cardData});
 });
 
 

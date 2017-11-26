@@ -27,3 +27,16 @@ img {
     left: 0 ; right: 0; bottom: 0;
     height: 50px;
 }
+/*helper classes for styling*/
+.grey {
+    background-color: #9fb6cd;
+}
+
+.card-margin {
+    margin-bottom: 25px;
+}
+
+.center {
+    diplay: block;
+    margin: auto;
+}
