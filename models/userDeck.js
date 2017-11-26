@@ -1,3 +1,7 @@
+
+var source = $("#userDeck-template").html();
+var template = Handlebars.compile(source);
+
 module.exports = function (sequelize, DataTypes) {
     const userDeck = sequelize.define("userDeck", {
         deckName: {
@@ -6,7 +10,7 @@ module.exports = function (sequelize, DataTypes) {
             validate: {
                 len: {
                     args: [1, 50],
-                    msg: "Deck name must be less than 50 characters"
+                    msg: "Deck name must between one and fifty characters"
                 },
                 isAlphanumeric: true,
                 notContains: 'DROP'
@@ -36,3 +40,12 @@ module.exports = function (sequelize, DataTypes) {
     });
     return userDeck;
 };
+
+Handlebars.registerHelper('idNameImg', function(userDeck) {
+    return userDeck.cardID + " " + userDeck.cardName + " " + userDeck.cardImg;
+});
+
+$('body').append(template(data));
+
+
+

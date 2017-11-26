@@ -21,6 +21,28 @@ img {
     margin-top : 25px;
 }
 
+h1 {
+    margin: 0 0 10px 0;
+    padding: 5px;
+    font-size: 24px;
+    background-color: #f4c131;
+    color: #a8dcff;
+}
+table {
+    margin: 10px;
+}
+th, td {
+    padding: 5px;
+    border: 1px solid #999;
+}
+th {
+    background: #ccc;
+}
+tr:nth-child(odd) {
+    background: #eee;
+}
+
+
 
 .footer {
     position: absolute;

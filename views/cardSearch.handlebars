@@ -44,4 +44,27 @@
             </div>
         </div>
     </div>
+    deckName, cardID, cardName, cardImg, cardData, quantity
+    <div class="row">
+        <h1>{{userName}} TCG Fantasy Deck</h1>
+        <script id="userDeck-template" type="text/x-handlebars-template">
+            <table>
+            <thead>
+            <th>Pokemon Card:</th>
+            <th>Card Data</th>
+            <th>Cards quantity in this Deck:</th>
+            </thead>
+            <tbody>
+            {{#userDeck}}
+                <tr>
+                <td>{{idNameImg userDeck}}</td>
+                    <td>{{cardData}}</td>
+                    <td>{{quantity}}</td>
+                </tr>
+            {{/userDeck}}
+            </tbody>
+        </table>
+        </script>
+
+    </div>
 </div>
