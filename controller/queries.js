@@ -1,73 +1,73 @@
-
-
-// declaration of variables for later use
-
-var cardArray = module.exports = [];
-
-var benchArray = [
-    {
-        "url": "http://www.pokemon.com/us/pokemon-tcg/pokemon-cards/xy-series/xyp/XY30/",
-        "image": "https://assets.pokemon.com/assets/cms2/img/cards/web/XYP/XYP_EN_XY30.png",
-        "id": "xyp/XY30"
-    },
-    {
-        "url": "http://www.pokemon.com/us/pokemon-tcg/pokemon-cards/xy-series/xyp/XY122/",
-        "image": "https://assets.pokemon.com/assets/cms2/img/cards/web/XYP/XYP_EN_XY122.png",
-        "id": "xyp/XY122"
-    },
-    {
-        "url": "http://www.pokemon.com/us/pokemon-tcg/pokemon-cards/xy-series/xy1/29/",
-        "image": "https://assets.pokemon.com/assets/cms2/img/cards/web/XY1/XY1_EN_29.png",
-        "id": "xy1/29"
-    },
-    {
-        "url": "http://www.pokemon.com/us/pokemon-tcg/pokemon-cards/xy-series/xy1/30/",
-        "image": "https://assets.pokemon.com/assets/cms2/img/cards/web/XY1/XY1_EN_30.png",
-        "id": "xy1/30"
-    },
-    {
-        "url": "http://www.pokemon.com/us/pokemon-tcg/pokemon-cards/xy-series/xy1/142/",
-        "image": "https://assets.pokemon.com/assets/cms2/img/cards/web/XY1/XY1_EN_142.png",
-        "id": "xy1/142"
-    },
-    {
-        "url": "http://www.pokemon.com/us/pokemon-tcg/pokemon-cards/ex-series/ex6/104/",
-        "image": "https://assets.pokemon.com/assets/cms2/img/cards/web/EX6/EX6_EN_104.png",
-        "id": "ex6/104"
-    },
-    {
-        "url": "http://www.pokemon.com/us/pokemon-tcg/pokemon-cards/xy-series/g1/17/",
-        "image": "https://assets.pokemon.com/assets/cms2/img/cards/web/G1/G1_EN_17.png",
-        "id": "g1/17"
-    },
-    {
-        "url": "http://www.pokemon.com/us/pokemon-tcg/pokemon-cards/xy-series/g1/18/",
-        "image": "https://assets.pokemon.com/assets/cms2/img/cards/web/G1/G1_EN_18.png",
-        "id": "g1/18"
-    },
-    {
-        "url": "http://www.pokemon.com/us/pokemon-tcg/pokemon-cards/ex-series/ex14/2/",
-        "image": "https://assets.pokemon.com/assets/cms2/img/cards/web/EX14/EX14_EN_2.png",
-        "id": "ex14/2"
-    },
-    {
-        "url": "http://www.pokemon.com/us/pokemon-tcg/pokemon-cards/ex-series/ex14/14/",
-        "image": "https://assets.pokemon.com/assets/cms2/img/cards/web/EX14/EX14_EN_14.png",
-        "id": "ex14/14"
-    },
-    {
-        "url": "http://www.pokemon.com/us/pokemon-tcg/pokemon-cards/xy-series/xy12/21/",
-        "image": "https://assets.pokemon.com/assets/cms2/img/cards/web/XY12/XY12_EN_21.png",
-        "id": "xy12/21"
-    },
-    {
-        "url": "http://www.pokemon.com/us/pokemon-tcg/pokemon-cards/xy-series/xy12/22/",
-        "image": "https://assets.pokemon.com/assets/cms2/img/cards/web/XY12/XY12_EN_22.png",
-        "id": "xy12/22"
-    }
-];
-
-
+//
+//
+// // declaration of variables for later use
+//
+// var cardArray = module.exports = [];
+//
+// var benchArray = [
+//     {
+//         "url": "http://www.pokemon.com/us/pokemon-tcg/pokemon-cards/xy-series/xyp/XY30/",
+//         "image": "https://assets.pokemon.com/assets/cms2/img/cards/web/XYP/XYP_EN_XY30.png",
+//         "id": "xyp/XY30"
+//     },
+//     {
+//         "url": "http://www.pokemon.com/us/pokemon-tcg/pokemon-cards/xy-series/xyp/XY122/",
+//         "image": "https://assets.pokemon.com/assets/cms2/img/cards/web/XYP/XYP_EN_XY122.png",
+//         "id": "xyp/XY122"
+//     },
+//     {
+//         "url": "http://www.pokemon.com/us/pokemon-tcg/pokemon-cards/xy-series/xy1/29/",
+//         "image": "https://assets.pokemon.com/assets/cms2/img/cards/web/XY1/XY1_EN_29.png",
+//         "id": "xy1/29"
+//     },
+//     {
+//         "url": "http://www.pokemon.com/us/pokemon-tcg/pokemon-cards/xy-series/xy1/30/",
+//         "image": "https://assets.pokemon.com/assets/cms2/img/cards/web/XY1/XY1_EN_30.png",
+//         "id": "xy1/30"
+//     },
+//     {
+//         "url": "http://www.pokemon.com/us/pokemon-tcg/pokemon-cards/xy-series/xy1/142/",
+//         "image": "https://assets.pokemon.com/assets/cms2/img/cards/web/XY1/XY1_EN_142.png",
+//         "id": "xy1/142"
+//     },
+//     {
+//         "url": "http://www.pokemon.com/us/pokemon-tcg/pokemon-cards/ex-series/ex6/104/",
+//         "image": "https://assets.pokemon.com/assets/cms2/img/cards/web/EX6/EX6_EN_104.png",
+//         "id": "ex6/104"
+//     },
+//     {
+//         "url": "http://www.pokemon.com/us/pokemon-tcg/pokemon-cards/xy-series/g1/17/",
+//         "image": "https://assets.pokemon.com/assets/cms2/img/cards/web/G1/G1_EN_17.png",
+//         "id": "g1/17"
+//     },
+//     {
+//         "url": "http://www.pokemon.com/us/pokemon-tcg/pokemon-cards/xy-series/g1/18/",
+//         "image": "https://assets.pokemon.com/assets/cms2/img/cards/web/G1/G1_EN_18.png",
+//         "id": "g1/18"
+//     },
+//     {
+//         "url": "http://www.pokemon.com/us/pokemon-tcg/pokemon-cards/ex-series/ex14/2/",
+//         "image": "https://assets.pokemon.com/assets/cms2/img/cards/web/EX14/EX14_EN_2.png",
+//         "id": "ex14/2"
+//     },
+//     {
+//         "url": "http://www.pokemon.com/us/pokemon-tcg/pokemon-cards/ex-series/ex14/14/",
+//         "image": "https://assets.pokemon.com/assets/cms2/img/cards/web/EX14/EX14_EN_14.png",
+//         "id": "ex14/14"
+//     },
+//     {
+//         "url": "http://www.pokemon.com/us/pokemon-tcg/pokemon-cards/xy-series/xy12/21/",
+//         "image": "https://assets.pokemon.com/assets/cms2/img/cards/web/XY12/XY12_EN_21.png",
+//         "id": "xy12/21"
+//     },
+//     {
+//         "url": "http://www.pokemon.com/us/pokemon-tcg/pokemon-cards/xy-series/xy12/22/",
+//         "image": "https://assets.pokemon.com/assets/cms2/img/cards/web/XY12/XY12_EN_22.png",
+//         "id": "xy12/22"
+//     }
+// ];
+//
+//
 // // example variables for use in testing
 // var pokemonExample = "blastoise";
 // var cardURLExample = "http://www.pokemon.com/us/pokemon-tcg/pokemon-cards/bw-series/bw7/31/";
@@ -109,4 +109,4 @@ var benchArray = [
 // }
 //
 // console.log(initialQuery("blastoise"))
-
+//

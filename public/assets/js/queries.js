@@ -4,7 +4,7 @@ $(function () {
 
     $("#submit").on("click", function (event) {
 
-        if ($("#search").val().trim().length === 0) {
+        if ($("#search").val().trim().length === 0 ) {
 
             // Usually show some kind of error message here
 
@@ -12,11 +12,8 @@ $(function () {
             event.preventDefault();
         } else {
 
+            let pokemon = $("#search").val().trim();
 
-            var searchValue = $("#search").val().trim();
-
-
-            pokemon = searchValue;
             // spaces are replaced with "-" to match query syntax
             pokemon = pokemon.replace(" ", "-");
 
@@ -24,21 +21,20 @@ $(function () {
 
             //ajax call to send data to the server
             $.ajax({
-                    method: "POST",
-                    url: "/api/search/" + pokemon
-                    // success: function(){
-                    //     setTimeout(function(){
-                    //         location.reload();
-                    //     },1000)
-
-                }
-            ).done(function (data) {
+                method: "POST",
+                url: `/query/search/${pokemon}`,
+                // success: function(){
+                //     setTimeout(function(){
+                //         location.reload();
+                //     },1000)
+            }).then(function(){
+                setTimeout(function(){
+                    location.reload();
+                },1000)
+            }).done(function(data){
                 console.log(data);
+                pokemon = "";
             });
-
-            searchValue = "";
-
         }
-    });
+    })
 });
-

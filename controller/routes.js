@@ -22,13 +22,9 @@ pokeRouter.get("/cardSearch", function (req, res) {
 });
 
 pokeRouter.post("/api/search/:pokemon?", function(req, res){
-    var pokeSearch = req.params.pokemon;
+    let pokeSearch = req.params.pokemon;
 
     console.log(pokeSearch);
-
-    // example variables for use in testing
-    var pokemonExample = "blastoise";
-    var cardURLExample = "http://www.pokemon.com/us/pokemon-tcg/pokemon-cards/bw-series/bw7/31/";
 
 // query for a list of cards including matching the query value, pokemon
     function initialQuery(pokemon) {
@@ -39,11 +35,11 @@ pokeRouter.post("/api/search/:pokemon?", function(req, res){
 
             // we will show each card as an image and store the url of the card within the image
 
-            var cards = data.cards;
-            for (var i = 0; i < cards.length; i++) {
+            const cards = data.cards;
+            for (let i = 0; i < cards.length; i++) {
                 // data is sent to cardSearch.handlebars for display
                 // each displayed card has a stored URL used for a second query when clicked
-                var newCard = {
+                const newCard = {
                     url: cards[i].url,
                     image: cards[i].image,
                     id: cards[i].id,
@@ -72,7 +68,6 @@ pokeRouter.post("/api/search/:pokemon?", function(req, res){
     cardData = [];
     location.reload();
 });
-
 
 //this half will handle api requests
 
@@ -131,8 +126,8 @@ pokeRouter.put("/api/updateCard", function (req, res) {
             res.send("card has been removed from the deck");
         })
     }
-    
-    
+
+
 });
 
 //delete a card from your deck
@@ -151,10 +146,6 @@ pokeRouter.delete("/api/deleteCard/", function (req, res) {
         res.send("card has been removed from the deck");
     })
 });
-
-function deleteCard() {
-
-}
 
 module.exports = pokeRouter;
 
