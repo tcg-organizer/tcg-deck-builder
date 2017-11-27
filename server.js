@@ -5,7 +5,6 @@ const db = require("./models");
 const path = require("path");
 const dbRoutes = require('./routes/dbRoutes');
 const htmlRoutes = require('./routes/htmlRoutes');
-// const queryRoutes = require('./routes/queryRoutes');
 
 const app = express();
 const PORT = process.env.PORT || 8080;
@@ -35,7 +34,6 @@ if ('development' == app.get('env')) {
  */
 
 app.use('/', htmlRoutes);
-// app.use('/query', queryRoutes);
 app.use('/db', dbRoutes);
 
 
