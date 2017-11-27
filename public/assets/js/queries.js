@@ -12,7 +12,9 @@ $(function () {
             event.preventDefault();
         } else {
 
+
         var searchValue = $("#search").val().trim();
+
 
             pokemon = searchValue;
             // spaces are replaced with "-" to match query syntax
@@ -24,12 +26,16 @@ $(function () {
             $.ajax({
                 method: "POST",
                 url: "/api/search/"+ pokemon
+                // success: function(){
+                //     setTimeout(function(){
+                //         location.reload();
+                //     },1000)
+                }
             }).done(function(data){
                 console.log(data);
-
             });
 
-            cardArray = [];
+            searchValue = "";
         }
 
     })

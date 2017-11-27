@@ -6,7 +6,7 @@ const query = require('./queries');
 const scraper = require('pokemon-tcg-scraper');
 
 // const pokemon = { pokemon: "sandshrew"};
-const cardData = [];
+let cardData = [];
 
 //this half handles the handlebars pages
 pokeRouter.get("/", function (req, res) {
@@ -68,7 +68,9 @@ pokeRouter.post("/api/search/:pokemon?", function(req, res){
     }
 
     initialQuery(pokeSearch);
-    res.render("cardSearch", {cardData: cardData})
+    res.render("cardSearch");
+    cardData = [];
+    location.reload();
 });
 
 
