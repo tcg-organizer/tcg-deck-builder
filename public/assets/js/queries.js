@@ -25,11 +25,11 @@ $(function () {
             //ajax call to send data to the server
             $.ajax({
                 method: "POST",
-                url: "/api/search/"+ pokemon
-                // success: function(){
-                //     setTimeout(function(){
-                //         location.reload();
-                //     },1000)
+                url: "/api/search/" + pokemon,
+                success: function () {
+                    setTimeout(function () {
+                        location.reload();
+                    }, 1000)
                 }
             }).done(function(data){
                 console.log(data);

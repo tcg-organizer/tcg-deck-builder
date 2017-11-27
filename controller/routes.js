@@ -70,7 +70,6 @@ pokeRouter.post("/api/search/:pokemon?", function(req, res){
     initialQuery(pokeSearch);
     res.render("cardSearch");
     cardData = [];
-    location.reload();
 });
 
 
