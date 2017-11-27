@@ -1,0 +1,54 @@
+html {
+    background: url("../img/404background.jpg") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+
+}
+
+body {
+    font-family: 'Signika', sans-serif;
+    font-size: 120%;
+    text-align: center;
+    color: #ff7979;
+    text-shadow:
+            -2px -2px 0 #000,
+            1px -1px 0 #000,
+            -1px 1px 0 #000,
+            1px 1px 0 #000;
+}
+
+h1 {
+    font-family: 'Signika', sans-serif;
+    margin-top: 2%;
+    margin-bottom: 1%;
+    text-align: center;
+    font-size: 550%;
+    color: #ff7979;
+    text-shadow:
+            -2px -2px 0 #000,
+            1px -1px 0 #000,
+            -1px 1px 0 #000,
+            1px 1px 0 #000;
+}
+
+#julieOriginal{
+    max-width: 40%;
+    text-align: center;
+
+}
+
+a {
+    color: #69ff3d;
+    cursor: auto;
+    text-decoration: underline;
+}
+
+
+/* mouse over link */
+a:hover {
+    color: #ff7979;
+    cursor: auto;
+    text-decoration: underline;
+}
