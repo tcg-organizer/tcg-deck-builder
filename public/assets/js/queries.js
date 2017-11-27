@@ -11,12 +11,9 @@ $(function () {
             // Prevent the form from submitting
             event.preventDefault();
         } else {
-
-
-        var searchValue = $("#search").val().trim();
-
-
-            pokemon = searchValue;
+        
+        let pokemon = $("#search").val().trim();
+            
             // spaces are replaced with "-" to match query syntax
             pokemon = pokemon.replace(" ", "-");
 
@@ -25,19 +22,16 @@ $(function () {
             //ajax call to send data to the server
             $.ajax({
                 method: "POST",
-                url: "/api/search/"+ pokemon
+                url: "/query/search/"+ pokemon
                 // success: function(){
                 //     setTimeout(function(){
                 //         location.reload();
                 //     },1000)
-                }
             }).done(function(data){
                 console.log(data);
+                pokemon = "";
             });
-
-            searchValue = "";
         }
-
     })
 });
 
