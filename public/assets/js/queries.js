@@ -22,11 +22,7 @@ $(function () {
             //ajax call to send data to the server
             $.ajax({
                 method: "POST",
-                url: `/query/search/${pokemon}`
-                // success: function(){
-                //     setTimeout(function(){
-                //         location.reload();
-                //     },1000)
+                url: `/api/search/${pokemon}`
             }).then(function(){
                 setTimeout(function(){
                     location.reload();
@@ -41,18 +37,17 @@ $(function () {
 
     $("#cardButton").on("click", function(event){
         event.preventDefault();
-        let thisCard = this.dataset.id;
+        let cardURL = $(this).attr("data-id");
 
         $.ajax({
             method: "POST",
-            url: `/query/search/${thisCard}`
+            url: `/api/search/${cardURL}`
         }).then(function(){
             setTimeout(function(){
                 location.reload();
             },1000)
         }).done(function(data){
             console.log(data);
-            thisCard = "";
         })
     })
 
