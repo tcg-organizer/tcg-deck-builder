@@ -2,6 +2,7 @@ const express = require("express");
 const htmlRouter = express.Router();
 const scraper = require('pokemon-tcg-scraper');
 let cardData = [];
+let specificCardData = [];
 
 //this half handles the handlebars pages
 htmlRouter.get("/", function (req, res) {
@@ -16,7 +17,7 @@ htmlRouter.get("/cardSearch", function (req, res) {
     res.render("cardSearch", {cardData: cardData});
 });
 
-htmlRouter.post("/query/search/:pokemon?", function(req, res){
+htmlRouter.post("/api/search/:pokemon?", function (req, res) {
     let pokeSearch = req.params.pokemon;
     
     console.log(pokeSearch);
@@ -42,11 +43,20 @@ htmlRouter.post("/query/search/:pokemon?", function(req, res){
                         singleCardQuery(this.url);
                     }
                 };
-                
                 cardData.push(newCard);
             }
         });
     }
+    
+    initialQuery(pokeSearch);
+    res.render("cardSearch", {cardData: cardData});
+    cardData = [];
+});
+
+htmlRouter.post("/api/search/:cardURL", function (req, res) {
+    let cardSearch = req.params.cardURL;
+    console.log(cardSearch);
+    
     function singleCardQuery(cardURL) {
         // query for a specific card based on a specific URL (can be received from the basic query above)
         
@@ -54,11 +64,31 @@ htmlRouter.post("/query/search/:pokemon?", function(req, res){
             // returns an object with the following information: id, name, image, type, superType, hp, abilities, rules, color, weaknesses, resistances, retreatCost
             console.log(JSON.stringify(data, null, 4));
             // this will lead to a modal opening with displayed data from the query
+            
+           const chosenCard =
+                //keys for the data
+                {
+                    id: data.id,
+                    name: data.name,
+                    image: data.image,
+                    type: data.type,
+                    superType: data.superType,
+                    evolvesFrom: data.evolvesFrom,
+                    hp: data.hp,
+                    passive: data.passive,
+                    abilities: data.abilities,
+                    rules: data.rules,
+                    color: data.color,
+                    weaknesses: data.weaknesses,
+                    resistances: data.resistances,
+                    retreatCost: data.retreatCost
+                };
+                specificCardData.push(chosenCard);
         });
     }
-    initialQuery(pokeSearch);
-    res.render("cardSearch", {cardData: cardData});
-    cardData = [];
-    
+    singleCardQuery(cardSearch);
+    res.send("modalPartial", {specificCardData: specificCardData});
+    specificCardData = [];
 });
+
 module.exports = htmlRouter;
