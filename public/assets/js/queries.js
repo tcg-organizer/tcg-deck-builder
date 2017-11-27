@@ -22,7 +22,7 @@ $(function () {
             //ajax call to send data to the server
             $.ajax({
                 method: "POST",
-                url: `/api/search/${pokemon}`
+                url: `/api/search/pokemon/${pokemon}`
             }).then(function(){
                 setTimeout(function(){
                     location.reload();
@@ -38,10 +38,15 @@ $(function () {
     $("#cardButton").on("click", function(event){
         event.preventDefault();
         let cardURL = $(this).attr("data-id");
+        cardURL = cardURL.substring(23);
+        cardURL = cardURL.split("/");
+        cardURL = cardURL.join("+");
+
+        console.log(cardURL);
 
         $.ajax({
             method: "POST",
-            url: `/api/search/${cardURL}`
+            url: `/api/search/url/${cardURL}`
         }).then(function(){
             setTimeout(function(){
                 location.reload();
