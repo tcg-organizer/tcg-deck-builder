@@ -4,7 +4,7 @@ $(function () {
 
     $("#submit").on("click", function (event) {
 
-        if ($("#search").val().trim().length === 0 ) {
+        if ($("#search").val().trim().length === 0) {
 
             // Usually show some kind of error message here
 
@@ -13,7 +13,7 @@ $(function () {
         } else {
 
 
-        var searchValue = $("#search").val().trim();
+            var searchValue = $("#search").val().trim();
 
 
             pokemon = searchValue;
@@ -24,20 +24,21 @@ $(function () {
 
             //ajax call to send data to the server
             $.ajax({
-                method: "POST",
-                url: "/api/search/"+ pokemon
-                // success: function(){
-                //     setTimeout(function(){
-                //         location.reload();
-                //     },1000)
+                    method: "POST",
+                    url: "/api/search/" + pokemon
+                    // success: function(){
+                    //     setTimeout(function(){
+                    //         location.reload();
+                    //     },1000)
+
                 }
-            }).done(function(data){
+            ).done(function (data) {
                 console.log(data);
             });
 
             searchValue = "";
-        }
 
-    })
+        }
+    });
 });
 
