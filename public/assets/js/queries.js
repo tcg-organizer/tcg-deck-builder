@@ -38,6 +38,11 @@ $(function () {
     $("#cardButton").on("click", function(event){
         event.preventDefault();
         let cardURL = $(this).attr("data-id");
+        cardURL = cardURL.substring(23);
+        cardURL = cardURL.split("/");
+        cardURL = cardURL.join("+");
+
+        console.log(cardURL);
 
         $.ajax({
             method: "POST",

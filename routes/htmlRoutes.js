@@ -18,8 +18,9 @@ htmlRouter.get("/cardSearch", function (req, res) {
 });
 
 htmlRouter.post("/api/search/pokemon/:pokemon?", function (req, res) {
-    let pokeSearch = req.params.pokemon.pokemon;
-    
+
+    let pokeSearch = req.params.pokemon;
+
     console.log(pokeSearch);
 
 // query for a list of cards including matching the query value, pokemon
@@ -54,17 +55,22 @@ htmlRouter.post("/api/search/pokemon/:pokemon?", function (req, res) {
 });
 
 htmlRouter.post("/api/search/url/:cardURL?", function (req, res) {
-    let cardSearch = req.params.cardURL;
-    console.log(cardSearch+"this is the req.body");
-    
+
+    let cardSearch = "https://www.pokemon.com/" + req.params.cardURL;
+
+    cardSearch = cardSearch.split("+");
+    cardSearch = cardSearch.join("/");
+
+    console.log(cardSearch);
+
     function singleCardQuery(cardURL) {
         // query for a specific card based on a specific URL (can be received from the basic query above)
-        
+
         scraper.scrapeCard(cardURL).then(function (data) {
             // returns an object with the following information: id, name, image, type, superType, hp, abilities, rules, color, weaknesses, resistances, retreatCost
             console.log(JSON.stringify(data, null, 4));
             // this will lead to a modal opening with displayed data from the query
-            
+
            const chosenCard =
                 //keys for the data
                 {
@@ -87,7 +93,7 @@ htmlRouter.post("/api/search/url/:cardURL?", function (req, res) {
         });
     }
     singleCardQuery(cardSearch);
-    res.send("cardSearch", {specificCardData: specificCardData});
+    res.render("cardSearch", {specificCardData: specificCardData});
     specificCardData = [];
 });
 
