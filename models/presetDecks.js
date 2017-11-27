@@ -6,7 +6,7 @@ module.exports = function (sequelize, DataTypes) {
             validate: {
                 len: {
                     args: [1, 50],
-                    msg: "Deck name must be between one and 50 characters"
+                    msg: "Deck name must be less than 50 characters"
                 },
                 isAlphanumeric: true,
                 notContains: 'DROP'

@@ -1,5 +1,5 @@
 html {
-    background: url("../public/assets/img/Pokeball.PNG") no-repeat center center fixed;
+    background: url("../img/Pokeball.PNG") no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -21,31 +21,22 @@ img {
     margin-top : 25px;
 }
 
-h1 {
-    margin: 0 0 10px 0;
-    padding: 5px;
-    font-size: 24px;
-    background-color: #f4c131;
-    color: #a8dcff;
-}
-table {
-    margin: 10px;
-}
-th, td {
-    padding: 5px;
-    border: 1px solid #999;
-}
-th {
-    background: #ccc;
-}
-tr:nth-child(odd) {
-    background: #eee;
-}
-
-
 
 .footer {
     position: absolute;
     left: 0 ; right: 0; bottom: 0;
     height: 50px;
+}
+/*helper classes for styling*/
+.grey {
+    background-color: #9fb6cd;
+}
+
+.card-margin {
+    margin-bottom: 25px;
+}
+
+.center {
+    diplay: block;
+    margin: auto;
 }

@@ -35,10 +35,6 @@ List of Packages
 Resources Referenced
 --------------------
 - [The Difference Between URLs and URIs](https://danielmiessler.com/study/url-uri/) - Rest APIs
-- [Serialize vs. Deseralize](https://stackoverflow.com/questions/26168492/what-exactly-does-serialize-and-deseralize-do-in-sessions-with-passport-and-expr) - Authentication
-- [Node.js the Right Way](http://shop.oreilly.com/product/9781937785734.do) - Jim R. Wilson
-
-
 
 Compiled Design Resources
 -------------------------
