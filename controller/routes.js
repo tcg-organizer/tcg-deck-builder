@@ -26,10 +26,6 @@ pokeRouter.post("/api/search/:pokemon?", function(req, res){
 
     console.log(pokeSearch);
 
-    // example variables for use in testing
-    var pokemonExample = "blastoise";
-    var cardURLExample = "http://www.pokemon.com/us/pokemon-tcg/pokemon-cards/bw-series/bw7/31/";
-
 // query for a list of cards including matching the query value, pokemon
     function initialQuery(pokemon) {
         scraper.scrapeSearchPage("http://www.pokemon.com/us/pokemon-tcg/pokemon-cards/?cardName=" + pokemon).then(function (data) {
@@ -68,7 +64,7 @@ pokeRouter.post("/api/search/:pokemon?", function(req, res){
     }
 
     initialQuery(pokeSearch);
-    res.render("cardSearch");
+    res.send("cardSearch");
     cardData = [];
 });
 
