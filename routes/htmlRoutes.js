@@ -91,7 +91,8 @@ htmlRouter.post("/api/search/url/:cardURL?", function (req, res) {
         });
     }
     singleCardQuery(cardSearch);
-    res.send("cardSearch", {specificCardData: specificCardData});
+    console.log("specific card data:" + specificCardData);
+    res.render("cardSearch", {specificCardData: specificCardData});
     specificCardData = [];
 });
 
