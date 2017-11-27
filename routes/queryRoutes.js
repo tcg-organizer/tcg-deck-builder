@@ -35,22 +35,19 @@ pokeRouter.post("/search/:pokemon?", function(req, res){
             }
         });
     }
+    function singleCardQuery(cardURL) {
+        // query for a specific card based on a specific URL (can be received from the basic query above)
+        
+        scraper.scrapeCard(cardURL).then(function (data) {
+            // returns an object with the following information: id, name, image, type, superType, hp, abilities, rules, color, weaknesses, resistances, retreatCost
+            console.log(JSON.stringify(data, null, 4));
+            // this will lead to a modal opening with displayed data from the query
+        });
+    }
     initialQuery(pokeSearch);
     res.render("cardSearch", {cardData: cardData});
     cardData = [];
+    
 });
 
 module.exports = pokeRouter;
-
-
-
-
-function singleCardQuery(cardURL) {
-    // query for a specific card based on a specific URL (can be received from the basic query above)
-    
-    scraper.scrapeCard(cardURL).then(function (data) {
-        // returns an object with the following information: id, name, image, type, superType, hp, abilities, rules, color, weaknesses, resistances, retreatCost
-        console.log(JSON.stringify(data, null, 4));
-        // this will lead to a modal opening with displayed data from the query
-    });
-}
