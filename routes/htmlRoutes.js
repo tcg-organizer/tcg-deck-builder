@@ -53,7 +53,7 @@ htmlRouter.post("/api/search/:pokemon?", function (req, res) {
     cardData = [];
 });
 
-htmlRouter.post("/api/search/:cardURL", function (req, res) {
+htmlRouter.post("/api/search/:cardURL?", function (req, res) {
     let cardSearch = req.params.cardURL;
     console.log(cardSearch);
     
@@ -87,7 +87,7 @@ htmlRouter.post("/api/search/:cardURL", function (req, res) {
         });
     }
     singleCardQuery(cardSearch);
-    res.send("modalPartial", {specificCardData: specificCardData});
+    res.send("cardSearch", {specificCardData: specificCardData});
     specificCardData = [];
 });
 
