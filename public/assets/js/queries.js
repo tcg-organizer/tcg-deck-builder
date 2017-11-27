@@ -22,7 +22,7 @@ $(function () {
             //ajax call to send data to the server
             $.ajax({
                 method: "POST",
-                url: `/query/search/${pokemon}`,
+                url: `/query/search/${pokemon}`
                 // success: function(){
                 //     setTimeout(function(){
                 //         location.reload();
@@ -36,5 +36,24 @@ $(function () {
                 pokemon = "";
             });
         }
+    });
+
+
+    $("#cardButton").on("click", function(event){
+        event.preventDefault();
+        let thisCard = this.dataset.id;
+
+        $.ajax({
+            method: "POST",
+            url: `/query/search/${thisCard}`
+        }).then(function(){
+            setTimeout(function(){
+                location.reload();
+            },1000)
+        }).done(function(data){
+            console.log(data);
+            thisCard = "";
+        })
     })
+
 });
