@@ -22,7 +22,7 @@ $(function () {
             //ajax call to send data to the server
             $.ajax({
                 method: "POST",
-                url: `/api/search/${pokemon}`
+                url: `/api/search/pokemon/${pokemon}`
             }).then(function(){
                 setTimeout(function(){
                     location.reload();
@@ -41,7 +41,7 @@ $(function () {
 
         $.ajax({
             method: "POST",
-            url: `/api/search/${cardURL}`
+            url: `/api/search/url/${cardURL}`
         }).then(function(){
             setTimeout(function(){
                 location.reload();

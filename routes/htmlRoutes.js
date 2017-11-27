@@ -17,8 +17,8 @@ htmlRouter.get("/cardSearch", function (req, res) {
     res.render("cardSearch", {cardData: cardData});
 });
 
-htmlRouter.post("/api/search/:pokemon?", function (req, res) {
-    let pokeSearch = req.params.pokemon;
+htmlRouter.post("/api/search/pokemon/:pokemon?", function (req, res) {
+    let pokeSearch = req.params.pokemon.pokemon;
     
     console.log(pokeSearch);
 
@@ -53,9 +53,9 @@ htmlRouter.post("/api/search/:pokemon?", function (req, res) {
     cardData = [];
 });
 
-htmlRouter.post("/api/search/:cardURL?", function (req, res) {
+htmlRouter.post("/api/search/url/:cardURL?", function (req, res) {
     let cardSearch = req.params.cardURL;
-    console.log(cardSearch);
+    console.log(cardSearch+"this is the req.body");
     
     function singleCardQuery(cardURL) {
         // query for a specific card based on a specific URL (can be received from the basic query above)
