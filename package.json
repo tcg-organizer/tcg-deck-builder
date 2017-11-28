@@ -5,10 +5,13 @@
   "main": "server.js",
   "dependencies": {
     "body-parser": "^1.18.2",
+    "connect-ensure-login": "^0.1.1",
     "express": "^4.16.2",
     "express-handlebars": "^3.0.0",
     "mysql": "^2.15.0",
     "mysql2": "^1.5.1",
+    "passport": "^0.4.0",
+    "passport-auth0": "^0.6.0",
     "pokemon-tcg-scraper": "0.0.5",
     "sequelize": "^4.22.11"
   },
