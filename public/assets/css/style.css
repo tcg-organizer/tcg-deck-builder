@@ -1,9 +1,9 @@
 html {
-    background: url("../img/Pokeball.PNG") no-repeat center center fixed;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
+    /*background: url("../img/Pokeball.PNG") no-repeat center center fixed;*/
+    /*-webkit-background-size: cover;*/
+    /*-moz-background-size: cover;*/
+    /*-o-background-size: cover;*/
+    /*background-size: cover;*/
 }
 
 img {
@@ -42,4 +42,8 @@ img {
     margin: auto;
 }
 
+div.container {
+    border-image-source: url("../img/borderv1.png");
+
+}
 
