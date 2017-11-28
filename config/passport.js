@@ -1,15 +1,13 @@
-/*
-Placeholder of login
-var passport = require('passport');
+var passport = require('passport')
 var LocalStrategy = require('passport-local').Strategy;
 var db = require('../models');
 
-// writing part
+// Serialize Sessions
 passport.serializeUser(function(user, done){
     done(null, user);
 });
 
-//reading part
+//Deserialize Sessions
 passport.deserializeUser(function(user, done){
     db.User.find({where: {id: user.id}}).success(function(user){
         done(null, user);
@@ -18,17 +16,12 @@ passport.deserializeUser(function(user, done){
     });
 });
 
-// user auth
-passport.use(new LocalStrategy (
+// For Authentication Purposes
+passport.use(new LocalStrategy(
     function(username, password, done){
-        db.User.find(
-            {where: {username: username}
-        }).success(function(user){
-            passwrd = user ? user.password : '';
-            isMatch = db.User.validPassword(password, passwrd, done, user);
+        db.User.find({where: {username: username}}).success(function(user){
+            passwd = user ? user.password : '';
+            isMatch = db.User.validPassword(password, passwd, done, user)
         });
     }
 ));
-
-/*
-

@@ -5,11 +5,18 @@
   "main": "server.js",
   "dependencies": {
     "async": "^2.6.0",
+    "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.18.2",
     "express": "^4.16.2",
     "express-handlebars": "^3.0.0",
+    "jake": "^8.0.15",
+    "lodash": "^4.17.4",
     "mysql": "^2.15.0",
     "mysql2": "^1.5.1",
+    "node-gyp": "^3.6.2",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
+    "password": "^0.1.1",
     "pokemon-tcg-scraper": "0.0.5",
     "sequelize": "^4.22.11"
   },
