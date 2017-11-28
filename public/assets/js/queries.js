@@ -30,7 +30,6 @@ $(function () {
                 //     setTimeout(function(){
                 //         location.reload();
                 //     },1000)
-                }
             }).done(function(data){
                 console.log(data);
             });
