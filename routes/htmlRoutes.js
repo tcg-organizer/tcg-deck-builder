@@ -96,4 +96,9 @@ htmlRouter.post("/api/search/url/:cardURL?", function (req, res) {
     specificCardData = [];
 });
 
+// 404 Error Page
+htmlRouter.get('/api', function(req, res) {
+    res.status(404).sendFile(__dirname + '/public/404.html');
+});
+
 module.exports = htmlRouter;

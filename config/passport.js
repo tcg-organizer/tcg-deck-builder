@@ -32,11 +32,3 @@ passport.use(new LocalStrategy (
 
 /*
 
-Sources
-
-https://stackoverflow.com/questions/26168492/what-exactly-does-serialize-and-deseralize-do-in-sessions-with-passport-and-expr
-
-Ch. Authenticating with Passport: Node.js the Right Way
-
-
-*/
