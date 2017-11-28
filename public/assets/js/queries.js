@@ -12,11 +12,8 @@ $(function () {
             event.preventDefault();
         } else {
 
+            let pokemon = $("#search").val().trim();
 
-        var searchValue = $("#search").val().trim();
-
-
-            pokemon = searchValue;
             // spaces are replaced with "-" to match query syntax
             pokemon = pokemon.replace(" ", "-");
 
@@ -25,18 +22,38 @@ $(function () {
             //ajax call to send data to the server
             $.ajax({
                 method: "POST",
-                url: "/api/search/"+ pokemon
-                // success: function(){
-                //     setTimeout(function(){
-                //         location.reload();
-                //     },1000)
+                url: `/api/search/pokemon/${pokemon}`
+            }).then(function(){
+                setTimeout(function(){
+                    location.reload();
+                },1000);
             }).done(function(data){
                 console.log(data);
+                pokemon = "";
             });
-
-            searchValue = "";
         }
+    });
 
+
+    $("#cardButton").on("click", function(event){
+        event.preventDefault();
+        let cardURL = $(this).attr("data-id");
+        cardURL = cardURL.substring(23);
+        cardURL = cardURL.split("/");
+        cardURL = cardURL.join("+");
+
+        console.log(cardURL);
+
+        $.ajax({
+            method: "POST",
+            url: `/api/search/url/${cardURL}`
+        }).then(function(){
+            setTimeout(function(){
+                location.reload();
+            },1000)
+        }).done(function(data){
+            console.log(data);
+        })
     })
-});
 
+});
