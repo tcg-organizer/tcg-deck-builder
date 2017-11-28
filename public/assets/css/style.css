@@ -22,6 +22,48 @@ img {
     filter: alpha(opacity=80); /* For IE8 and earlier */
 }
 
+.feature-msg {
+    margin: auto 0;
+}
+
+
+.number {
+    background: url("../img/numberFour.png") no-repeat center center fixed;
+}
+
+
+.left-block .right-block{
+    display:inline-block;
+    width: 15% !important;
+    margin: 15px 0;
+}
+
+
+#lostPage {
+    text-align: center;
+}
+
+.center-block {
+    background: no-repeat center center fixed;
+    display: inline-block;
+}
+
+a {
+    color:gray;
+    cursor: auto;
+    text-decoration: underline;
+}
+
+
+/* mouse over link */
+a:hover {
+    color: red;
+    cursor: auto;
+    text-decoration: underline;
+}
+
+
+
 
 .footer {
     position: absolute;
