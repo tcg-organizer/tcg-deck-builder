@@ -38,6 +38,10 @@ img {
     margin: 15px 0;
 }
 
+#footer {
+    height: 50%;
+    background-color: #f5f5f5;
+}
 
 #lostPage {
     text-align: center;
