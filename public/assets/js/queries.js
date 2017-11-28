@@ -23,14 +23,10 @@ $(function () {
             $.ajax({
                 method: "POST",
                 url: `/api/search/${pokemon}`,
-                // success: function(){
-                //     setTimeout(function(){
-                //         location.reload();
-                //     },1000)
             }).then(function(){
                 setTimeout(function(){
                     location.reload();
-                },1000)
+                },1000);
             }).done(function(data){
                 console.log(data);
                 pokemon = "";
