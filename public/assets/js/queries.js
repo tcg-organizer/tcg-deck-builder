@@ -48,9 +48,9 @@ $(function () {
             method: "POST",
             url: `/api/search/url/${cardURL}`
         }).then(function(){
-            setTimeout(function(){
-                location.reload();
-            },1000)
+            // setTimeout(function(){
+            //     location.reload();
+            // },1000)
         }).done(function(data){
             console.log(data);
         })
