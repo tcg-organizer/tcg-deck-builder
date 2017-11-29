@@ -46,11 +46,13 @@ htmlRouter.post("/api/search/pokemon/:pokemon?", function (req, res) {
                 };
                 cardData.push(newCard);
             }
+            res.json(data);
         });
     }
     
     initialQuery(pokeSearch);
-    res.render("cardSearch", {cardData: cardData});
+    // res.render("cardSearch", {cardData: cardData});
+    // res.json(data);
     cardData = [];
 });
 
@@ -90,10 +92,13 @@ htmlRouter.post("/api/search/url/:cardURL?", function (req, res) {
                     retreatCost: data.retreatCost
                 };
                 specificCardData.push(chosenCard);
+                res.json(chosenCard);
         });
     }
     singleCardQuery(cardSearch);
-    res.json(data);
+
+    // console.log("specific card data:" + specificCardData);
+    // res.render("cardSearch", {specificCardData: specificCardData});
     specificCardData = [];
 });
 
