@@ -5,6 +5,7 @@
   "main": "server.js",
   "dependencies": {
     "body-parser": "^1.18.2",
+    "chai": "^4.1.2",
     "express": "^4.16.2",
     "express-handlebars": "^3.0.0",
     "mysql": "^2.15.0",

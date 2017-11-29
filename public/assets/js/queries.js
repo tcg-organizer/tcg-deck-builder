@@ -1,30 +1,60 @@
-// uses pokemon tcg scraper npm
-var scraper = require('pokemon-tcg-scraper');
+// On click function to grab search value after page load
 
-// query for a list of cards including the query value
-// example within
+$(function () {
 
-// var pokemon = $("#search").value().trim();
-// pokemon = pokemon.replace(" ","-");
-var pokemon = "blastoise-ex";
-var pokemonURL;
+    $("#submit").on("click", function (event) {
 
-scraper.scrapeSearchPage("http://www.pokemon.com/us/pokemon-tcg/pokemon-cards/?cardName=" + pokemon).then(function(card){
-    // returns an object with the following information: numPages, cards
-    console.log(JSON.stringify(card,null,4));
-    // we will show each card as an image and store the url of the card within the image
-    var cards = card.cards;
-    for (var i = 0; i < cards.length; i++){
-        // create a container showing image and maybe the id and append it to some existing container
-        var newContainer;
-    }
-    // when clicked, the stored url will be used to query for the specific card for display
+        if ($("#search").val().trim().length === 0 ) {
 
-});
+            // Usually show some kind of error message here
 
-// query for a specific card based on a specific URL (can be received from the basic query above)
-// example within
-scraper.scrapeCard("http://www.pokemon.com/us/pokemon-tcg/pokemon-cards/xy-series/xyp/XY30/").then(function(card){
-    // returns an object with the following information: id, name, image, type, superType, hp, abilities, rules, color, weaknesses, resistances, retreatCost
-    console.log(JSON.stringify(card, null, 4));
+            // Prevent the form from submitting
+            event.preventDefault();
+        } else {
+
+            let pokemon = $("#search").val().trim();
+
+            // spaces are replaced with "-" to match query syntax
+            pokemon = pokemon.replace(" ", "-");
+
+            console.log(pokemon);
+
+            //ajax call to send data to the server
+            $.ajax({
+                method: "POST",
+                url: `/api/search/pokemon/${pokemon}`
+            }).then(function(data){
+                console.log(data);
+                setTimeout(function(){
+                    location.reload();
+                },2000)
+            }).done(function(){
+
+                pokemon = "";
+            });
+        }
+    });
+
+
+    $(".cardButton").on("click", function(event){
+        event.preventDefault();
+        let cardURL = $(this).attr("data-id");
+        cardURL = cardURL.substring(23);
+        cardURL = cardURL.split("/");
+        cardURL = cardURL.join("+");
+
+        console.log(cardURL);
+
+        $.ajax({
+            method: "POST",
+            url: `/api/search/url/${cardURL}`
+        }).then(function(data){
+            // setTimeout(function(){
+            //     location.reload();
+            // },1000)
+            console.log(data);
+            $("#pokemonName").text(data.name);
+        });
+    })
+
 });

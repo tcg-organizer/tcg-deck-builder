@@ -1,15 +1,15 @@
-
+ ![pokeball](https://cdn.emojidex.com/emoji/px32/pokeball.png "pokeball") ![Charmander](https://cdn.emojidex.com/emoji/px32/Charmander.png "Charmander") ![Squirtle](https://cdn.emojidex.com/emoji/px32/Squirtle.png "Squirtle") ![Bulbasaur](https://cdn.emojidex.com/emoji/px32/Bulbasaur.png "Bulbasaur")  ...
 # TCG-Deck-Builder
 
 
 
 ### **Users builds decks using pokemon data from the official Pokemon TCG website.**
 
-![bulbasaur](https://raw.githubusercontent.com/jaylynch/pokemoji/master/img/1.png "bulbasaur") ![Pokeball](https://cdn.emojidex.com/emoji/px32/Pokeball.png "Pokeball")
 
-````
-emoji source: https://github.com/lambtron/emojipacks
-`````
+
+<h4 align="left">SAMPLE CARD</h4>
+
+![](https://assets.pokemon.com/assets/cms2/img/cards/web/POP3/POP%20Series_3_EN_9.png)
 
 List of Packages
 ----------------

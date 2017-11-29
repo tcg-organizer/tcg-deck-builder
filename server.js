@@ -3,10 +3,12 @@ const bodyParser = require("body-parser");
 const hbars = require('express-handlebars');
 const db = require("./models");
 const path = require("path");
+const dbRoutes = require('./routes/dbRoutes');
+const htmlRoutes = require('./routes/htmlRoutes');
 
 const app = express();
-
 const PORT = process.env.PORT || 8080;
+
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -35,15 +37,14 @@ if ('development' == app.get('env')) {
 
  */
 
-
-//html route
-
-var routes = require("./controller/routes");
-// routes folder no longer exists, use above routes file path
-// var routes = require("./routes/routes");
+app.use('/', htmlRoutes);
+app.use('/db', dbRoutes);
 
 
-app.use("/", routes);
+
+// const routes = require("./controller/routes");
+// app.use("/", routes);
+
 
 db.sequelize.sync().then(function() {
     app.listen(PORT, function() {

@@ -1,17 +1,17 @@
 html {
-    background: url("../public/assets/img/giphy.gif") no-repeat center center fixed;
+    background: url("../img/Pokeball.PNG") no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
 }
 
-body {
-    background: #d4d4d4;
-    height: auto;
-    width: 100%;
-    position: relative;
-}
+/*body {*/
+    /*background: #d4d4d4;*/
+    /*height: auto;*/
+    /*width: 100%;*/
+    /*position: relative;*/
+/*}*/
 
 img {
     margin-top: 2px;
@@ -27,3 +27,20 @@ img {
     left: 0 ; right: 0; bottom: 0;
     height: 50px;
 }
+/*helper classes for styling*/
+.grey {
+    background-color: #9fb6cd;
+}
+
+.card-margin {
+    margin-bottom: 25px;
+}
+
+.center {
+    diplay: block;
+    margin: auto;
+<<<<<<< HEAD
+}
+=======
+}
+>>>>>>> 3edf7e9731745264a42e14fb50f2d3dfeca4846e
