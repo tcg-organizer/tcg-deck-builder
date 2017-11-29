@@ -22,11 +22,28 @@ img {
 }
 
 
-.footer {
+.footer-section {
     position: absolute;
     left: 0 ; right: 0; bottom: 0;
-    height: 50px;
+    background-color: #3c3d41;
+    padding: 5px;
+    color: white;
+    border-bottom-right-radius: 6px;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 6px;
+    z-index: 1;
+
 }
+
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px){
+    .footer-section {
+        position: static;
+        left: 0px;
+        bottom: 0px;
+    }
+
+}
+
 /*helper classes for styling*/
 .grey {
     background-color: #9fb6cd;
@@ -39,8 +56,4 @@ img {
 .center {
     diplay: block;
     margin: auto;
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 3edf7e9731745264a42e14fb50f2d3dfeca4846e
