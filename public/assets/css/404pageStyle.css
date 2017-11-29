@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 html {
     background: url("../img/404background.jpg") no-repeat center center fixed;
     -webkit-background-size: cover;
@@ -21,10 +22,38 @@ body {
 
 h1 {
     font-family: 'Signika', sans-serif;
+=======
+/*html {*/
+/*background: url("../img/pokeB.png") no-repeat center center fixed;*/
+/*-webkit-background-size: cover;*/
+/*-moz-background-size: cover;*/
+/*-o-background-size: cover;*/
+/*background-size: cover;*/
+
+/*}*/
+
+body {
+    margin: 0 auto;
+    max-width: 960px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 50%;
+    text-align: center;
+    color:gray;
+    /*text-shadow:*/
+    /*-2px -2px 0 #000,*/
+    /*1px -1px 0 #000,*/
+    /*-1px 1px 0 #000,*/
+    /*1px 1px 0 #000;*/
+}
+
+h1 {
+    font-family: 'Open Sans', sans-serif;
+>>>>>>> 3edf7e9731745264a42e14fb50f2d3dfeca4846e
     margin-top: 2%;
     margin-bottom: 1%;
     text-align: center;
     font-size: 550%;
+<<<<<<< HEAD
     color: #ff7979;
     text-shadow:
             -2px -2px 0 #000,
@@ -41,14 +70,57 @@ h1 {
 
 a {
     color: #69ff3d;
+=======
+    color: #ff1a2c;
+/*text-shadow:*/
+/*-2px -2px 0 #263743,*/
+/*1px -1px 0 #263743,*/
+/*-1px 1px 0 #263743,*/
+/*1px 1px 0 #263743*/
+/*}*/
+
+.container {
+    text-align: center;
+}
+
+.feature-msg {
+    margin: auto 0;
+}
+
+
+.number {
+    background: url("../img/numberFour.png") no-repeat center center fixed;
+}
+
+img {
+    display:inline-block;
+    width: 139px !important;
+    margin: 15px 0;
+    padding:5px;
+}
+
+img.center-block {
+    background: no-repeat center center fixed;
+    display: inline-block;
+}
+
+a {
+    color: #d3ced0;
+>>>>>>> 3edf7e9731745264a42e14fb50f2d3dfeca4846e
     cursor: auto;
     text-decoration: underline;
 }
 
+<<<<<<< HEAD
 
 /* mouse over link */
 a:hover {
     color: #ff7979;
+=======
+/* mouse over link */
+a:hover {
+    color: #f0f407;
+>>>>>>> 3edf7e9731745264a42e14fb50f2d3dfeca4846e
     cursor: auto;
     text-decoration: underline;
 }

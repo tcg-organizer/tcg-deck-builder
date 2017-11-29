@@ -18,8 +18,9 @@ htmlRouter.get("/cardSearch", function (req, res) {
 });
 
 htmlRouter.post("/api/search/pokemon/:pokemon?", function (req, res) {
+
     let pokeSearch = req.params.pokemon;
-    
+
     console.log(pokeSearch);
 
 // query for a list of cards including matching the query value, pokemon
@@ -56,13 +57,14 @@ htmlRouter.post("/api/search/pokemon/:pokemon?", function (req, res) {
 });
 
 htmlRouter.post("/api/search/url/:cardURL?", function (req, res) {
+
     let cardSearch = "https://www.pokemon.com/" + req.params.cardURL;
 
     cardSearch = cardSearch.split("+");
     cardSearch = cardSearch.join("/");
 
     console.log(cardSearch);
-    
+
     function singleCardQuery(cardURL) {
         // query for a specific card based on a specific URL (can be received from the basic query above)
 
@@ -94,9 +96,13 @@ htmlRouter.post("/api/search/url/:cardURL?", function (req, res) {
         });
     }
     singleCardQuery(cardSearch);
+
     // console.log("specific card data:" + specificCardData);
     // res.render("cardSearch", {specificCardData: specificCardData});
     specificCardData = [];
 });
+
+// build an endpoint on the server side that won't render any api this jus'
+
 
 module.exports = htmlRouter;
