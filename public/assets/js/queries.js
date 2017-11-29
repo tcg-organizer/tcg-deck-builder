@@ -23,19 +23,20 @@ $(function () {
             $.ajax({
                 method: "POST",
                 url: `/api/search/pokemon/${pokemon}`
-            }).then(function(){
+            }).then(function(data){
+                console.log(data);
                 setTimeout(function(){
                     location.reload();
-                },1000)
-            }).done(function(data){
-                console.log(data);
+                },2000)
+            }).done(function(){
+
                 pokemon = "";
             });
         }
     });
 
 
-    $("#cardButton").on("click", function(event){
+    $(".cardButton").on("click", function(event){
         event.preventDefault();
         let cardURL = $(this).attr("data-id");
         cardURL = cardURL.substring(23);
@@ -47,13 +48,13 @@ $(function () {
         $.ajax({
             method: "POST",
             url: `/api/search/url/${cardURL}`
-        }).then(function(){
+        }).then(function(data){
             // setTimeout(function(){
             //     location.reload();
             // },1000)
-        }).done(function(data){
             console.log(data);
-        })
+            $("#pokemonName").text(data.name);
+        });
     })
 
 });
