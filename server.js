@@ -14,6 +14,8 @@ const dotenv = require('dotenv');
 const passport = require('passport');
 const Auth0Strategy = require('passport-auth0');
 const flash = require('connect-flash');
+const engines = require('consolidate');
+const env = require('./.env');
 
 dotenv.load();
 
@@ -35,6 +37,8 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(express.static("public"));
 
 //handlebars setup
+app.engine('pug', engines.pug);
+app.engine('handlebars', engines.handlebars);
 app.engine("handlebars", hbars({ defaultLayout: "main" }));
 //This will render handlebars files when res.render is called.
 app.set("view engine", "handlebars");
@@ -52,7 +56,7 @@ const strategy = new Auth0Strategy(
         clientID: process.env.AUTH0_CLIENT_ID,
         clientSecret: process.env.AUTH0_CLIENT_SECRET,
         callbackURL:
-        process.env.AUTH0_CALLBACK_URL || 'http://localhost:8080/callback'
+            'http://localhost:8080/' || process.env.AUTH0_CALLBACK_URL
     },
     function(accessToken, refreshToken, extraParams, profile, done) {
         // accessToken is the token to call Auth0 API (not needed in the most cases)
