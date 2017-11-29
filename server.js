@@ -15,9 +15,9 @@ const passport = require('passport');
 const Auth0Strategy = require('passport-auth0');
 const flash = require('connect-flash');
 const engines = require('consolidate');
-const env = require('./.env');
+// const env = require('./.env');
 
-dotenv.load();
+// dotenv.load();
 
 const routes = require('./routes/index');
 const user = require('./routes/user');
