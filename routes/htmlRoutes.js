@@ -93,8 +93,11 @@ htmlRouter.post("/api/search/url/:cardURL?", function (req, res) {
         });
     }
     singleCardQuery(cardSearch);
-    res.render("cardSearch", {specificCardData: specificCardData});
+    res.json(data);
     specificCardData = [];
 });
+
+// build an endpoint on the server side that won't render any api this jus'
+
 
 module.exports = htmlRouter;
