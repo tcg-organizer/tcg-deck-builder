@@ -2,10 +2,10 @@ FROM node:8.7-alpine
 
 WORKDIR /home/app
 
-ADD package.json /home/app
+COPY package*.json ./
 RUN npm install
-ADD . /home/app
+COPY . /home/app
 
 CMD ["npm", "start"]
 
-EXPOSE 3000
+EXPOSE 8080
