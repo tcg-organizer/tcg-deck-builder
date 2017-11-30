@@ -1,3 +1,6 @@
 .idea/
 .DS_Store/
 node_modules/
+.env
+exec.ps1
+exec.sh

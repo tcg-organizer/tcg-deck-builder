@@ -29,8 +29,10 @@ $(function () {
             $.ajax({
                 method: "POST",
                 url: `/api/search/pokemon/${pokemon}`
+=
             }).then(function(data){
                 $("#cardHome").empty();
+
                 console.log(data);
                 for (var i = 0; i < data.cardData.length; i++) {
                     var newDiv1 = $("<div class='col-xl-4 col-md-6 col-xs-12 card-margin'></div>");
