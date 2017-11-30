@@ -5,6 +5,7 @@
   "main": "server.js",
   "dependencies": {
     "body-parser": "^1.18.2",
+    "chai": "^4.1.2",
     "connect-ensure-login": "^0.1.1",
     "connect-flash": "^0.1.1",
     "consolidate": "^0.15.0",
@@ -21,7 +22,7 @@
     "passport-auth0": "^0.6.0",
     "pokemon-tcg-scraper": "0.0.5",
     "pug": "^2.0.0-rc.4",
-    "sequelize": "^4.22.11",
+    "sequelize": "^4.23.4",
     "serve-favicon": "^2.4.5"
   },
   "devDependencies": {},

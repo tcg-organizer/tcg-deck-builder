@@ -2,7 +2,6 @@ const express = require("express");
 const dbRouter = express.Router();
 const db = require("../models/index");
 
-
 //adding a new card to your deck
 dbRouter.post("/db/newCard", function (req, res) {
     db.userDeck.create({
@@ -58,8 +57,6 @@ dbRouter.put("/db/updateCard", function (req, res) {
             res.send("card has been removed from the deck");
         })
     }
-    
-    
 });
 
 //delete a card from your deck

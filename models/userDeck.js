@@ -31,7 +31,6 @@ module.exports = function (sequelize, DataTypes) {
         },
         quantity: {
             type: DataTypes.INTEGER,
-            defaultValue: 1,
             allowNull: false
         }
     });
