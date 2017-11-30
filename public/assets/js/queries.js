@@ -29,7 +29,6 @@ $(function () {
                     location.reload();
                 },2000)
             }).done(function(){
-
                 pokemon = "";
             });
         }
@@ -49,9 +48,6 @@ $(function () {
             method: "POST",
             url: `/api/search/url/${cardURL}`
         }).then(function(data){
-            // setTimeout(function(){
-            //     location.reload();
-            // },1000)
             console.log(data);
             $("#pokemonName").text(data.name);
             $("#pokemonImage").attr("src", data.image);
