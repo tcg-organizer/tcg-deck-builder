@@ -40,8 +40,8 @@ router.get('/callback',
 );
 
 router.get('/failure', function(req, res) {
-    let error = req.flash("error");
-    let error_description = req.flash("error_description");
+    var error = req.flash("error");
+    var error_description = req.flash("error_description");
     req.logout();
     res.render('failure', {
         error: error[0],

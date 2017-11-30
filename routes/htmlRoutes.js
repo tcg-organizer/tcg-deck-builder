@@ -22,7 +22,6 @@ htmlRouter.post("/api/search/pokemon/:pokemon?", function (req, res) {
 
     let pokeSearch = req.params.pokemon;
 
-
     console.log(pokeSearch);
 
 // query for a list of cards including matching the query value, pokemon
@@ -41,22 +40,22 @@ htmlRouter.post("/api/search/pokemon/:pokemon?", function (req, res) {
                 const newCard = {
                     url: cards[i].url,
                     image: cards[i].image,
-                    id: cards[i].id,
-                    query: function () {
-                        singleCardQuery(this.url);
-                    }
+                    id: cards[i].id
                 };
                 cardData.push(newCard);
             }
+            res.json({cardData: cardData, numPages: data.numPages});
         });
     }
     
     initialQuery(pokeSearch);
-    res.render("cardSearch", {cardData: cardData});
+    // res.render("cardSearch", {cardData: cardData});
+    // res.json(data);
     cardData = [];
 });
 
 htmlRouter.post("/api/search/url/:cardURL?", function (req, res) {
+
     let cardSearch = "https://www.pokemon.com/" + req.params.cardURL;
 
     cardSearch = cardSearch.split("+");
@@ -91,11 +90,13 @@ htmlRouter.post("/api/search/url/:cardURL?", function (req, res) {
                     retreatCost: data.retreatCost
                 };
                 specificCardData.push(chosenCard);
+                res.json(chosenCard);
         });
     }
     singleCardQuery(cardSearch);
-    console.log("specific card data:" + specificCardData);
-    res.render("cardSearch", {specificCardData: specificCardData});
+
+    // console.log("specific card data:" + specificCardData);
+    // res.render("cardSearch", {specificCardData: specificCardData});
     specificCardData = [];
 });
 
@@ -105,6 +106,8 @@ const env = {
     AUTH0_CALLBACK_URL:
     'http://localhost:8080/' || process.env.AUTH0_CALLBACK_URL
 };
+
+
 
 htmlRouter.get('/login', passport.authenticate('auth0', {
         clientID: env.AUTH0_CLIENT_ID,
@@ -141,5 +144,9 @@ htmlRouter.get('/failure', function(req, res) {
     });
 });
 
+// 404 Error Page
+htmlRouter.get('*', function (req, res) {
+        +res.render('404');
+});
 
 module.exports = htmlRouter;
