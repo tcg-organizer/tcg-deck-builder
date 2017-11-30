@@ -14,14 +14,6 @@ img {
     margin-top : 25px;
 }
 
-.jumbotron {
-    color: #fff;
-    background: url("../img/jumboJr 2.png") no-repeat center center;
-    background-size: cover;
-    opacity: 0.8;
-    filter: alpha(opacity=80); /* For IE8 and earlier */
-}
-
 .feature-msg {
     margin: auto 0;
 }

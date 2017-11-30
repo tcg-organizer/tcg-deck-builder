@@ -12,6 +12,12 @@ $(function () {
             event.preventDefault();
         } else {
 
+            $("#cardHome").empty();
+
+            var loadingImg = $("<img class='card-img-top' alt='Loading Image'>");
+            loadingImg.attr("src", "./assets/img/pokemon_loading.gif");
+            $("#cardHome").append(loadingImg);
+
             let pokemon = $("#search").val().trim();
 
             // spaces are replaced with "-" to match query syntax
@@ -24,6 +30,7 @@ $(function () {
                 method: "POST",
                 url: `/api/search/pokemon/${pokemon}`
             }).then(function(data){
+                $("#cardHome").empty();
                 console.log(data);
                 for (var i = 0; i < data.length; i++) {
                     var newDiv1 = $("<div class='col-xl-4 col-md-6 col-xs-12 card-margin'></div>");
