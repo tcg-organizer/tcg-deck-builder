@@ -43,7 +43,7 @@ htmlRouter.post("/api/search/pokemon/:pokemon?", function (req, res) {
                 };
                 cardData.push(newCard);
             }
-            res.json(cardData);
+            res.json({cardData: cardData, numPages: data.numPages});
         });
     }
     
