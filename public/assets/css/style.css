@@ -6,13 +6,6 @@ html {
     background-size: cover;
 }
 
-/*body {*/
-    /*background: #d4d4d4;*/
-    /*height: auto;*/
-    /*width: 100%;*/
-    /*position: relative;*/
-/*}*/
-
 img {
     margin-top: 2px;
 }
@@ -21,15 +14,171 @@ img {
     margin-top : 25px;
 }
 
+.feature-msg {
+    margin: auto 0;
+}
 
-.footer-section {
+
+.number {
+    background: url("../img/numberFour.png") no-repeat center center fixed;
+}
+
+
+.left-block .right-block{
+    display:inline-block;
+    width: 15% !important;
+    margin: 15px 0;
+}
+
+/*#footer {*/
+/*height: 50%;*/
+/*background-color: #f5f5f5;*/
+/*}*/
+
+#lostPage.container {
+    text-align: center;
+    max-width: 760px;
+}
+
+#cardHome {
+    margin-bottom: 100px;
+}
+
+.center-block {
+    background: no-repeat center center fixed;
+    display: inline-block;
+}
+
+a {
+    color:gray;
+    cursor: auto;
+    text-decoration: none;
+}
+
+
+/* mouse over link */
+a:hover {
+    color: red;
+    cursor: auto;
+    text-decoration: underline;
+}
+
+.login {
+    width: 50%;
+    height: 50%;
+}
+
+.footer {
     position: absolute;
     left: 0 ; right: 0; bottom: 0;
+    height: 50px;
+}
+/*helper classes for styling*/
+.grey {
+    background-color: #9fb6cd;
+}
+
+.card-margin {
+    margin-bottom: 25px;
+}
+
+.center {
+    display: block;
+    margin: auto;
+}
+
+/* Form Styles */
+form {
+    background-color: #212529;
+    color: gray;
+    padding: 30px 40px;
+}
+
+.hidden-label {
+    position: absolute;
+    height: 0;
+    width: 0;
+    overflow: hidden;
+    visibility: hidden;
+}
+
+input,
+select {
+    font-family: Tahoma, sans-serif;
+    font-size: 100%;
+}
+
+select {
+    -webkit-appearance: none;
+    -webkit-border-radius: 0;
+    border-radius: 0;
+}
+
+input[type="email"],
+input[type="password"],
+input[type="text"],
+select {
+    width: 100%;
+    display: block;
+    box-sizing: border-box;
+    padding: 0 10px;
+    height: 40px;
+    margin-bottom: 15px;
+    border: 1px solid #CDCDCD;
+    outline: none;
+}
+
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="text"]:focus {
+    border: 1px solid #d3ced0;
+    box-shadow: inset 2px 2px 2px rgba(0, 0, 0, .13);
+}
+
+input[type="submit"] {
+    width: 100%;
+    display: block;
+    box-sizing: border-box;
+    background: url("../img/borderv1.png") no-repeat center center;
+    /*background-size: cover;*/
+    color: #d3ced0;
+    padding: 10px 0;
+    border: 1px solid #f0f407;
+    border-radius: 3px;
+    outline: none;
+    margin-bottom: 10px;
+}
+
+input[type="submit"]:hover,
+input[type="submit"]:focus {
+    border: 1px solid #ff1a2c;
+    background-color: #f0f407;
+}
+
+.checkbox-text {
+    font-size: 85%;
+    color: #777;
+}
+
+
+/*div.container {*/
+/*border-image-source: url("../img/borderv1.png");*/
+
+/*}*/
+
+.select {
+    color: gray;
+}
+
+
+.footer-section {
+    /*position: absolute;*/
+    /*left: 0 ; right: 0; bottom: 0;*/
     background-color: #3c3d41;
     padding: 5px;
     color: white;
     border-bottom-right-radius: 6px;
-    border-top-left-radius: 0px;
+    border-top-left-radius: 0;
     border-bottom-left-radius: 6px;
     z-index: 1;
 
@@ -54,6 +203,6 @@ img {
 }
 
 .center {
-    diplay: block;
+    display: block;
     margin: auto;
 }
