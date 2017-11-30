@@ -54,6 +54,17 @@ $(function () {
             // },1000)
             console.log(data);
             $("#pokemonName").text(data.name);
+            $("#pokemonImage").attr("src", data.image);
+            $("#cardType").text("Card Type: " + data.type);
+            $("#evolFrom").text("Evolves from: " + data.evolvesFrom);
+            $("#hp").text("Health: " + data.hp);
+            $("#abilities").text("Abilities" + data.abilities);
+            $("#rules").text("Rules Text: " + data.rules);
+            $("#color").text("Color Identity: " + data.color);
+            $("#weak").text("Weakness: "  + data.weaknesses);
+            $("#resist").text("Resistance: " + data.resistances);
+            $("#retreatCost").text("Retreat Cost: " + data.retreatCost);
+
         });
     })
 
