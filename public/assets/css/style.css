@@ -40,6 +40,10 @@ img {
     max-width: 760px;
 }
 
+#cardHome {
+    margin-bottom: 100px;
+}
+
 .center-block {
     background: no-repeat center center fixed;
     display: inline-block;
