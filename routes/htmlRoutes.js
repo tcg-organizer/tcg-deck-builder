@@ -19,8 +19,10 @@ htmlRouter.get("/cardSearch", function (req, res) {
 });
 
 htmlRouter.post("/api/search/pokemon/:pokemon?", function (req, res) {
+
     let pokeSearch = req.params.pokemon;
-    
+
+
     console.log(pokeSearch);
 
 // query for a list of cards including matching the query value, pokemon
@@ -61,7 +63,7 @@ htmlRouter.post("/api/search/url/:cardURL?", function (req, res) {
     cardSearch = cardSearch.join("/");
 
     console.log(cardSearch);
-    
+
     function singleCardQuery(cardURL) {
         // query for a specific card based on a specific URL (can be received from the basic query above)
 
@@ -103,11 +105,6 @@ const env = {
     AUTH0_CALLBACK_URL:
     'http://localhost:8080/' || process.env.AUTH0_CALLBACK_URL
 };
-
-/* GET home page. */
-// htmlRouter.get('/', function(req, res, next) {
-//     res.render('index');
-// });
 
 htmlRouter.get('/login', passport.authenticate('auth0', {
         clientID: env.AUTH0_CLIENT_ID,
