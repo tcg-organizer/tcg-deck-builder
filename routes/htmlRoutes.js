@@ -39,14 +39,11 @@ htmlRouter.post("/api/search/pokemon/:pokemon?", function (req, res) {
                 const newCard = {
                     url: cards[i].url,
                     image: cards[i].image,
-                    id: cards[i].id,
-                    query: function () {
-                        singleCardQuery(this.url);
-                    }
+                    id: cards[i].id
                 };
                 cardData.push(newCard);
             }
-            res.json(data);
+            res.json(cardData);
         });
     }
     

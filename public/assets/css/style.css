@@ -17,6 +17,13 @@ img {
     margin-top: 2px;
 }
 
+footer {
+    position: fixed;
+    height: 100px;
+    bottom: 0;
+    width: 100%;
+}
+
 .card-description {
     margin-top : 25px;
 }
@@ -29,7 +36,7 @@ img {
     padding: 5px;
     color: white;
     border-bottom-right-radius: 6px;
-    border-top-left-radius: 0px;
+    border-top-left-radius: 0;
     border-bottom-left-radius: 6px;
     z-index: 1;
 
