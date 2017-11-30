@@ -29,7 +29,6 @@ $(function () {
             $.ajax({
                 method: "POST",
                 url: `/api/search/pokemon/${pokemon}`
-=
             }).then(function(data){
                 $("#cardHome").empty();
 
