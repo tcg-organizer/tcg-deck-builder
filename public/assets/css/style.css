@@ -6,19 +6,6 @@ html {
     background-size: cover;
 }
 
-img {
-    margin-top: 2px;
-}
-
-.card-description {
-    margin-top : 25px;
-}
-
-.feature-msg {
-    margin: auto 0;
-}
-
-
 .number {
     background: url("../img/numberFour.png") no-repeat center center fixed;
 }
@@ -30,10 +17,6 @@ img {
     margin: 15px 0;
 }
 
-/*#footer {*/
-/*height: 50%;*/
-/*background-color: #f5f5f5;*/
-/*}*/
 
 #lostPage.container {
     text-align: center;
@@ -61,11 +44,6 @@ a:hover {
     color: red;
     cursor: auto;
     text-decoration: underline;
-}
-
-.login {
-    width: 50%;
-    height: 50%;
 }
 
 .footer {
@@ -102,78 +80,7 @@ form {
     visibility: hidden;
 }
 
-input,
-select {
-    font-family: Tahoma, sans-serif;
-    font-size: 100%;
-}
-
-select {
-    -webkit-appearance: none;
-    -webkit-border-radius: 0;
-    border-radius: 0;
-}
-
-input[type="email"],
-input[type="password"],
-input[type="text"],
-select {
-    width: 100%;
-    display: block;
-    box-sizing: border-box;
-    padding: 0 10px;
-    height: 40px;
-    margin-bottom: 15px;
-    border: 1px solid #CDCDCD;
-    outline: none;
-}
-
-input[type="email"]:focus,
-input[type="password"]:focus,
-input[type="text"]:focus {
-    border: 1px solid #d3ced0;
-    box-shadow: inset 2px 2px 2px rgba(0, 0, 0, .13);
-}
-
-input[type="submit"] {
-    width: 100%;
-    display: block;
-    box-sizing: border-box;
-    background: url("../img/borderv1.png") no-repeat center center;
-    /*background-size: cover;*/
-    color: #d3ced0;
-    padding: 10px 0;
-    border: 1px solid #f0f407;
-    border-radius: 3px;
-    outline: none;
-    margin-bottom: 10px;
-}
-
-input[type="submit"]:hover,
-input[type="submit"]:focus {
-    border: 1px solid #ff1a2c;
-    background-color: #f0f407;
-}
-
-.checkbox-text {
-    font-size: 85%;
-    color: #777;
-}
-
-
-/*div.container {*/
-/*border-image-source: url("../img/borderv1.png");*/
-
-/*}*/
-
-.select {
-    color: gray;
-}
-
-
 .footer-section {
-    /*position: absolute;*/
-    /*left: 0 ; right: 0; bottom: 0;*/
     background-color: #3c3d41;
     padding: 5px;
     color: white;
