@@ -107,10 +107,7 @@ const env = {
     'http://localhost:8080/' || process.env.AUTH0_CALLBACK_URL
 };
 
-/* GET home page. */
-// htmlRouter.get('/', function(req, res, next) {
-//     res.render('index');
-// });
+
 
 htmlRouter.get('/login', passport.authenticate('auth0', {
         clientID: env.AUTH0_CLIENT_ID,
@@ -147,5 +144,9 @@ htmlRouter.get('/failure', function(req, res) {
     });
 });
 
+// 404 Error Page
+htmlRouter.get('*', function (req, res) {
+        +res.render('404');
+});
 
 module.exports = htmlRouter;
