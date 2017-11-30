@@ -77,7 +77,6 @@ dbRouter.delete("/db/deleteCard/", function (req, res) {
         console.log("\n");
         res.send("card has been removed from the deck");
     })
-
 });
 
 module.exports = dbRouter;

@@ -1,19 +1,14 @@
-let db = require('../models');
+const express = require('express');
+const passport = require('passport');
+const ensureLoggedIn = require('connect-ensure-login').ensureLoggedIn();
+const router = express.Router();
 
-exports.signUp = function(req, res) {
-    //pick up of index page sign up page needs to be created
-    res.render("signup.handlebars");
-};
-
-exports.register = function(req, res){
-    db.User.find({where: {username: req.username}}).success(function (user){
-        if(!user) {
-            db.User.create({username: req.body.username, password: req.body.password}).error(function(err){
-                console.log(err);
-            });
-        } else {
-            res.redirect('/signup')
-        }
+/* GET user profile. */
+router.get('/', ensureLoggedIn, function(req, res, next) {
+    res.render('user', {
+        user: req.user ,
+        userProfile: JSON.stringify(req.user, null, '  ')
     });
-    res.redirect('/')
-};
+});
+
+module.exports = router;

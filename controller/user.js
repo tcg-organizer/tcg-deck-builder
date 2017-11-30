@@ -1,11 +1,7 @@
-/*
-Placeholder for login
-
-
-var db = require('../models');
+const db = require('../models');
 
 exports.signUp = function(req, res) {
-    res.render("signup");
+    res.render("signup.handlebars");
 };
 
 exports.register = function(req, res){
@@ -13,7 +9,8 @@ exports.register = function(req, res){
     {username: req.username}
     }).success(function (user){
         if(!user) {
-            db.User.create({username: req.body.username, password: req.body.password}).error(function(err){
+            db.User.create({username: req.body.username, password: req.body.password
+            }).error(function(err){
                 console.log(err);
             });
         } else {
@@ -22,6 +19,6 @@ exports.register = function(req, res){
     });
     res.redirect('/')
 };
-*/
+
 
 

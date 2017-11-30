@@ -12,45 +12,13 @@
             <a class="nav-item nav-link active" href="/">Home <span class="sr-only">(current)</span></a>
             <a class="nav-item nav-link" href="/cardSearch">Card Search</a>
             <a class="nav-item nav-link" href="/deckList">Deck List</a>
+            <a class="nav-item nav-link" href="/login">Login</a>
         </div>
     </div>
 </nav>
 <div class="container">
     <div class="jumbotron text-center">
         <h1>Pokemon TCG Card Organizer</h1>
-    </div>
-    <div class="row-fluid login">
-        <div class="dialog">
-            <div class="block">
-                <div class="block-header">
-                    <h2>Sign In</h2>
-                </div>
-                <form action="/authenticate" method="post">
-
-                    <div class="block">
-                        <div class="block-header">
-                            <h2>Sign In</h2>
-                        </div>
-                        <form action="/authenticate" method="post">
-                            <label>Username</label>
-                            <input  id="username" name="username" placeholder="Username" type="text"  class="span12"/>
-                            <a class="reset-password" href="#">Forgot your password?</a>
-                            <label>Password</label>
-                            <input id="password" name="password" placeholder="Password" type="password" class="span12">
-                            <div class="form-actions">
-                                <a class="btn btn-primary" href="/signup"> Sign Up!</a>
-                                <button type="submit" class="btn btn-success pull-right">Sign In</button>
-                                <div class="clearfix"></div>
-                            </div>
-                        </form>
-                    </div>
-            <label>
-                <input type="checkbox" name="remember" checked="checked" value="yes">
-                <span class="checkbox-text">Stay signed in</span>
-            </label>
-        </form>
-            </div>
-    </div>
     </div>
     <div class="row">
         carousel goes here
@@ -68,21 +36,5 @@
     {{pokemon}}
 
 </div>
-    <footer class="bg-light footer-light justify-content-between footer-dark bg-dark">
-        <div class="container">
-            <div class="row">
-                <ul class="list-unstyled">
-                    <li class="col-md-3 col-sm-4 col-xs-6">
-                        <a href="404.html">Press</a>
-                    </li>
-                    <li class="col-md-3 col-sm-4 col-xs-6">
-                        <a href="404.html">Contact</a>
-                    </li>
-                    <li class="col-md-3 col-sm-4 col-xs-6">
-                        <a href="404.html">Architects</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
 
-    </footer>
+

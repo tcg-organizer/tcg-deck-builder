@@ -1,12 +1,9 @@
-/*
-Placeholder for login
-
 
 exports.IsAuthenticated = function(req, res, next){
     if(req.isAuthenticated()){
         next();
     } else {
-        next(new Error(401));
+        next(new Error('404'));
     }
 };
 
@@ -16,4 +13,3 @@ exports.destroySession = function(req, res, next) {
     res.redirect("/")
 };
 
- */
