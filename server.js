@@ -20,13 +20,12 @@ const engines = require('consolidate');
 dotenv.load();
 
 
-db.cards.belongsTo(db.decks, {foreignKey: 'deckName'});
+
 
 const user = require('./routes/user');
 
 const app = express();
 const PORT = process.env.PORT || 8080;
-
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -37,11 +36,9 @@ app.set('views', path.join(__dirname, 'views'));
 
 app.use(express.static("public"));
 
-
 //handlebars setup
-
-app.engine('pug', engines.pug);
-app.engine('handlebars', engines.handlebars);
+// app.engine('pug', engines.pug);
+// app.engine('handlebars', engines.handlebars);
 app.engine("handlebars", hbars({ defaultLayout: "main" }));
 //This will render handlebars files when res.render is called.
 app.set("view engine", "handlebars");

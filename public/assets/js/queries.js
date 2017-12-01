@@ -152,22 +152,19 @@ $(function () {
             $("#cardType").text("Card Type: " + data.type);
         });
 
-
-
     });
 
     $(document).on("click", ".addCard", function (event) {
-        event.preventDefault();
+      
+        console.log("card sent!");
         $.ajax({
             method: "POST",
-            url: "/db/newCard" + deckName,
+            url: "/db/cards",
             data: singleCardData
         }).then(function () {
             console.log("Your card was sent to" + deckName + "!");
         });
-
     });
-
 })
 ;
 
