@@ -20,7 +20,7 @@ const engines = require('consolidate');
 dotenv.load();
 
 
-db.cards.belongsTo(db.decks);
+db.cards.belongsTo(db.decks, {foreignKey: 'deckName'});
 
 const user = require('./routes/user');
 

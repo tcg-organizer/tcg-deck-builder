@@ -6,7 +6,7 @@ module.exports = function (sequelize, DataTypes) {
         },
         //holds all card data as a string can be parsed out as json to access info
         cardData: {
-            type: DataTypes.STRING,
+            type: DataTypes.TEXT,
             allowNull: false
         }
     });

@@ -125,6 +125,7 @@ $(function () {
             $("#pokemonImage").attr("src", data.image);
             $("#cardType").text("Card Type: " + data.type);
         });
+
     });
 
     $(document).on("click", ".addCard", function (event) {
@@ -140,3 +141,4 @@ $(function () {
     });
 
 });
+

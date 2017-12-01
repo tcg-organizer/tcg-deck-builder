@@ -2,9 +2,11 @@ const express = require("express");
 const dbRouter = express.Router();
 const db = require("../models/index");
 
-dbRouter.get("/db/readDecks", function(req, res) {
-    db.userDeck.findOne({
-        where: {deckName: req.body.deckName}
+dbRouter.get("/db/readDecks/:deck", function (req, res) {
+    let deck = req.params.deck;
+    
+    db.cards.findAll({
+        where: {deckName: deck}
     }).then(function (readDeck) {
         console.log("\n");
         console.log("------------------------");
@@ -12,23 +14,22 @@ dbRouter.get("/db/readDecks", function(req, res) {
         console.log(readDeck);
         console.log("------------------------");
         console.log("\n");
-        res.send("you read a deck");
+        res.send(readDeck);
     })
 });
 
-dbRouter.post("/db/createDecks", function(req, res) {
+dbRouter.post("/db/createDecks", function (req, res) {
 
 });
 
 //adding a new card to your deck
-dbRouter.post("/db/newCard/:tableName", function (req, res) {
-    db.userDeck.create({
-        deckName: req.body.deckName,
-        cardID: req.body.cardID,
+dbRouter.post("/db/newCard/:deck", function (req, res) {
+    let deck = req.params.deck;
+    
+    db.cards.create({
         cardName: req.body.cardName,
-        cardImg: req.body.cardImg,
         cardData: req.body,
-        quantity: req.body.quantity
+        deckName: deck
     }).then(function (userDeck) {
         console.log("\n");
         console.log("------------------------");
