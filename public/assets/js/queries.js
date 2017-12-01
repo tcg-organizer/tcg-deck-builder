@@ -125,6 +125,7 @@ $(function () {
 
 
     var singleCardData;
+    var deckName;
 
     $(document).on("click", ".cardButton", function (event) {
 
@@ -150,6 +151,8 @@ $(function () {
             $("#pokemonImage").attr("src", data.image);
             $("#cardType").text("Card Type: " + data.type);
         });
+
+
 
     });
 
