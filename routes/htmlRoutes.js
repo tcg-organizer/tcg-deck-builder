@@ -2,20 +2,22 @@ const express = require("express");
 const htmlRouter = express.Router();
 const scraper = require('pokemon-tcg-scraper');
 const passport = require('passport');
+
+
 let cardData = [];
 let specificCardData = [];
 
 //this half handles the handlebars pages
-htmlRouter.get("/", function (req, res) {
-    res.render("index");
+htmlRouter.get("/", function (req, res, next) {
+    res.render("index.handlebars");
 });
 
 htmlRouter.get("/deckList", function (req, res) {
-    res.render("deckList");
+    res.render("deckList.handlebars");
 });
 
 htmlRouter.get("/cardSearch", function (req, res) {
-    res.render("cardSearch", {cardData: cardData});
+    res.render("cardSearch.handlebars", {cardData: cardData});
 });
 
 htmlRouter.post("/api/search/pokemon/:pokemon?", function (req, res) {
@@ -44,13 +46,16 @@ htmlRouter.post("/api/search/pokemon/:pokemon?", function (req, res) {
                 };
                 cardData.push(newCard);
             }
+
             res.json({cardData: cardData, numPages: data.numPages});
+
         });
     }
     
     initialQuery(pokeSearch);
     // res.render("cardSearch", {cardData: cardData});
     // res.json(data);
+
     cardData = [];
 });
 
@@ -88,6 +93,7 @@ htmlRouter.post("/api/search/pokemon2/:pokemon?/:j?", function (req, res) {
     initialQuery(pokeSearch);
     // res.render("cardSearch", {cardData: cardData});
     // res.json(data);
+
     cardData = [];
 });
 
@@ -132,8 +138,6 @@ htmlRouter.post("/api/search/url/:cardURL?", function (req, res) {
     }
     singleCardQuery(cardSearch);
 
-    // console.log("specific card data:" + specificCardData);
-    // res.render("cardSearch", {specificCardData: specificCardData});
     specificCardData = [];
 });
 
@@ -141,13 +145,8 @@ const env = {
     AUTH0_CLIENT_ID: process.env.AUTH0_CLIENT_ID,
     AUTH0_DOMAIN: process.env.AUTH0_DOMAIN,
     AUTH0_CALLBACK_URL:
-    'http://localhost:8080/' || process.env.AUTH0_CALLBACK_URL
+    'http://localhost:8080/callback' || process.env.AUTH0_CALLBACK_URL
 };
-
-/* GET home page. */
-// htmlRouter.get('/', function(req, res, next) {
-//     res.render('index');
-// });
 
 htmlRouter.get('/login', passport.authenticate('auth0', {
         clientID: env.AUTH0_CLIENT_ID,
@@ -175,10 +174,10 @@ htmlRouter.get('/callback',
 );
 
 htmlRouter.get('/failure', function(req, res) {
-    var error = req.flash("error");
-    var error_description = req.flash("error_description");
+    const error = req.flash("error");
+    const error_description = req.flash("error_description");
     req.logout();
-    res.render('failure', {
+    res.render('failure.pug', {
         error: error[0],
         error_description: error_description[0],
     });

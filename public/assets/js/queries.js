@@ -29,6 +29,7 @@ $(function () {
             $.ajax({
                 method: "POST",
                 url: `/api/search/pokemon/${pokemon}`
+
             }).then(function (data) {
                 $("#cardHome").empty();
 
@@ -36,18 +37,21 @@ $(function () {
 
                 //displays each card in the comeHard div in cardSearch.handlebars
                 for (var i = 0; i < data.cardData.length; i++) {
+
                     var newDiv1 = $("<div class='col-xl-4 col-md-6 col-xs-12 card-margin'></div>");
 
                     var newDiv2 = $("<div class='card grey center' style='width: 20rem;'>");
 
                     var newImg = $("<img class='card-img-top' alt='Card Image'>");
+
                     newImg.attr("src", data.cardData[i].image);
+
                     newImg.appendTo(newDiv2);
                     newDiv2.appendTo(newDiv1);
 
                     var newDiv3 = $("<div class='card-body'></div>");
-
                     newDiv3.html("<h4>Card Id:</h4><a href='#' class='btn btn-primary cardButton' data-id='" + data.cardData[i].url + "' data-toggle='modal' data-target='#cardModal'>View Card Data</a>");
+
 
                     newDiv3.appendTo(newDiv2);
                     $("#cardHome").append(newDiv1);
@@ -96,6 +100,7 @@ $(function () {
 
 
     $(document).on("click", ".cardButton", function (event) {
+
         event.preventDefault();
 
         let cardURL = $(this).attr("data-id");
@@ -108,6 +113,7 @@ $(function () {
         $.ajax({
             method: "POST",
             url: `/api/search/url/${cardURL}`
+
         }).then(function (data) {
             console.log(data);
             $("#pokemonName").text(data.name);
@@ -124,4 +130,5 @@ $(function () {
             });
         });
     });
+
 });

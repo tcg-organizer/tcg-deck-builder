@@ -59,7 +59,6 @@
 
             <div class="modal-content" id="specificCard">
 
-
                 <div class="modal-header">
                     <h5 class="modal-title" id="cardModalLabel"><span id="pokemonName"></span></h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -68,20 +67,18 @@
                 </div>
                 <div class="modal-body">
                     <div id="cardData">
-                        <div class="row">
-                            <div class="col-xl-6">
-                                <img src="" id="pokemonImage">
-                            </div>
-                            <div class="col-xl-6">
-                                <p id="cardType"></p>
-                            </div>
-                        </div>
-                        <span id="cardText"></span>
+                        <img src="" id="pokemonImage"> <br>
+                    </div>
+                    <div id="unitNumber">
+                        THIS WILL CONTAIN THE NUMBER OF CARDS TO ADD
+
                     </div>
                     <div id="deckName">
                         <div class="dropdown">
                             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Choose a deck
+
+                                Dropdown button
+
                             </button>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                 <a class="dropdown-item" href="#">Action</a>
@@ -93,7 +90,9 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary addCard">Add card to deck</button>
+
+                    <button id="addCard" type="button" class="btn btn-primary">Add card to deck</button>
+
                 </div>
 
 
