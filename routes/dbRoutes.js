@@ -5,7 +5,7 @@ const db = require("../models/index");
 dbRouter.get("/readDecks/:deck", function (req, res) {
     let deck = req.params.deck;
     
-    db.cards.findAll({
+    db.cards.hasMany({
         where: {deckName: deck}
     }).then(function (readDeck) {
         console.log("\n");
