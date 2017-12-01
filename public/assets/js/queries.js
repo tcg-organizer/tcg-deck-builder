@@ -65,15 +65,3 @@ $(function () {
         });
     })
 });
-
-$("#addCard").on("click", function(event) {
-    event.preventDefault();
-    
-    
-    $.ajax({
-        method: "POST",
-        url: `/db/readDecks`
-    }).then(function(data) {
-        console.log(data);
-    })
-});
