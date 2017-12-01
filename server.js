@@ -19,6 +19,9 @@ const engines = require('consolidate');
 
 dotenv.load();
 
+
+db.cards.belongsTo(db.decks);
+
 const user = require('./routes/user');
 
 const app = express();

@@ -60,12 +60,20 @@ $(function () {
             method: "POST",
             url: `/api/search/url/${cardURL}`
         }).then(function(data){
-            // setTimeout(function(){
-            //     location.reload();
-            // },1000)
             console.log(data);
             $("#pokemonName").text(data.name);
         });
     })
+});
 
+$("#addCard").on("click", function(event) {
+    event.preventDefault();
+    
+    
+    $.ajax({
+        method: "POST",
+        url: `/db/readDecks`
+    }).then(function(data) {
+        console.log(data);
+    })
 });
