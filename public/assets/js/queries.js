@@ -60,38 +60,52 @@ $(function () {
                 //checks for additional pages to query (the first query scrapes the first page only)
                 if (data.numPages > 1) {
 
+                    //for infinite scroll
+                    var scrollCounter = 1000;
+
+                    //if query shows multiple pages of data...
                     for (var j = 2; j < data.numPages; j++) {
 
-                        $("#cardHome").append(loadingImg);
+                        //infinite scroll (queries run after user scrolls 1000 px
+                        $(window).scroll(function() {
+                            if ($(this).scrollTop() >= scrollCounter) {
 
-                        $.ajax({
-                            method: "POST",
-                            url: `/api/search/pokemon2/${pokemon}/${j}`
-                        }).then(function (data) {
-                            console.log(data);
+                                //loading image
+                                $("#cardHome").append(loadingImg);
 
+                                scrollCounter += 1000;
 
-                            $("#loader").remove();
+                                //api call for each additional page from data
+                                $.ajax({
+                                    method: "POST",
+                                    url: `/api/search/pokemon2/${pokemon}/${j}`
+                                }).then(function (data) {
+                                    console.log(data);
 
-                            //displays each card in the comeHard div in cardSearch.handlebars
-                            for (var i = 0; i < data.cardData.length; i++) {
-                                var newDiv1 = $("<div class='col-xl-4 col-md-6 col-xs-12 card-margin'></div>");
+                                    //removed loading image
+                                    $("#loader").remove();
 
-                                var newDiv2 = $("<div class='card grey center' style='width: 20rem;'>");
+                                    //displays each card in the comeHard div in cardSearch.handlebars
+                                    for (var i = 0; i < data.cardData.length; i++) {
+                                        var newDiv1 = $("<div class='col-xl-4 col-md-6 col-xs-12 card-margin'></div>");
 
-                                var newImg = $("<img class='card-img-top' alt='Card Image'>");
-                                newImg.attr("src", data.cardData[i].image);
-                                newImg.appendTo(newDiv2);
-                                newDiv2.appendTo(newDiv1);
+                                        var newDiv2 = $("<div class='card grey center' style='width: 20rem;'>");
 
-                                var newDiv3 = $("<div class='card-body'></div>");
+                                        var newImg = $("<img class='card-img-top' alt='Card Image'>");
+                                        newImg.attr("src", data.cardData[i].image);
+                                        newImg.appendTo(newDiv2);
+                                        newDiv2.appendTo(newDiv1);
 
-                                newDiv3.html("<h4>Card Id:</h4><a href='#' class='btn btn-primary cardButton' data-id='" + data.cardData[i].url + "' data-toggle='modal' data-target='#cardModal'>View Card Data</a>");
+                                        var newDiv3 = $("<div class='card-body'></div>");
 
-                                newDiv3.appendTo(newDiv2);
-                                $("#cardHome").append(newDiv1);
+                                        newDiv3.html("<h4>Card Id:</h4><a href='#' class='btn btn-primary cardButton' data-id='" + data.cardData[i].url + "' data-toggle='modal' data-target='#cardModal'>View Card Data</a>");
+
+                                        newDiv3.appendTo(newDiv2);
+                                        $("#cardHome").append(newDiv1);
+                                    }
+                                })
                             }
-                        })
+                        });
                     }
                 }
 
