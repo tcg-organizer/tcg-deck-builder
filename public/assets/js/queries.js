@@ -97,6 +97,7 @@ $(function () {
 
     $(document).on("click", ".cardButton", function (event) {
         event.preventDefault();
+
         let cardURL = $(this).attr("data-id");
         cardURL = cardURL.substring(23);
         cardURL = cardURL.split("/");
@@ -112,7 +113,15 @@ $(function () {
             $("#pokemonName").text(data.name);
             $("#pokemonImage").attr("src", data.image);
             $("#cardType").text("Card Type: " + data.type);
-        });
-    })
 
+            $(document).on("click",".addCard", function(event){
+                event.preventDefault();
+                $.ajax({
+                    method: "POST",
+                    url:
+                })
+
+            });
+        });
+    });
 });
