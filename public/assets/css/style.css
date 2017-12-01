@@ -1,4 +1,10 @@
 
+
+.card-description {
+    margin-top : 25px;
+}
+
+
 .number {
     background: url("../img/numberFour.png") no-repeat center center fixed;
 }
@@ -10,6 +16,10 @@
     margin: 15px 0;
 }
 
+/*#footer {*/
+/*height: 50%;*/
+/*background-color: #f5f5f5;*/
+/*}*/
 
 #lostPage.container {
     text-align: center;
@@ -33,21 +43,21 @@ a {
 
 
 /* mouse over link */
-a:hover {
-    color: red;
-    cursor: auto;
-    text-decoration: underline;
+/*a:hover {*/
+    /*color: red;*/
+    /*cursor: auto;*/
+    /*text-decoration: underline;*/
+/*}*/
+
+.login {
+    width: 50%;
+    height: 50%;
 }
 
 .footer {
     position: absolute;
     left: 0 ; right: 0; bottom: 0;
     height: 50px;
-}
-
-#lostPage {
-    margin-bottom: 10%;
-
 }
 /*helper classes for styling*/
 .grey {
@@ -78,7 +88,25 @@ form {
     visibility: hidden;
 }
 
+.checkbox-text {
+    font-size: 85%;
+    color: #777;
+}
+
+
+/*div.container {*/
+/*border-image-source: url("../img/borderv1.png");*/
+
+/*}*/
+
+.select {
+    color: gray;
+}
+
+
 .footer-section {
+    /*position: absolute;*/
+    /*left: 0 ; right: 0; bottom: 0;*/
     background-color: #3c3d41;
     padding: 5px;
     color: white;
