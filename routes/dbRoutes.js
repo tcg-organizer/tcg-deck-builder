@@ -2,11 +2,11 @@ const express = require("express");
 const dbRouter = express.Router();
 const db = require("../models/index");
 
-dbRouter.get("/readDecks/:deck", function (req, res) {
-    let deck = req.params.deck;
+dbRouter.get("/decks/:id", function (req, res) {
     
-    db.cards.hasMany({
-        where: {deckName: deck}
+    db.decks.findOne({
+        where: {id: req.params.id},
+        include: [db.cards]
     }).then(function (readDeck) {
         console.log("\n");
         console.log("------------------------");
@@ -18,10 +18,10 @@ dbRouter.get("/readDecks/:deck", function (req, res) {
     })
 });
 
-dbRouter.post("/createDecks/:deck", function (req, res) {
-    let deck = req.params.deck;
+dbRouter.post("/decks", function (req, res) {
+    
     db.decks.create({
-        deckName: deck
+        deckName: req.body.deckName
     }).then(function(newDeck) {
         console.log("\n");
         console.log("------------------------");
@@ -31,19 +31,15 @@ dbRouter.post("/createDecks/:deck", function (req, res) {
         console.log("\n");
         res.send(newDeck);
     })
-    
 });
 
 //adding a new card to your deck
-dbRouter.post("/newCard/:deck", function (req, res) {
-    let deck = req.params.deck;
-    
-    console.log(req.body.cardName);
+dbRouter.post("/cards", function (req, res) {
     
     db.cards.create({
         cardName: req.body.cardName,
-        cardData: req.body,
-        deckName: deck
+        cardData: JSON.stringify(req.body),
+        deckId: req.body.deckId
     }).then(function (userDeck) {
         console.log("\n");
         console.log("------------------------");
@@ -57,13 +53,12 @@ dbRouter.post("/newCard/:deck", function (req, res) {
 });
 
 //delete a card from your deck
-dbRouter.delete("/deleteCard/:cardName", function (req, res) {
-    let card = req.params.cardName;
+dbRouter.delete("/cards/:cardId", function (req, res) {
+    let cardId = req.params.cardId;
     
     db.cards.destroy({
         where: {
-            cardName: card,
-            deckName: req.body.deckName
+            id: cardId,
         }
     }).then(function (cardDestroyed) {
         console.log("\n");
@@ -75,7 +70,6 @@ dbRouter.delete("/deleteCard/:cardName", function (req, res) {
         res.send("card has been removed from the deck");
     })
 });
-
 
 //updating a cards in your deck
 // dbRouter.put("/updateCard", function (req, res) {
