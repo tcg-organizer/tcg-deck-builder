@@ -2,6 +2,15 @@
 
 $(function () {
 
+    //if enter pressed while search bar is focused
+    $('#search').keypress(function(e){
+        //Enter key pressed
+        if(e.which == 13){
+            //Trigger search button click event
+            $('#submit').click();
+        }
+    });
+
     $("#submit").on("click", function (event) {
 
         if ($("#search").val().trim().length === 0) {
