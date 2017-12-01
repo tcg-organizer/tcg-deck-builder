@@ -3,20 +3,21 @@ const htmlRouter = express.Router();
 const scraper = require('pokemon-tcg-scraper');
 const passport = require('passport');
 
+
 let cardData = [];
 let specificCardData = [];
 
 //this half handles the handlebars pages
 htmlRouter.get("/", function (req, res, next) {
-    res.render("index");
+    res.render("index.handlebars");
 });
 
 htmlRouter.get("/deckList", function (req, res) {
-    res.render("deckList");
+    res.render("deckList.handlebars");
 });
 
 htmlRouter.get("/cardSearch", function (req, res) {
-    res.render("cardSearch", {cardData: cardData});
+    res.render("cardSearch.handlebars", {cardData: cardData});
 });
 
 htmlRouter.post("/api/search/pokemon/:pokemon?", function (req, res) {
@@ -96,7 +97,7 @@ htmlRouter.post("/api/search/url/:cardURL?", function (req, res) {
     }
     singleCardQuery(cardSearch);
     console.log("specific card data:" + specificCardData);
-    res.render("cardSearch", {specificCardData: specificCardData});
+    res.render("cardSearch.handlebars", {specificCardData: specificCardData});
     specificCardData = [];
 });
 
@@ -136,7 +137,7 @@ htmlRouter.get('/failure', function(req, res) {
     const error = req.flash("error");
     const error_description = req.flash("error_description");
     req.logout();
-    res.render('failure', {
+    res.render('failure.pug', {
         error: error[0],
         error_description: error_description[0],
     });

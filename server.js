@@ -29,7 +29,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.text());
 app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
-//environment variables
 app.set('views', path.join(__dirname, 'views'));
 
 app.use(express.static("public"));

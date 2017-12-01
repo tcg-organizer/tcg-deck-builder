@@ -2,6 +2,25 @@ const express = require("express");
 const dbRouter = express.Router();
 const db = require("../models/index");
 
+
+dbRouter.get("/db/readDecks", function(req, res) {
+    db.userDeck.findOne({
+        where: {deckName: req.body.deckName}
+    }).then(function (readDeck) {
+        console.log("\n");
+        console.log("------------------------");
+        console.log("the card has been logged");
+        console.log(readDeck);
+        console.log("------------------------");
+        console.log("\n");
+        res.send("you read a deck");
+    })
+});
+
+dbRouter.post("/db/createDecks", function(req, res) {
+    
+});
+
 //adding a new card to your deck
 dbRouter.post("/db/newCard", function (req, res) {
     db.userDeck.create({
@@ -75,5 +94,6 @@ dbRouter.delete("/db/deleteCard/", function (req, res) {
         res.send("card has been removed from the deck");
     })
 });
+
 
 module.exports = dbRouter;
