@@ -37,8 +37,8 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(express.static("public"));
 
 //handlebars setup
-app.engine('pug', engines.pug);
-app.engine('handlebars', engines.handlebars);
+// app.engine('pug', engines.pug);
+// app.engine('handlebars', engines.handlebars);
 app.engine("handlebars", hbars({ defaultLayout: "main" }));
 //This will render handlebars files when res.render is called.
 app.set("view engine", "handlebars");

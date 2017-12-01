@@ -2,7 +2,7 @@ const express = require("express");
 const dbRouter = express.Router();
 const db = require("../models/index");
 
-dbRouter.get("/db/readDecks/:deck", function (req, res) {
+dbRouter.get("/readDecks/:deck", function (req, res) {
     let deck = req.params.deck;
     
     db.cards.findAll({
@@ -18,13 +18,27 @@ dbRouter.get("/db/readDecks/:deck", function (req, res) {
     })
 });
 
-dbRouter.post("/db/createDecks", function (req, res) {
-
+dbRouter.post("/createDecks/:deck", function (req, res) {
+    let deck = req.params.deck;
+    db.decks.create({
+        deckName: deck
+    }).then(function(newDeck) {
+        console.log("\n");
+        console.log("------------------------");
+        console.log("the deck has been Created");
+        console.log(newDeck);
+        console.log("------------------------");
+        console.log("\n");
+        res.send(newDeck);
+    })
+    
 });
 
 //adding a new card to your deck
-dbRouter.post("/db/newCard/:deck", function (req, res) {
+dbRouter.post("/newCard/:deck", function (req, res) {
     let deck = req.params.deck;
+    
+    console.log(req.body.cardName);
     
     db.cards.create({
         cardName: req.body.cardName,
@@ -37,52 +51,19 @@ dbRouter.post("/db/newCard/:deck", function (req, res) {
         console.log(userDeck);
         console.log("------------------------");
         console.log("\n");
-        res.send("card had been stored in your deck");
+        res.json(userDeck);
     });
-});
-
-//updating a cards in your deck
-dbRouter.put("/db/updateCard", function (req, res) {
-    const cardQuan =
-        console.log(cardQuan);
-    if (cardQuan > 0) {
-        db.userDeck.update(req.body.quantity,
-            {
-                where: {
-                    cardID: req.body.cardID
-                }
-            }).then(function (updateCard) {
-            console.log("\n");
-            console.log("------------------------");
-            console.log("the card has been updated");
-            console.log(updateCard);
-            console.log("------------------------");
-            console.log("\n");
-            res.send("card has been updated");
-        })
-    }
-    else {
-        db.userDeck.destroy({
-            where: {
-                cardID: req.body.cardID
-            }
-        }).then(function (cardDestroyed) {
-            console.log("\n");
-            console.log("------------------------");
-            console.log("the card has been removed from the deck");
-            console.log(cardDestroyed);
-            console.log("------------------------");
-            console.log("\n");
-            res.send("card has been removed from the deck");
-        })
-    }
+    // res.send("hello");
 });
 
 //delete a card from your deck
-dbRouter.delete("/db/deleteCard/", function (req, res) {
-    db.userDeck.destroy({
+dbRouter.delete("/deleteCard/:cardName", function (req, res) {
+    let card = req.params.cardName;
+    
+    db.cards.destroy({
         where: {
-            cardID: req.body.cardID
+            cardName: card,
+            deckName: req.body.deckName
         }
     }).then(function (cardDestroyed) {
         console.log("\n");
@@ -94,5 +75,44 @@ dbRouter.delete("/db/deleteCard/", function (req, res) {
         res.send("card has been removed from the deck");
     })
 });
+
+
+//updating a cards in your deck
+// dbRouter.put("/updateCard", function (req, res) {
+//     const cardQuan =
+//         console.log(cardQuan);
+//     if (cardQuan > 0) {
+//         db.userDeck.update(req.body.quantity,
+//             {
+//                 where: {
+//                     cardID: req.body.cardID
+//                 }
+//             }).then(function (updateCard) {
+//             console.log("\n");
+//             console.log("------------------------");
+//             console.log("the card has been updated");
+//             console.log(updateCard);
+//             console.log("------------------------");
+//             console.log("\n");
+//             res.send("card has been updated");
+//         })
+//     }
+//     else {
+//         db.userDeck.destroy({
+//             where: {
+//                 cardID: req.body.cardID
+//             }
+//         }).then(function (cardDestroyed) {
+//             console.log("\n");
+//             console.log("------------------------");
+//             console.log("the card has been removed from the deck");
+//             console.log(cardDestroyed);
+//             console.log("------------------------");
+//             console.log("\n");
+//             res.send("card has been removed from the deck");
+//         })
+//     }
+// });
+
 
 module.exports = dbRouter;
