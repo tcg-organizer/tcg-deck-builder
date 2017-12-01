@@ -21,7 +21,7 @@ dbRouter.post("/db/createDecks", function(req, res) {
 });
 
 //adding a new card to your deck
-dbRouter.post("/db/newCard", function (req, res) {
+dbRouter.post("/db/newCard/:tableName", function (req, res) {
     db.userDeck.create({
         deckName: req.body.deckName,
         cardID: req.body.cardID,

@@ -71,7 +71,7 @@ $(function () {
                             console.log(data);
 
 
-                            $("#loader" ).remove();
+                            $("#loader").remove();
 
                             //displays each card in the comeHard div in cardSearch.handlebars
                             for (var i = 0; i < data.cardData.length; i++) {
@@ -99,10 +99,13 @@ $(function () {
         }
     });
 
+    var singleCardData;
 
     $(document).on("click", ".cardButton", function (event) {
 
         event.preventDefault();
+
+        $("#pokemonImage").attr("src", "./assets/img/pokemon_loading.gif");
 
         let cardURL = $(this).attr("data-id");
         cardURL = cardURL.substring(23);
@@ -117,19 +120,23 @@ $(function () {
 
         }).then(function (data) {
             console.log(data);
+            singleCardData = data;
             $("#pokemonName").text(data.name);
             $("#pokemonImage").attr("src", data.image);
             $("#cardType").text("Card Type: " + data.type);
-
-            $(document).on("click",".addCard", function(event){
-                event.preventDefault();
-                // $.ajax({
-                //     method: "POST",
-                //     url:
-                // })
-
-            });
         });
+    });
+
+    $(document).on("click", ".addCard", function (event) {
+        event.preventDefault();
+        // $.ajax({
+        //     method: "POST",
+        //     url: "/db/newCard" + tableName,
+        //     data: singleCardData
+        // }).then(function () {
+        //     console.log("Your card was sent to" + tableName + "!");
+        // });
+
     });
 
 });
