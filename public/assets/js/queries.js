@@ -3,9 +3,9 @@
 $(function () {
 
     //if enter pressed while search bar is focused
-    $('#search').keypress(function(e){
+    $('#search').keypress(function (e) {
         //Enter key pressed
-        if(e.which == 13){
+        if (e.which == 13) {
             //Trigger search button click event
             $('#submit').click();
         }
@@ -66,61 +66,63 @@ $(function () {
                     $("#cardHome").append(newDiv1);
                 }
 
-                //checks for additional pages to query (the first query scrapes the first page only)
-                if (data.numPages > 1) {
+                var pageNum = 2;
 
-                    //for infinite scroll
-                    var scrollCounter = 1000;
+                $(window).scroll(function(){
+                    if($(document).height()===$(window).scrollTop()+$(window).height()){
+                        //checks for additional pages to query (the first query scrapes the first page only)
 
-                    //if query shows multiple pages of data...
-                    for (var j = 2; j < data.numPages; j++) {
+                            if (pageNum <= data.numPages) {
 
-                        //infinite scroll (queries run after user scrolls 1000 px
-                        $(window).scroll(function() {
-                            if ($(this).scrollTop() >= scrollCounter) {
 
+                                console.log(data.numPages);
+                                console.log(pageNum);
                                 //loading image
                                 $("#cardHome").append(loadingImg);
-
-                                scrollCounter += 1000;
 
                                 //api call for each additional page from data
                                 $.ajax({
                                     method: "POST",
-                                    url: `/api/search/pokemon2/${pokemon}/${j}`
-                                }).then(function (data) {
-                                    console.log(data);
+                                    url: `/api/search/pokemon2/${pokemon}/${pageNum}`
+                                }).then(function (data2) {
+                                    console.log(`/api/search/pokemon2/${pokemon}/${pageNum}`);
+                                    console.log(data2);
+                                    pageNum += 1;
+                                    console.log(pageNum);
 
                                     //removed loading image
                                     $("#loader").remove();
 
                                     //displays each card in the comeHard div in cardSearch.handlebars
-                                    for (var i = 0; i < data.cardData.length; i++) {
+                                    for (var j = 0; j < data2.cardData.length; j++) {
                                         var newDiv1 = $("<div class='col-xl-4 col-md-6 col-xs-12 card-margin'></div>");
 
                                         var newDiv2 = $("<div class='card grey center' style='width: 20rem;'>");
 
                                         var newImg = $("<img class='card-img-top' alt='Card Image'>");
-                                        newImg.attr("src", data.cardData[i].image);
+                                        newImg.attr("src", data2.cardData[j].image);
                                         newImg.appendTo(newDiv2);
                                         newDiv2.appendTo(newDiv1);
 
                                         var newDiv3 = $("<div class='card-body'></div>");
 
-                                        newDiv3.html("<h4>Card Id:</h4><a href='#' class='btn btn-primary cardButton' data-id='" + data.cardData[i].url + "' data-toggle='modal' data-target='#cardModal'>View Card Data</a>");
+                                        newDiv3.html("<h4>Card Id:</h4><a href='#' class='btn btn-primary cardButton' data-id='" + data2.cardData[j].url + "' data-toggle='modal' data-target='#cardModal'>View Card Data</a>");
 
                                         newDiv3.appendTo(newDiv2);
                                         $("#cardHome").append(newDiv1);
                                     }
-                                })
+
+                                });
                             }
-                        });
+
                     }
-                }
+                });
 
             });
         }
+
     });
+
 
     var singleCardData;
 
@@ -163,5 +165,6 @@ $(function () {
 
     });
 
-});
+})
+;
 

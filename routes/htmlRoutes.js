@@ -59,10 +59,10 @@ htmlRouter.post("/api/search/pokemon/:pokemon?", function (req, res) {
     cardData = [];
 });
 
-htmlRouter.post("/api/search/pokemon2/:pokemon?/:j?", function (req, res) {
+htmlRouter.post("/api/search/pokemon2/:pokemon?/:pageNum?", function (req, res) {
 
     let pokeSearch = req.params.pokemon;
-    let pageNum = req.params.j;
+    let pageNum = req.params.pageNum;
 
     console.log(pokeSearch);
 
