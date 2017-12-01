@@ -166,7 +166,7 @@ htmlRouter.get('/logout', function(req, res) {
 
 htmlRouter.get('/callback',
     passport.authenticate('auth0', {
-        failureRedirect: '/failure'
+        failureRedirect: '404'
     }),
     function(req, res) {
         res.redirect(req.session.returnTo || '/user');
@@ -183,5 +183,8 @@ htmlRouter.get('/failure', function(req, res) {
     });
 });
 
+htmlRouter.get('*', function (req, res) {
+res.render('404');
+    });
 
 module.exports = htmlRouter;
