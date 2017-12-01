@@ -130,13 +130,13 @@ $(function () {
 
     $(document).on("click", ".addCard", function (event) {
         event.preventDefault();
-        // $.ajax({
-        //     method: "POST",
-        //     url: "/db/newCard" + tableName,
-        //     data: singleCardData
-        // }).then(function () {
-        //     console.log("Your card was sent to" + tableName + "!");
-        // });
+        $.ajax({
+            method: "POST",
+            url: "/db/newCard" + deckName,
+            data: singleCardData
+        }).then(function () {
+            console.log("Your card was sent to" + deckName + "!");
+        });
 
     });
 
