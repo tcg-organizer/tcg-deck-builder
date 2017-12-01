@@ -60,9 +60,10 @@ $(function () {
                 //checks for additional pages to query (the first query scrapes the first page only)
                 if (data.numPages > 1) {
 
-                    $("#cardHome").append(loadingImg);
-
                     for (var j = 2; j < data.numPages; j++) {
+
+                        $("#cardHome").append(loadingImg);
+
                         $.ajax({
                             method: "POST",
                             url: `/api/search/pokemon2/${pokemon}/${j}`
@@ -122,10 +123,10 @@ $(function () {
 
             $(document).on("click",".addCard", function(event){
                 event.preventDefault();
-                $.ajax({
-                    method: "POST",
-                    url:
-                })
+                // $.ajax({
+                //     method: "POST",
+                //     url:
+                // })
 
             });
         });
