@@ -2,6 +2,19 @@ const express = require("express");
 const dbRouter = express.Router();
 const db = require("../models/index");
 
+dbRouter.get("/decks", function (req, res) {
+    
+    db.decks.findAll().then(function (allDecks) {
+        console.log("\n");
+        console.log("------------------------");
+        console.log("the deck has been read");
+        console.log(allDecks);
+        console.log("------------------------");
+        console.log("\n");
+        res.send(allDecks);
+    })
+});
+
 dbRouter.get("/decks/:id", function (req, res) {
     
     db.decks.findOne({
@@ -36,8 +49,15 @@ dbRouter.post("/decks", function (req, res) {
 //adding a new card to your deck
 dbRouter.post("/cards", function (req, res) {
     
+    console.log("\n");
+    console.log("------------------------");
+    console.log(req.body);
+    console.log("------------------------");
+    console.log(req.body.name);
+    console.log("\n");
+    
     db.cards.create({
-        cardName: req.body.cardName,
+        cardName: req.body.name,
         cardData: JSON.stringify(req.body),
         deckId: req.body.deckId
     }).then(function (userDeck) {
