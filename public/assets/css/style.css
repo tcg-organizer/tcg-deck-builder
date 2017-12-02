@@ -1,4 +1,6 @@
-
+#addNewDeck {
+    display: none;
+}
 
 .card-description {
     margin-top : 25px;
@@ -158,3 +160,4 @@ a {
     justify-content: center;
     align-items: center;
 }
+
