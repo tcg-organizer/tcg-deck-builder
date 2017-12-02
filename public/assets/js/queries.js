@@ -161,11 +161,10 @@ $(function () {
         $.ajax({
             method: "POST",
             url: "/db/cards",
-            data: singleCardData
+            data: {"cardData": singleCardData, "deckId":$(this).attr("data-id")}
         }).then(function () {
             console.log("Your card was sent to" + deckName + "!");
         });
     });
-})
-;
+});
 
