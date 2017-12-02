@@ -2,6 +2,7 @@ const express = require("express");
 const dbRouter = express.Router();
 const db = "cardsdb";
 
+//view all decks
 dbRouter.get("/decks", function (req, res) {
     
     db.deck.findAll().then(function (allDecks) {
@@ -15,7 +16,8 @@ dbRouter.get("/decks", function (req, res) {
     })
 });
 
-dbRouter.get("/deck/:id", function (req, res) {
+//view specific deck
+dbRouter.get("/decks/:id", function (req, res) {
     
     db.decks.findOne({
         where: {id: req.params.id},
@@ -35,10 +37,11 @@ dbRouter.get("/deck/:id", function (req, res) {
     })
 });
 
+//add new deck
 dbRouter.post("/decks", function (req, res) {
     
     db.decks.create({
-        deckName: req.body.deckName
+        deckName: req.body.newDeckName
     }).then(function(newDeck) {
         console.log("\n");
         console.log("------------------------");
@@ -53,27 +56,27 @@ dbRouter.post("/decks", function (req, res) {
 //adding a new card to your deck
 dbRouter.post("/cards", function (req, res) {
     
-    console.log("\n");
-    console.log("------------------------");
-    console.log(req.body.cardData);
-    console.log("------------------------");
-    console.log(req.body.cardData.name);
-    console.log("------------------------");
-    console.log(req.body.deckId);
-    console.log("\n");
+    // console.log("\n");
+    // console.log("------------------------");
+    // console.log(req.body.cardData);
+    // console.log("------------------------");
+    // console.log(req.body.cardData.name);
+    // console.log("------------------------");
+    // console.log(req.body.deckId);
+    // console.log("\n");
     
     db.cards.create({
         cardName: req.body.cardData.name,
         cardData: JSON.stringify(req.body.cardData),
         deckId: req.body.deckId
-    }).then(function (userDeck) {
+    }).then(function (userCard) {
         console.log("\n");
         console.log("------------------------");
         console.log("the card has been logged");
-        console.log(userDeck);
+        console.log(userCard);
         console.log("------------------------");
         console.log("\n");
-        res.json(userDeck);
+        res.json(userCard);
     });
     // res.send("hello");
 });
