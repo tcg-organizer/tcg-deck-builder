@@ -1,10 +1,10 @@
 const express = require("express");
 const dbRouter = express.Router();
-const db = require("../models/index");
+const db = "cardsdb";
 
 dbRouter.get("/decks", function (req, res) {
     
-    db.decks.findAll().then(function (allDecks) {
+    db.deck.findAll().then(function (allDecks) {
         console.log("\n");
         console.log("------------------------");
         console.log("the deck has been read");
@@ -15,7 +15,7 @@ dbRouter.get("/decks", function (req, res) {
     })
 });
 
-dbRouter.get("/decks/:id", function (req, res) {
+dbRouter.get("/deck/:id", function (req, res) {
     
     db.decks.findOne({
         where: {id: req.params.id},
@@ -28,6 +28,10 @@ dbRouter.get("/decks/:id", function (req, res) {
         console.log("------------------------");
         console.log("\n");
         res.send(readDeck);
+    }).catch(function(err){
+        if (err){
+            console.log(err);
+        }
     })
 });
 

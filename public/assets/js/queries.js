@@ -140,6 +140,7 @@ $(function () {
 
         console.log(cardURL);
 
+        //call to populate card modal with card data
         $.ajax({
             method: "POST",
             url: `/api/search/url/${cardURL}`
@@ -152,17 +153,34 @@ $(function () {
             $("#cardType").text("Card Type: " + data.type);
         });
 
+        //call to populate deckNames dropdown with decks
+        $.ajax({
+            method: "GET",
+            url: "/decks"
+        }).then(function(data){
+            //test to see if data is returned
+            console.log(data);
+        }).catch(function(err){
+            if (err) {
+                //checks for errors
+                console.log(err);
+            }
+        })
     });
 
     $(document).on("click", ".addCard", function (event) {
-      
+
         console.log("card sent!");
         $.ajax({
             method: "POST",
-            url: "/db/cards",
+            url: "/cards",
             data: singleCardData
         }).then(function () {
             console.log("Your card was sent to" + deckName + "!");
+        }).catch(function(err){
+            if (err) {
+                console.log(err);
+            }
         });
     });
 })
