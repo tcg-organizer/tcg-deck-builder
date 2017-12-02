@@ -141,6 +141,7 @@ htmlRouter.post("/api/search/url/:cardURL?", function (req, res) {
     specificCardData = [];
 });
 
+<<<<<<< HEAD
 // const env = {
 //     AUTH0_CLIENT_ID: process.env.AUTH0_CLIENT_ID,
 //     AUTH0_DOMAIN: process.env.AUTH0_DOMAIN,
@@ -183,5 +184,8 @@ htmlRouter.post("/api/search/url/:cardURL?", function (req, res) {
 //     });
 // });
 
+htmlRouter.get('*', function (req, res) {
+res.render('404');
+    });
 
 module.exports = htmlRouter;
