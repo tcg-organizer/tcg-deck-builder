@@ -8,30 +8,30 @@ let cardData = [];
 let specificCardData = [];
 
 //this half handles the handlebars pages
-htmlRouter.get("/", function (req, res, next) {
-    res.render("index.handlebars");
+htmlRouter.get("/", function (req, res) {
+    res.render("index");
 });
 
 htmlRouter.get("/deckList", function (req, res) {
-    res.render("deckList.handlebars");
+    res.render("deckList");
 });
 
 htmlRouter.get("/cardSearch", function (req, res) {
-    res.render("cardSearch.handlebars", {cardData: cardData});
+    res.render("cardSearch", {cardData: cardData});
 });
 
 htmlRouter.post("/api/search/pokemon/:pokemon?", function (req, res) {
 
     let pokeSearch = req.params.pokemon;
 
-    // console.log(pokeSearch);
+    console.log(pokeSearch);
 
 // query for a list of cards including matching the query value, pokemon
     function initialQuery(pokemon) {
         scraper.scrapeSearchPage("http://www.pokemon.com/us/pokemon-tcg/pokemon-cards/?cardName=" + pokemon).then(function (data) {
             
             // returns an object with the following information: numPages, cards
-            // console.log(JSON.stringify(data, null, 4));
+            console.log(JSON.stringify(data, null, 4));
             
             // we will show each card as an image and store the url of the card within the image
             
@@ -104,14 +104,14 @@ htmlRouter.post("/api/search/url/:cardURL?", function (req, res) {
     cardSearch = cardSearch.split("+");
     cardSearch = cardSearch.join("/");
 
-    // console.log(cardSearch);
+    console.log(cardSearch);
 
     function singleCardQuery(cardURL) {
         // query for a specific card based on a specific URL (can be received from the basic query above)
 
         scraper.scrapeCard(cardURL).then(function (data) {
             // returns an object with the following information: id, name, image, type, superType, hp, abilities, rules, color, weaknesses, resistances, retreatCost
-            // console.log(JSON.stringify(data, null, 4));
+            console.log(JSON.stringify(data, null, 4));
             // this will lead to a modal opening with displayed data from the query
 
            const chosenCard =
@@ -141,7 +141,6 @@ htmlRouter.post("/api/search/url/:cardURL?", function (req, res) {
     specificCardData = [];
 });
 
-<<<<<<< HEAD
 // const env = {
 //     AUTH0_CLIENT_ID: process.env.AUTH0_CLIENT_ID,
 //     AUTH0_DOMAIN: process.env.AUTH0_DOMAIN,

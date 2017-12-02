@@ -40,6 +40,7 @@ $(function () {
                 url: `/api/search/pokemon/${pokemon}`
 
             }).then(function (data) {
+
                 $("#cardHome").empty();
 
                 console.log(data);
@@ -51,7 +52,7 @@ $(function () {
 
                     var newDiv2 = $("<div class='card grey center' style='width: 20rem;'>");
 
-                    var newImg = $("<img class='card-img-top' alt='Card Image'>");
+                    var newImg = $("<img class='card-img-top img-responsive' alt='Card Image'>");
 
                     newImg.attr("src", data.cardData[i].image);
 
@@ -59,8 +60,7 @@ $(function () {
                     newDiv2.appendTo(newDiv1);
 
                     var newDiv3 = $("<div class='card-body'></div>");
-                    newDiv3.html("<h4>Card Id:</h4><a href='#' class='btn btn-primary cardButton' data-id='" + data.cardData[i].url + "' data-toggle='modal' data-target='#cardModal'>View Card Data</a>");
-
+                    newDiv3.html("<a href='#' class='btn btn-primary cardButton' data-id='" + data.cardData[i].url + "' data-toggle='modal' data-target='#cardModal'>View Card Data</a>");
 
                     newDiv3.appendTo(newDiv2);
                     $("#cardHome").append(newDiv1);
@@ -99,14 +99,15 @@ $(function () {
 
                                         var newDiv2 = $("<div class='card grey center' style='width: 20rem;'>");
 
-                                        var newImg = $("<img class='card-img-top' alt='Card Image'>");
+                                        var newImg = $("<img class='card-img-top img-responsive' alt='Card Image'>");
+
                                         newImg.attr("src", data2.cardData[j].image);
                                         newImg.appendTo(newDiv2);
                                         newDiv2.appendTo(newDiv1);
 
                                         var newDiv3 = $("<div class='card-body'></div>");
 
-                                        newDiv3.html("<h4>Card Id:</h4><a href='#' class='btn btn-primary cardButton' data-id='" + data2.cardData[j].url + "' data-toggle='modal' data-target='#cardModal'>View Card Data</a>");
+                                        newDiv3.html("<a href='#' class='btn btn-primary cardButton' data-id='" + data2.cardData[j].url + "' data-toggle='modal' data-target='#cardModal'>View Card Data</a>");
 
                                         newDiv3.appendTo(newDiv2);
                                         $("#cardHome").append(newDiv1);
@@ -176,9 +177,8 @@ $(function () {
     
     $(document).on("click", ".addCard", function (event) {
 
-        
-        
         let deckId = $(".dropdown-item").val();
+
 
         console.log("card sent!");
         $.ajax({
