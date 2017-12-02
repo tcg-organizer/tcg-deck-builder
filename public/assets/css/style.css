@@ -9,6 +9,35 @@
     background: url("../img/numberFour.png") no-repeat center center fixed;
 }
 
+/* CUSTOMIZE THE CAROUSEL
+-------------------------------------------------- */
+
+/* Carousel base class */
+.carousel {
+    height: 500px;
+    margin-bottom: 60px;
+}
+/* Since positioning the image, we need to help out the caption */
+.carousel-caption {
+    z-index: 10;
+}
+
+/* Declare heights because of positioning of img element */
+.carousel .item {
+    width: 25%;
+    /*height: 500px;*/
+    background-color: #777;
+}
+.carousel-inner > .item > img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    min-width: 100%;
+    height: 500px;
+}
+
+/* CAROUSEL ENDS
+-------------------------------------------------- */
 
 .left-block .right-block{
     display:inline-block;
@@ -16,14 +45,10 @@
     margin: 15px 0;
 }
 
-/*#footer {*/
-/*height: 50%;*/
-/*background-color: #f5f5f5;*/
-/*}*/
 
-#lostPage.container {
+#lostPage {
     text-align: center;
-    max-width: 760px;
+    margin-bottom: 1.2rem;
 }
 
 #cardHome {
@@ -37,17 +62,11 @@
 
 a {
     color:gray;
+    margin-top:5px;
     cursor: auto;
     text-decoration: none;
 }
 
-
-/* mouse over link */
-/*a:hover {*/
-    /*color: red;*/
-    /*cursor: auto;*/
-    /*text-decoration: underline;*/
-/*}*/
 
 .login {
     width: 50%;
@@ -73,61 +92,43 @@ a {
     margin: auto;
 }
 
-/* Form Styles */
-/*form {*/
-    /*background-color: #212529;*/
-    /*color: gray;*/
-    /*padding: 30px 40px;*/
-/*}*/
-
-.hidden-label {
-    position: absolute;
-    height: 0;
-    width: 0;
-    overflow: hidden;
-    visibility: hidden;
-}
-
-.checkbox-text {
-    font-size: 85%;
-    color: #777;
-}
-
-
-/*div.container {*/
-/*border-image-source: url("../img/borderv1.png");*/
-
-/*}*/
-
-.select {
-    color: gray;
-}
-
-
 .footer-section {
-    /*position: absolute;*/
-    /*left: 0 ; right: 0; bottom: 0;*/
+    margin-top: 100px;
+ /*Set the fixed height of the footer here */
+    height: 60px;
+    line-height: 14px; /* Vertically centered the text here */
     background-color: #3c3d41;
     padding: 5px;
     color: white;
-    border-bottom-right-radius: 6px;
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 6px;
+    /*border-bottom-right-radius: 6px;*/
+    /*border-top-left-radius: 0;*/
+    /*border-bottom-left-radius: 6px;*/
     z-index: 1;
 
 }
 
-#pokemonImage {
-    width: 250px;
+.upTop {
+    margin-bottom: 2.6rem;
+    padding-bottom: 20px;
 }
 
-@media only screen and (min-device-width : 320px) and (max-device-width : 480px){
-    .footer-section {
-        position: static;
-        left: 0px;
-        bottom: 0px;
-    }
+a {
+    padding: 1px 0 4px 0;
+}
 
+.left {
+    text-align: left;
+    margin-bottom:1%;
+}
+
+.center-align2 {
+margin-right: 350px;
+}
+
+
+.right {
+    right: 0;
+    position: absolute;
 }
 
 .footer-links a {

@@ -8,16 +8,16 @@ let cardData = [];
 let specificCardData = [];
 
 //this half handles the handlebars pages
-htmlRouter.get("/", function (req, res) {
-    res.render("index");
+htmlRouter.get("/", function (req, res, next) {
+    res.render("index.handlebars");
 });
 
 htmlRouter.get("/deckList", function (req, res) {
-    res.render("deckList");
+    res.render("deckList.handlebars");
 });
 
 htmlRouter.get("/cardSearch", function (req, res) {
-    res.render("cardSearch", {cardData: cardData});
+    res.render("cardSearch.handlebars", {cardData: cardData});
 });
 
 htmlRouter.post("/api/search/pokemon/:pokemon?", function (req, res) {
@@ -59,19 +59,19 @@ htmlRouter.post("/api/search/pokemon/:pokemon?", function (req, res) {
     cardData = [];
 });
 
-htmlRouter.post("/api/search/pokemon2/:pokemon?/:pageNum?", function (req, res) {
+htmlRouter.post("/api/search/pokemon2/:pokemon?/:j?", function (req, res) {
 
     let pokeSearch = req.params.pokemon;
-    let pageNum = req.params.pageNum;
+    let pageNum = req.params.j;
 
-    // console.log(pokeSearch);
+    console.log(pokeSearch);
 
 // query for a list of cards including matching the query value, pokemon
     function initialQuery(pokemon) {
         scraper.scrapeSearchPage("http://www.pokemon.com/us/pokemon-tcg/pokemon-cards/"+ pageNum +"?cardName=" + pokemon).then(function (data) {
 
             // returns an object with the following information: numPages, cards
-            // console.log(JSON.stringify(data, null, 4));
+            console.log(JSON.stringify(data, null, 4));
 
             // we will show each card as an image and store the url of the card within the image
 
@@ -145,10 +145,8 @@ const env = {
     AUTH0_CLIENT_ID: process.env.AUTH0_CLIENT_ID,
     AUTH0_DOMAIN: process.env.AUTH0_DOMAIN,
     AUTH0_CALLBACK_URL:
-    'http://localhost:8080/' || process.env.AUTH0_CALLBACK_URL
+    'http://localhost:8080/callback' || process.env.AUTH0_CALLBACK_URL
 };
-
-
 
 htmlRouter.get('/login', passport.authenticate('auth0', {
         clientID: env.AUTH0_CLIENT_ID,
@@ -168,7 +166,7 @@ htmlRouter.get('/logout', function(req, res) {
 
 htmlRouter.get('/callback',
     passport.authenticate('auth0', {
-        failureRedirect: '/failure'
+        failureRedirect: '404'
     }),
     function(req, res) {
         res.redirect(req.session.returnTo || '/user');
@@ -176,18 +174,17 @@ htmlRouter.get('/callback',
 );
 
 htmlRouter.get('/failure', function(req, res) {
-    var error = req.flash("error");
-    var error_description = req.flash("error_description");
+    const error = req.flash("error");
+    const error_description = req.flash("error_description");
     req.logout();
-    res.render('failure', {
+    res.render('404', {
         error: error[0],
         error_description: error_description[0],
     });
 });
 
-// 404 Error Page
 htmlRouter.get('*', function (req, res) {
-        +res.render('404');
-});
+res.render('404');
+    });
 
 module.exports = htmlRouter;
