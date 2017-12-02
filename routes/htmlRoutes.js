@@ -27,26 +27,25 @@ htmlRouter.post("/api/search/pokemon/:pokemon?", function (req, res) {
 // query for a list of cards including matching the query value, pokemon
     function initialQuery(pokemon) {
         scraper.scrapeSearchPage("http://www.pokemon.com/us/pokemon-tcg/pokemon-cards/?cardName=" + pokemon).then(function (data) {
-            
-            // returns an object with the following information: numPages, cards
-            console.log(JSON.stringify(data, null, 4));
-            
-            // we will show each card as an image and store the url of the card within the image
-            
-            const cards = data.cards;
-            for (let i = 0; i < cards.length; i++) {
-                // data is sent to cardSearch.handlebars for display
-                // each displayed card has a stored URL used for a second query when clicked
-                const newCard = {
-                    url: cards[i].url,
-                    image: cards[i].image,
-                    id: cards[i].id
-                };
-                cardData.push(newCard);
-            }
 
-            res.json({cardData: cardData, numPages: data.numPages});
+                // returns an object with the following information: numPages, cards
+                console.log(JSON.stringify(data, null, 4));
 
+                // we will show each card as an image and store the url of the card within the image
+
+                const cards = data.cards;
+                for (let i = 0; i < cards.length; i++) {
+                    // data is sent to cardSearch.handlebars for display
+                    // each displayed card has a stored URL used for a second query when clicked
+                    const newCard = {
+                        url: cards[i].url,
+                        image: cards[i].image,
+                        id: cards[i].id
+                    };
+                    cardData.push(newCard);
+                }
+
+                res.json({cardData: cardData, numPages: data.numPages});
         });
     }
     

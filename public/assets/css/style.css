@@ -7,7 +7,6 @@
     margin-top : 25px;
 }
 
-
 .number {
     background: url("../img/numberFour.png") no-repeat center center fixed;
 }
@@ -80,7 +79,6 @@ a {
     text-decoration: none;
 }
 
-
 .login {
     width: 50%;
     height: 50%;
@@ -117,13 +115,6 @@ a {
     /*border-top-left-radius: 0;*/
     /*border-bottom-left-radius: 6px;*/
     z-index: 1;
-
-/* Form Styles */
-/*form {*/
-    /*background-color: #212529;*/
-    /*color: gray;*/
-    /*padding: 30px 40px;*/
-/*}*/
 
 
 }
@@ -173,6 +164,8 @@ margin-right: 350px;
     align-items: center;
 }
 
-#pokemonImage {
-    max-width: 200px;
+.delete-btn {
+    position: absolute;
+    top: 0;
+    right: 0;
 }
