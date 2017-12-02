@@ -60,6 +60,15 @@
     display: inline-block;
 }
 
+.footer-links a {
+    text-decoration: none;
+}
+
+.footer-links a:hover {
+    text-decoration: none;
+    color:lightgrey;
+}
+
 a {
     color:gray;
     margin-top:5px;

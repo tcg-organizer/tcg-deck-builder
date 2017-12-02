@@ -183,8 +183,8 @@ htmlRouter.get('/failure', function(req, res) {
     });
 });
 
-htmlRouter.get('*', function (req, res) {
-res.render('404');
-    });
+// htmlRouter.get('*', function (req, res) {
+// res.render('404');
+//     });
 
 module.exports = htmlRouter;

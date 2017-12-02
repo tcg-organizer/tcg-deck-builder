@@ -1,52 +1,40 @@
-const express = require('express');
-const passport = require('passport');
-const router = express.Router();
 
-const env = {
-    AUTH0_CLIENT_ID: process.env.AUTH0_CLIENT_ID,
-    AUTH0_DOMAIN: process.env.AUTH0_DOMAIN,
-    AUTH0_CALLBACK_URL:
-    'http://localhost:8080' || process.env.AUTH0_CALLBACK_URL
+var express = require('express');
+var router = express.Router();
+
+var isAuthenticated = function (req, res, next) {
+    if (req.isAuthenticated())
+        return next();
+    // if the user is not authenticated then redirect him to the login page
+    res.redirect('/');
 };
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-    res.render('index');
-});
+module.exports = function(passport){
 
-router.get('/login', passport.authenticate('auth0', {
-        clientID: env.AUTH0_CLIENT_ID,
-        domain: env.AUTH0_DOMAIN,
-        redirectUri: env.AUTH0_CALLBACK_URL,
-        responseType: 'code',
-        audience: 'https://' + env.AUTH0_DOMAIN + '/userinfo',
-        scope: 'openid profile'}),
-    function(req, res) {
-        res.redirect("/");
+    /* GET login page. */
+    router.get('/', function(req, res) {
+        // Display the Login page with any flash message, if any
+        res.render('index', { message: req.flash('message') });
     });
 
-router.get('/logout', function(req, res) {
-    req.logout();
-    res.redirect('/');
-});
+    /* Handle Login POST */
+    router.post('/login', passport.authenticate('login', {
+        successRedirect: '/home',
+        failureRedirect: '/',
+        failureFlash : true
+    }));
 
-router.get('/callback',
-    passport.authenticate('auth0', {
-        failureRedirect: '/failure'
-    }),
-    function(req, res) {
-        res.redirect(req.session.returnTo || '/user');
-    }
-);
-
-router.get('/failure', function(req, res) {
-    var error = req.flash("error");
-    var error_description = req.flash("error_description");
-    req.logout();
-    res.render('failure', {
-        error: error[0],
-        error_description: error_description[0],
+    /* GET Registration Page */
+    router.get('/signup', function(req, res){
+        res.render('register',{message: req.flash('message')});
     });
-});
 
-module.exports = router;
+    /* Handle Registration POST */
+    router.post('/signup', passport.authenticate('signup', {
+        successRedirect: '/home',
+        failureRedirect: '/signup',
+        failureFlash : true
+    }));
+
+    return router;
+};
