@@ -127,7 +127,6 @@ $(function () {
 
     var singleCardData;
     var deckName;
-    let deckData = [];
 
     $(document).on("click", ".cardButton", function (event) {
 
@@ -155,18 +154,13 @@ $(function () {
             $("#cardType").text("Card Type: " + data.type);
         });
 
-        //call to populate deckNames dropdown with decks
-
-
         $.ajax({
             method: "GET",
             url: "/db/decks"
         }).done(function (data) {
             console.log(data);
             for (let i = 0; i < data.length; i++) {
-                $(".dropdown-menu").append(`<a class="dropdown-item" href="#">${data[i].deckName}</a>`);
-                deckData.push(data[i].id, data[i].deckName);
-                console.log(deckData);
+                $("#deckNames").append(`<option class="deckName" data-id="${data[i].deckId}">${data[i].deckName}</option>`);
             }
         })
 
@@ -175,14 +169,15 @@ $(function () {
 
     $(document).on("click", ".addCard", function (event) {
 
-        let deckId = $(".dropdown-item").val();
-
-
+        
+        console.log($(this).attr("data-id"));
+        
         console.log("card sent!");
         $.ajax({
             method: "POST",
-            url: "/cards",
-            data: singleCardData
+            url: "/db/cards",
+            data: {"cardData": singleCardData, "deckId":$(this).attr("data-id")}
+
         }).then(function () {
             console.log("Your card was sent to" + deckName + "!");
         }).catch(function (err) {

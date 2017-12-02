@@ -11,7 +11,7 @@ dbRouter.get("/decks", function (req, res) {
         console.log(allDecks);
         console.log("------------------------");
         console.log("\n");
-        res.send(allDecks);
+        res.json(allDecks);
     })
 });
 
@@ -55,14 +55,16 @@ dbRouter.post("/cards", function (req, res) {
     
     console.log("\n");
     console.log("------------------------");
-    console.log(req.body);
+    console.log(req.body.cardData);
     console.log("------------------------");
-    console.log(req.body.name);
+    console.log(req.body.cardData.name);
+    console.log("------------------------");
+    console.log(req.body.deckId);
     console.log("\n");
     
     db.cards.create({
-        cardName: req.body.name,
-        cardData: JSON.stringify(req.body),
+        cardName: req.body.cardData.name,
+        cardData: JSON.stringify(req.body.cardData),
         deckId: req.body.deckId
     }).then(function (userDeck) {
         console.log("\n");
