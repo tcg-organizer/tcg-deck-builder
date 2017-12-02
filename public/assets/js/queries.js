@@ -32,6 +32,12 @@ $(function () {
             }).then(function(data){
                 $("#cardHome").empty();
 
+                    $.ajax({
+                        method: "GET",
+                        url: `/db/readDecks/`
+                    }).done(function(data){
+                        console.log("these are the available decks:", data);
+                    });
                 console.log(data);
                 for (var i = 0; i < data.cardData.length; i++) {
                     var newDiv1 = $("<div class='col-xl-4 col-md-6 col-xs-12 card-margin'></div>");
@@ -56,6 +62,7 @@ $(function () {
 
 
     $(".cardButton").on("click", function(event){
+        console.log("button clicked");
         event.preventDefault();
         let cardURL = $(this).attr("data-id");
         cardURL = cardURL.substring(23);
@@ -68,6 +75,9 @@ $(function () {
             method: "POST",
             url: `/api/search/url/${cardURL}`
         }).then(function(data){
+            $.ajax({
+                method: "POST"
+            })
             console.log(data);
             $("#pokemonName").text(data.name);
             $("#pokemonImage").attr("src", data.image);
