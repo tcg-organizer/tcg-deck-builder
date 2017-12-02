@@ -5,13 +5,10 @@ const db = require("./models");
 const path = require("path");
 const dbRoutes = require('./routes/dbRoutes');
 const htmlRoutes = require('./routes/htmlRoutes');
-<<<<<<< HEAD
-=======
 const logger = require('morgan');
 const passport = require('passport');
 const expressSession = require('express-session');
 const cookieParser = require('cookie-parser');
->>>>>>> 592e94ee4bff7a743436ccaf60c954119346c407
 const chai = require('chai');
 //auth0
 const dotenv = require('dotenv');
