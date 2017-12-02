@@ -166,6 +166,7 @@ $(function () {
     
     $(document).on("click", ".addCard", function (event) {
         
+        console.log($(this).attr("data-id"));
         
         console.log("card sent!");
         $.ajax({

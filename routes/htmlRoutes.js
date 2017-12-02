@@ -185,9 +185,9 @@ htmlRouter.get('/failure', function(req, res) {
     });
 });
 
-// 404 Error Page
-htmlRouter.get('*', function (req, res) {
-        +res.render('404');
-});
+// // 404 Error Page
+// htmlRouter.get('/*', function (req, res) {
+//         res.render('404');
+// });
 
 module.exports = htmlRouter;
