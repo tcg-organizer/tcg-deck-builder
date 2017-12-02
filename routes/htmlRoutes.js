@@ -177,7 +177,7 @@ htmlRouter.get('/failure', function(req, res) {
     const error = req.flash("error");
     const error_description = req.flash("error_description");
     req.logout();
-    res.render('failure.pug', {
+    res.render('404', {
         error: error[0],
         error_description: error_description[0],
     });

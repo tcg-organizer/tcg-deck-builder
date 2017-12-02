@@ -61,6 +61,7 @@
 
 a {
     color:gray;
+    margin-top:5px;
     cursor: auto;
     text-decoration: none;
 }
@@ -90,44 +91,11 @@ a {
     margin: auto;
 }
 
-/* Form Styles */
-form {
-    background-color: #212529;
-    color: gray;
-    padding: 30px 40px;
-}
-
-.hidden-label {
-    position: absolute;
-    height: 0;
-    width: 0;
-    overflow: hidden;
-    visibility: hidden;
-}
-
-.checkbox-text {
-    font-size: 85%;
-    color: #777;
-}
-
-
-/*div.container {*/
-/*border-image-source: url("../img/borderv1.png");*/
-
-/*}*/
-
-.select {
-    color: gray;
-}
-
-
-
-
 .footer-section {
     margin-top: 100px;
  /*Set the fixed height of the footer here */
-    height: 56px;
-    line-height: 56px; /* Vertically centered the text here */
+    height: 60px;
+    line-height: 14px; /* Vertically centered the text here */
     background-color: #3c3d41;
     padding: 5px;
     color: white;
@@ -142,16 +110,21 @@ form {
     margin-bottom: 2.6rem;
     padding-bottom: 20px;
 }
-/*@media only screen and (min-device-width : 320px) and (max-device-width : 480px){*/
-    /*.footer-section {*/
-        /*position: static;*/
-        /*left: 0px;*/
-        /*bottom: 0px;*/
-    /*}*/
 
-/*}*/
+a {
+    padding: 1px 0 4px 0;
+}
+
+.left {
+    text-align: left;
+    margin-bottom:1%;
+}
 
 
+.right {
+    right: 0;
+    position: absolute;
+}
 
 /*helper classes for styling*/
 .grey {
