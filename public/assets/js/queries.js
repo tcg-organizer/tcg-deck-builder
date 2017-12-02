@@ -163,10 +163,15 @@ $(function () {
                 console.log(data[i].id);
             }
         });
+        
+        if ($("#deckNames").find(":selected").attr("data-id") === "new-deck") {
+            
+        }
+        
     
         $(document).on("click", ".addCard", function (event) {
             
-            console.log($( "#deckNames").find(":selected").attr("data-id"));
+            console.log($("#deckNames").find(":selected").attr("data-id"));
         
             console.log("card sent!");
             $.ajax({
@@ -175,12 +180,7 @@ $(function () {
                 data: {"cardData": singleCardData, "deckId": $( "#deckNames").find(":selected").attr("data-id")}
             }).then(function () {
                 console.log("Your card was sent to " + deckName + "!");
-            }).catch(function(err) {
-                if (err) {
-                    
-                }
             });
-            
         });
     });
     
