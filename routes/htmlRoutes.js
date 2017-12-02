@@ -1,8 +1,6 @@
 const express = require("express");
 const htmlRouter = express.Router();
 const scraper = require('pokemon-tcg-scraper');
-const passport = require('passport');
-
 
 let cardData = [];
 let specificCardData = [];
