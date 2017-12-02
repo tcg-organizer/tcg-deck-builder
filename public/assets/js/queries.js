@@ -37,8 +37,26 @@ $(function () {
             //ajax call to send data to the server
             $.ajax({
                 method: "POST",
-                url: `/api/search/pokemon/${pokemon}` a
-
+                url: `/api/search/pokemon/${pokemon}`,
+                timeout: 5000,
+                error: function(xmlhttprequest, textstatus, message) {
+                    if(textstatus==="timeout") {
+                       $("#cardHome").html(`
+                       <div class="card border-danger mb-3 center" style="max-width: 1000rem;">
+                            <div class="card-body text-danger">
+                            <h4 class="card-title">We couldn't a card that matches that search</h4>
+                        <ul>
+                        <li class="card-text">Try checking your spelling</li>
+                        <li class="card-text">Try searching just the pokemon's name</li>
+                        <li class="card-text">Try being nicer to yourself you try really hard and deserve some credit.</li>
+                        </ul>
+                        </div>
+                        </div>`
+                       );
+                    } else {
+                        alert(textstatus);
+                    }
+                }
             }).then(function (data) {
 
                 $("#cardHome").empty();
