@@ -31,7 +31,6 @@ $(function () {
         })
     });
     
-    
     $(document).on("click", ".delete-btn", function(event) {
         event.preventDefault();
         
