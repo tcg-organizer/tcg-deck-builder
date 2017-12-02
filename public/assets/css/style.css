@@ -74,11 +74,11 @@ a {
 }
 
 /* Form Styles */
-form {
-    background-color: #212529;
-    color: gray;
-    padding: 30px 40px;
-}
+/*form {*/
+    /*background-color: #212529;*/
+    /*color: gray;*/
+    /*padding: 30px 40px;*/
+/*}*/
 
 .hidden-label {
     position: absolute;
@@ -130,16 +130,31 @@ form {
 
 }
 
+.footer-links a {
+    text-decoration: none;
+}
+.footer-links a:hover {
+    text-decoration: none;
+    color: lightgrey;
+}
+
 /*helper classes for styling*/
 .grey {
     background-color: #9fb6cd;
 }
-
+/*add margin above card divs*/
 .card-margin {
     margin-bottom: 25px;
 }
-
+/*horizontal center class*/
 .center {
     display: block;
     margin: auto;
+}
+
+/*vertical and horizontally center class*/
+.col-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

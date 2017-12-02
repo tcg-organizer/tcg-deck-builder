@@ -11,7 +11,7 @@ dbRouter.get("/decks", function (req, res) {
         console.log(allDecks);
         console.log("------------------------");
         console.log("\n");
-        res.send(allDecks);
+        res.json(allDecks);
     })
 });
 
