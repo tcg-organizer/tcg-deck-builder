@@ -5,6 +5,7 @@ const db = require("./models");
 const path = require("path");
 const dbRoutes = require('./routes/dbRoutes');
 const htmlRoutes = require('./routes/htmlRoutes');
+const chai = require('chai');
 //auth0
 const logger = require('morgan');
 const favicon = require('serve-favicon');
@@ -18,38 +19,33 @@ const engines = require('consolidate');
 
 dotenv.load();
 
-const routes = require('./routes/index');
+
+
+
 const user = require('./routes/user');
 
 const app = express();
 const PORT = process.env.PORT || 8080;
-
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.text());
 app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
-
-//environment variables
 app.set('views', path.join(__dirname, 'views'));
 
 app.use(express.static("public"));
 
-
 //handlebars setup
-
-app.engine('pug', engines.pug);
-app.engine('handlebars', engines.handlebars);
+// app.engine('pug', engines.pug);
+// app.engine('handlebars', engines.handlebars);
 app.engine("handlebars", hbars({ defaultLayout: "main" }));
 //This will render handlebars files when res.render is called.
 app.set("view engine", "handlebars");
 
 app.use('/', htmlRoutes);
 app.use('/db', dbRoutes);
-app.use('/', routes);
 app.use('/user', user);
-
 
 // This will configure Passport to use Auth0
 const strategy = new Auth0Strategy(
@@ -58,7 +54,7 @@ const strategy = new Auth0Strategy(
         clientID: process.env.AUTH0_CLIENT_ID,
         clientSecret: process.env.AUTH0_CLIENT_SECRET,
         callbackURL:
-            'http://localhost:8080' || process.env.AUTH0_CALLBACK_URL
+        'http://localhost:8080/callback' || process.env.AUTH0_CALLBACK_URL
     },
     function(accessToken, refreshToken, extraParams, profile, done) {
         // accessToken is the token to call Auth0 API (not needed in the most cases)
@@ -78,12 +74,6 @@ passport.serializeUser(function(user, done) {
 passport.deserializeUser(function(user, done) {
     done(null, user);
 });
-
-
-//todo check to see if you can have more than one view engine
-// view engine setup
-// app.set('views', path.join(__dirname, 'views'));
-// app.set('view engine', 'pug');
 
 app.use(logger('dev'));
 app.use(cookieParser());
@@ -112,7 +102,7 @@ app.use(function(req, res, next) {
 // Check logged in
 app.use(function(req, res, next) {
     res.locals.loggedIn = false;
-    if (req.session.passport && typeof req.session.passport.user !== 'undefined') {
+    if (req.session.passport && typeof req.session.passport.user != 'undefined') {
         res.locals.loggedIn = true;
     }
     next();
@@ -148,8 +138,6 @@ app.use(function(err, req, res, next) {
         error: {}
     });
 });
-
-
 
 db.sequelize.sync().then(function() {
     app.listen(PORT, function() {

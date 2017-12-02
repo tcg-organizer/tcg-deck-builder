@@ -1,10 +1,9 @@
-html {
-    background: url("../img/Pokeball.PNG") no-repeat center center fixed;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
+
+
+.card-description {
+    margin-top : 25px;
 }
+
 
 .number {
     background: url("../img/numberFour.png") no-repeat center center fixed;
@@ -17,6 +16,10 @@ html {
     margin: 15px 0;
 }
 
+/*#footer {*/
+/*height: 50%;*/
+/*background-color: #f5f5f5;*/
+/*}*/
 
 #lostPage.container {
     text-align: center;
@@ -40,10 +43,15 @@ a {
 
 
 /* mouse over link */
-a:hover {
-    color: red;
-    cursor: auto;
-    text-decoration: underline;
+/*a:hover {*/
+    /*color: red;*/
+    /*cursor: auto;*/
+    /*text-decoration: underline;*/
+/*}*/
+
+.login {
+    width: 50%;
+    height: 50%;
 }
 
 .footer {
@@ -80,7 +88,25 @@ form {
     visibility: hidden;
 }
 
+.checkbox-text {
+    font-size: 85%;
+    color: #777;
+}
+
+
+/*div.container {*/
+/*border-image-source: url("../img/borderv1.png");*/
+
+/*}*/
+
+.select {
+    color: gray;
+}
+
+
 .footer-section {
+    /*position: absolute;*/
+    /*left: 0 ; right: 0; bottom: 0;*/
     background-color: #3c3d41;
     padding: 5px;
     color: white;
@@ -89,6 +115,10 @@ form {
     border-bottom-left-radius: 6px;
     z-index: 1;
 
+}
+
+#pokemonImage {
+    width: 250px;
 }
 
 @media only screen and (min-device-width : 320px) and (max-device-width : 480px){
