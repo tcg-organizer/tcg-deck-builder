@@ -53,8 +53,6 @@ $(function () {
                         </div>
                         </div>`
                        );
-                    } else {
-                        alert(textstatus);
                     }
                 }
             }).then(function (data) {
