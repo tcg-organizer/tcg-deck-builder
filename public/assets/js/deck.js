@@ -24,36 +24,26 @@ $(function () {
                 console.log(JSON.parse(cardData.cards[i].cardData).image);
                         $("#deckListRow").append(`
                         <div class="col-xl-4 card-margin">
+                        <button class="delete-btn" data-cardId="${cardData.cards[i].id}">DELETE</button>
                                 <img class="card-img-top" src="${JSON.parse(cardData.cards[i].cardData).image}" alt="Card image cap">
                         </div>`);
                     }
         })
     });
     
-    // $.ajax({
-    //     method: "GET",
-    //     url: "/db/decks"
-    // }).done(function (data) {
-    //     console.log(data);
-    //     for (let i = 0; i < data.length; i++) {
-    //         $("#deckListRow").append(`
-    //         <div class="col-xl-4 card-margin">
-    //             <div class="card center" style="width: 20rem;">
-    //                 <img class="card-img-top" src="./assets/img/cardBack.png" alt="Card image cap">
-    //                 <div class="card-body">
-    //                 <h4 class="card-title">${data[i].deckName}</h4>
-    //                 <a href="#" class="btn btn-primary view-deck" data-deckId=${data[i].id}>View Decklist</a>
-    //                 </div>
-    //             </div>
-    //         </div>`);
-    //     }
-    // });
-    // $(document).on("click", ".view-deck", function(event) {
-    //     $.ajax({
-    //         method: "GET",
-    //         url: `db/decks/${$(this).attr("data-deckId")}`
-    //     }).then(function(cardData) {
-    //         console.log(cardData);
-    //     })
-    // })
+    
+    $(document).on("click", ".delete-btn", function(event) {
+        event.preventDefault();
+        
+        $.ajax({
+            method: "DELETE",
+            url: `/db/cards/${$(".delete-btn").attr("data-cardId")}`
+        }).then(function(deletedCard) {
+            
+            console.log(deletedCard)
+        })
+    })
 });
+
+
+$("#deckNames").find(":selected").attr("data-id")

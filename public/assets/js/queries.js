@@ -192,10 +192,10 @@ $(function () {
             $.ajax({
                 method: "POST",
                 url: "/db/cards",
-                data: {"cardData": singleCardData, "deckId": $( "#deckNames").find(":selected").attr("data-id")}
+                data: {"cardData": singleCardData, "deckId": $("#deckNames").find(":selected").attr("data-id")}
             }).then(function () {
                 $("#newDeckHelpBlock").hide();
-                console.log("Your card was sent to " + $( "#deckNames").find(":selected").val() + "!");
+                console.log("Your card was sent to " + $("#deckNames").find(":selected").val() + "!");
             });
         }
     });
