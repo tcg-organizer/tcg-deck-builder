@@ -37,7 +37,15 @@ $(function () {
             //ajax call to send data to the server
             $.ajax({
                 method: "POST",
-                url: `/api/search/pokemon/${pokemon}`
+                url: `/api/search/pokemon/${pokemon}`,
+                timeout: 5000,
+                error: function(xmlhttprequest, textstatus, message) {
+                    if(textstatus==="timeout") {
+                        alert("got timeout");
+                    } else {
+                        alert(textstatus);
+                    }
+                }
 
             }).then(function (data) {
 
@@ -68,8 +76,9 @@ $(function () {
 
                 var pageNum = 2;
 
-                $(window).scroll(function () {
-                    if ($(document).height() === $(window).scrollTop() + $(window).height()) {
+                //infinite scrolling option, but it's a little touchy...
+                // $(window).scroll(function () {
+                //     if ($(document).height() === $(window).scrollTop() + $(window).height()) {
                         //checks for additional pages to query (the first query scrapes the first page only)
 
                         if (pageNum <= data.numPages) {
@@ -116,8 +125,8 @@ $(function () {
                             });
                         }
 
-                    }
-                });
+                //     }
+                // });
 
             });
         }

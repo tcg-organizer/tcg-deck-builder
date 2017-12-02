@@ -87,6 +87,11 @@ htmlRouter.post("/api/search/pokemon2/:pokemon?/:pageNum?", function (req, res) 
                 cardData.push(newCard);
             }
             res.json({cardData: cardData, numPages: data.numPages});
+        }).catch(function(err){
+            if (err) {
+                console.log(err);
+                res.json(err);
+            }
         });
     }
 
