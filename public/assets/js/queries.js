@@ -174,7 +174,7 @@ $(function () {
             url: "/db/decks"
         }).done(function(data) {
             console.log(data);
-            $("#deckName").append('<option class="deckName" data-id="new-deck">New Deck</option>');
+            $("#deckNames").append('<option class="deckName" data-id="new-deck">New Deck</option>');
             for (let i = 0; i < data.length; i++) {
                 $("#deckNames").append(`<option class="deckName" data-id="${data[i].id}">${data[i].deckName}</option>`);
             }
