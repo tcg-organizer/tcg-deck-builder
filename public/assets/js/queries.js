@@ -37,9 +37,10 @@ $(function () {
             //ajax call to send data to the server
             $.ajax({
                 method: "POST",
-                url: `/api/search/pokemon/${pokemon}`
-
+                url: `/api/search/pokemon/${pokemon}`,
             }).then(function (data) {
+
+
 
                 $("#cardHome").empty();
 
