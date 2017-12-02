@@ -23,7 +23,7 @@ $(function () {
                 console.log("inside for loop");
                 console.log(JSON.parse(cardData.cards[i].cardData).image);
                         $("#deckListRow").append(`
-                        <div class="col-xl-4 card-margin">
+                        <div class="col-xl-4 card-margin cardDiv" data-divCardId="${cardData.cards[i].id}">
                         <button class="delete-btn" data-cardId="${cardData.cards[i].id}">DELETE</button>
                                 <img class="card-img-top" src="${JSON.parse(cardData.cards[i].cardData).image}" alt="Card image cap">
                         </div>`);
@@ -33,16 +33,17 @@ $(function () {
     
     $(document).on("click", ".delete-btn", function(event) {
         event.preventDefault();
-        
+        // $("div").attr("data-divCardId").remove();
+        $(".cardDiv").filter(`[data-divCardId=${$(this).attr("data-cardId")}]`).remove();
         $.ajax({
             method: "DELETE",
-            url: `/db/cards/${$(".delete-btn").attr("data-cardId")}`
+            url: `/db/cards/${$(this).attr("data-cardId")}`
         }).then(function(deletedCard) {
-            
-            console.log(deletedCard)
-        })
+            console.log(deletedCard);
+        });
+        
     })
 });
 
 
-$("#deckNames").find(":selected").attr("data-id")
+// $("#deckNames").find(":selected").attr("data-id")
