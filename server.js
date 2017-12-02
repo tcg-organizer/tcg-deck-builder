@@ -5,35 +5,23 @@ const db = require("./models");
 const path = require("path");
 const dbRoutes = require('./routes/dbRoutes');
 const htmlRoutes = require('./routes/htmlRoutes');
+const logger = require('morgan');
+const passport = require('passport');
+const expressSession = require('express-session');
+const cookieParser = require('cookie-parser');
 const chai = require('chai');
 //auth0
-const logger = require('morgan');
-const favicon = require('serve-favicon');
-const cookieParser = require('cookie-parser');
-const session = require('express-session');
 const dotenv = require('dotenv');
-const passport = require('passport');
-const flash = require('connect-flash');
-const engines = require('consolidate');
-
 dotenv.load();
-
-
-
-const http = require('http');
-const userRoutes = require('./routes');
-const passportConfig = require('./config/passport.js');
-const application = require('./routes/app.js');
-
-
-const user = require('./routes/user');
 
 const app = express();
 const PORT = process.env.PORT || 8080;
 
+app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.text());
+app.use(cookieParser());
 app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
 app.set('views', path.join(__dirname, 'views'));
@@ -41,58 +29,59 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(express.static("public"));
 
 //handlebars setup
-// app.engine('pug', engines.pug);
-// app.engine('handlebars', engines.handlebars);
 app.engine("handlebars", hbars({ defaultLayout: "main" }));
 //This will render handlebars files when res.render is called.
 app.set("view engine", "handlebars");
 
-if ('development' === app.get('env')) {
-    	app.use(express.errorHandler())
-}
-
-app.get('/', routes.index)
-app.get('/home', application.IsAuthenticated, home.homepage)
-app.post('/authenticate',
-      passport.authenticate('local',{
-        	successRedirect: '/home',
-    	failureRedirect: '/'
-  })
-);
-app.get('/logout', application.destroySession);
-app.get('/signup', user.signUp);
-app.post('/register', user.register);
-
-    db
-  .sequelize
-  .sync()
-  .complete(function(err){
-    	if (err) {
-        		throw err[0]
-        	} else {
-        		db.User.find({where: {username: 'admin'}}).success(function (user){
-            			if (!user) {
-                				db.User.build({username: 'admin', password: 'admin'}).save();
-                			}
-            		});
-
-            		http.createServer(app).listen(app.get('port'), function(){
-                			console.log('Express is listening on port '+ app.get('port'));
-                		});
-        	}
-    });
-
 app.use('/', htmlRoutes);
 app.use('/db', dbRoutes);
-app.use('/route');
+
+
+// Initialize Passport
+const initPassport = require('./config/passport.js');
+// Configuring Passport
+// app.config(function () {
+//     app.use(passport.initialize());
+//     app.use(passport.session());
+// });
+
+app.use(expressSession({secret: process.env.SECRET}));
+// app.use(passport.initialize());
+// app.use(passport.session());
+// Using the flash middleware provided by connect-flash to store messages in session
+// and displaying in templates
+const flash = require('connect-flash');
+app.use(flash());
 
 
 
-            db.sequelize.sync().then(function() {
-                app.listen(PORT, function() {
-                    app.use('/', htmlRoutes);
-                    app.use('/db', dbRoutes);
-                    app.use('/user', user);
-                }
 
-                });
+const routes = require('./routes/index')(passport);
+app.use('/', routes);
+
+/// catch 404 and forward to error handler
+app.use(function(req, res, next) {
+    const err = new Error('Not Found');
+    err.status = 404;
+    next(err);
+});
+
+// development error handler
+// will print stacktrace
+if (app.get('env') === 'development') {
+    app.use(function(err, req, res, next) {
+        res.status(err.status || 500);
+        res.render('error', {
+            message: err.message,
+            error: err
+        });
+    });
+}
+
+db.sequelize.sync().then(function() {
+    app.listen(PORT, function() {
+        console.log("App listening on PORT " + PORT);
+    });
+});
+
+// module.exports = app;
