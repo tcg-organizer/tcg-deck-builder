@@ -2,6 +2,15 @@
 
 $(function () {
 
+    //if enter pressed while search bar is focused
+    $('#search').keypress(function (e) {
+        //Enter key pressed
+        if (e.which == 13) {
+            //Trigger search button click event
+            $('#submit').click();
+        }
+    });
+
     $("#submit").on("click", function (event) {
 
         if ($("#search").val().trim().length === 0) {
@@ -57,52 +66,72 @@ $(function () {
                     $("#cardHome").append(newDiv1);
                 }
 
-                //checks for additional pages to query (the first query scrapes the first page only)
-                if (data.numPages > 1) {
+                var pageNum = 2;
 
-                    for (var j = 2; j < data.numPages; j++) {
+                $(window).scroll(function(){
+                    if($(document).height()===$(window).scrollTop()+$(window).height()){
+                        //checks for additional pages to query (the first query scrapes the first page only)
 
-                        $("#cardHome").append(loadingImg);
-
-                        $.ajax({
-                            method: "POST",
-                            url: `/api/search/pokemon2/${pokemon}/${j}`
-                        }).then(function (data) {
-                            console.log(data);
+                            if (pageNum <= data.numPages) {
 
 
-                            $("#loader" ).remove();
+                                console.log(data.numPages);
+                                console.log(pageNum);
+                                //loading image
+                                $("#cardHome").append(loadingImg);
 
-                            //displays each card in the comeHard div in cardSearch.handlebars
-                            for (var i = 0; i < data.cardData.length; i++) {
-                                var newDiv1 = $("<div class='col-xl-4 col-md-6 col-xs-12 card-margin'></div>");
+                                //api call for each additional page from data
+                                $.ajax({
+                                    method: "POST",
+                                    url: `/api/search/pokemon2/${pokemon}/${pageNum}`
+                                }).then(function (data2) {
+                                    console.log(`/api/search/pokemon2/${pokemon}/${pageNum}`);
+                                    console.log(data2);
+                                    pageNum += 1;
+                                    console.log(pageNum);
 
-                                var newDiv2 = $("<div class='card grey center' style='width: 20rem;'>");
+                                    //removed loading image
+                                    $("#loader").remove();
 
-                                var newImg = $("<img class='card-img-top' alt='Card Image'>");
-                                newImg.attr("src", data.cardData[i].image);
-                                newImg.appendTo(newDiv2);
-                                newDiv2.appendTo(newDiv1);
+                                    //displays each card in the comeHard div in cardSearch.handlebars
+                                    for (var j = 0; j < data2.cardData.length; j++) {
+                                        var newDiv1 = $("<div class='col-xl-4 col-md-6 col-xs-12 card-margin'></div>");
 
-                                var newDiv3 = $("<div class='card-body'></div>");
+                                        var newDiv2 = $("<div class='card grey center' style='width: 20rem;'>");
 
-                                newDiv3.html("<h4>Card Id:</h4><a href='#' class='btn btn-primary cardButton' data-id='" + data.cardData[i].url + "' data-toggle='modal' data-target='#cardModal'>View Card Data</a>");
+                                        var newImg = $("<img class='card-img-top' alt='Card Image'>");
+                                        newImg.attr("src", data2.cardData[j].image);
+                                        newImg.appendTo(newDiv2);
+                                        newDiv2.appendTo(newDiv1);
 
-                                newDiv3.appendTo(newDiv2);
-                                $("#cardHome").append(newDiv1);
+                                        var newDiv3 = $("<div class='card-body'></div>");
+
+                                        newDiv3.html("<h4>Card Id:</h4><a href='#' class='btn btn-primary cardButton' data-id='" + data2.cardData[j].url + "' data-toggle='modal' data-target='#cardModal'>View Card Data</a>");
+
+                                        newDiv3.appendTo(newDiv2);
+                                        $("#cardHome").append(newDiv1);
+                                    }
+
+                                });
                             }
-                        })
+
                     }
-                }
+                });
 
             });
         }
+
     });
 
+
+    var singleCardData;
+    var deckName;
 
     $(document).on("click", ".cardButton", function (event) {
 
         event.preventDefault();
+
+        $("#pokemonImage").attr("src", "./assets/img/pokemon_loading.gif");
 
         let cardURL = $(this).attr("data-id");
         cardURL = cardURL.substring(23);
@@ -117,19 +146,25 @@ $(function () {
 
         }).then(function (data) {
             console.log(data);
+            singleCardData = data;
             $("#pokemonName").text(data.name);
             $("#pokemonImage").attr("src", data.image);
             $("#cardType").text("Card Type: " + data.type);
-
-            $(document).on("click",".addCard", function(event){
-                event.preventDefault();
-                // $.ajax({
-                //     method: "POST",
-                //     url:
-                // })
-
-            });
         });
+
     });
 
-});
+    $(document).on("click", ".addCard", function (event) {
+
+        console.log("card sent!");
+        $.ajax({
+            method: "POST",
+            url: "/db/cards",
+            data: singleCardData
+        }).then(function () {
+            console.log("Your card was sent to" + deckName + "!");
+        });
+    });
+})
+;
+
