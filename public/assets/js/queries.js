@@ -52,7 +52,7 @@ $(function () {
 
                     var newDiv2 = $("<div class='card grey center' style='width: 20rem;'>");
 
-                    var newImg = $("<img class='card-img-top img-thumbnail' alt='Card Image'>");
+                    var newImg = $("<img class='card-img-top img-responsive' alt='Card Image'>");
 
                     newImg.attr("src", data.cardData[i].image);
 
@@ -99,7 +99,7 @@ $(function () {
 
                                         var newDiv2 = $("<div class='card grey center' style='width: 20rem;'>");
 
-                                        var newImg = $("<img class='card-img-top img-thumbnail' alt='Card Image'>");
+                                        var newImg = $("<img class='card-img-top img-responsive' alt='Card Image'>");
 
                                         newImg.attr("src", data2.cardData[j].image);
                                         newImg.appendTo(newDiv2);
