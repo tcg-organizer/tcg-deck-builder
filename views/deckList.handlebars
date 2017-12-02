@@ -31,41 +31,21 @@
 </nav>
 <div class="container">
     <div class="jumbotron text-center">
-        <h1>Username's Decklists</h1>
-    </div>
-    <div class="row">
-        <div class="col-xl-4 card-margin">
-            <div class="card center" style="width: 20rem;">
-                <img class="card-img-top" src="./assets/img/cardBack.png" alt="Card image cap">
-                <div class="card-body">
-                    <h4 class="card-title">Deck 1</h4>
-                    <p class="card-text">Text describing decklist.</p>
-                    <a href="#" class="btn btn-primary">View Decklist</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-xl-4 card-margin">
-            <div class="card center" style="width: 20rem;">
-                <img class="card-img-top" src="./assets/img/cardBack.png" alt="Card image cap">
-                <div class="card-body">
-                    <h4 class="card-title">Deck 2</h4>
-                    <p class="card-text">Text describing decklist.</p>
-                    <a href="#" class="btn btn-primary">View Decklist</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-xl-4 card-margin">
-            <div class="card center" style="width: 20rem;">
-                <img class="card-img-top" src="./assets/img/cardBack.png" alt="Card image cap">
-                <div class="card-body">
-                    <h4 class="card-title">Deck 3</h4>
-                    <p class="card-text">Text describing decklist.</p>
-                    <a href="#" class="btn btn-primary">View Decklist</a>
-                </div>
-            </div>
-        </div>
-    </div>
+        <!--<h1>Username's Decklists</h1>-->
+        <div class="form-group">
+            <label for="deckNames">Deck Name</label>
 
+            <select class="form-control custom-select" id="deckList">
+            </select>
+
+            <small id="viewDeckHelpBlock" class="form-text text-muted">
+                Choose the deck you wish to view
+            </small>
+        </div>
+
+    </div>
+    <div id="deckListRow" class="row">
+    </div>
 </div>
 
 
