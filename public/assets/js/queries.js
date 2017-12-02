@@ -152,19 +152,38 @@ $(function () {
             $("#pokemonImage").attr("src", data.image);
             $("#cardType").text("Card Type: " + data.type);
         });
-
-    });
-
-    $(document).on("click", ".addCard", function (event) {
-
-        console.log("card sent!");
+    
         $.ajax({
-            method: "POST",
-            url: "/db/cards",
-            data: {"cardData": singleCardData, "deckId":$(this).attr("data-id")}
-        }).then(function () {
-            console.log("Your card was sent to" + deckName + "!");
+            method: "GET",
+            url: "/db/decks"
+        }).done(function(data) {
+            console.log(data);
+            for (let i = 0; i < data.length; i++) {
+                $("#deckNames").append(`<option class="deckName" data-id="${data[i].id}">${data[i].deckName}</option>`);
+                console.log(data[i].id);
+            }
+        });
+
+        if ($("#deckNames").find(":selected").attr("data-id") === "new-deck") {
+
+        }
+
+
+        $(document).on("click", ".addCard", function (event) {
+
+            console.log($("#deckNames").find(":selected").attr("data-id"));
+
+            console.log("card sent!");
+            $.ajax({
+                method: "POST",
+                url: "/db/cards",
+                data: {"cardData": singleCardData, "deckId": $( "#deckNames").find(":selected").attr("data-id")}
+            }).then(function () {
+                console.log("Your card was sent to " + deckName + "!");
+            });
         });
     });
+
+
 });
 
