@@ -29,11 +29,7 @@ dbRouter.get("/decks/:id", function (req, res) {
         console.log(readDeck);
         console.log("------------------------");
         console.log("\n");
-        res.send(readDeck);
-    }).catch(function(err){
-        if (err){
-            console.log(err);
-        }
+        res.json(readDeck);
     })
 });
 

@@ -154,7 +154,6 @@ $(function () {
         $.ajax({
             method: "POST",
             url: `/api/search/url/${cardURL}`
-
         }).then(function (data) {
             console.log(data);
             singleCardData = data;

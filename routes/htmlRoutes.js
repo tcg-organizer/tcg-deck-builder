@@ -146,55 +146,11 @@ htmlRouter.post("/api/search/url/:cardURL?", function (req, res) {
     specificCardData = [];
 });
 
-// const env = {
-//     AUTH0_CLIENT_ID: process.env.AUTH0_CLIENT_ID,
-//     AUTH0_DOMAIN: process.env.AUTH0_DOMAIN,
-//     AUTH0_CALLBACK_URL:
-//     'http://localhost:8080/callback' || process.env.AUTH0_CALLBACK_URL
-// };
-//
-// htmlRouter.get('/login', passport.authenticate('auth0', {
-//         clientID: env.AUTH0_CLIENT_ID,
-//         domain: env.AUTH0_DOMAIN,
-//         redirectUri: env.AUTH0_CALLBACK_URL,
-//         responseType: 'code',
-//         audience: 'https://' + env.AUTH0_DOMAIN + '/userinfo',
-//         scope: 'openid profile'}),
-//     function(req, res) {
-//         res.redirect("/");
-//     });
-//
-// htmlRouter.get('/logout', function(req, res) {
-//     req.logout();
-//     res.redirect('/');
+
+// // 404 Error Page
+// htmlRouter.get('/*', function (req, res) {
+//         res.render('404');
 // });
-//
-// htmlRouter.get('/callback',
-//     passport.authenticate('auth0', {
-//         failureRedirect: '/failure'
-//     }),
-//     function(req, res) {
-//         res.redirect(req.session.returnTo || '/user');
-//     }
-// );
-//
-// htmlRouter.get('/failure', function(req, res) {
-//     const error = req.flash("error");
-//     const error_description = req.flash("error_description");
-//     req.logout();
-//     res.render('failure.pug', {
-//         error: error[0],
-//         error_description: error_description[0],
-//     });
-// });
-
-
-
-//TODO: Move 404 render to error handlers
-
-// htmlRouter.get('*', function (req, res) {
-// res.render('404');
-//     });
 
 
 module.exports = htmlRouter;
