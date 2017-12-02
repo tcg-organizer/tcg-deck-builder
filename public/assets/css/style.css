@@ -1,4 +1,10 @@
+#addNewDeck {
+    display: none;
+}
 
+#newDeckHelpBlock {
+    display: none;
+}
 
 .card-description {
     margin-top : 25px;
@@ -159,3 +165,4 @@ margin-right: 350px;
     justify-content: center;
     align-items: center;
 }
+

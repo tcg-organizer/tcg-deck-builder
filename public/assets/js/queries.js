@@ -37,10 +37,9 @@ $(function () {
             //ajax call to send data to the server
             $.ajax({
                 method: "POST",
-                url: `/api/search/pokemon/${pokemon}`,
+                url: `/api/search/pokemon/${pokemon}` a
+
             }).then(function (data) {
-
-
 
                 $("#cardHome").empty();
 
@@ -145,7 +144,6 @@ $(function () {
         $.ajax({
             method: "POST",
             url: `/api/search/url/${cardURL}`
-
         }).then(function (data) {
             console.log(data);
             singleCardData = data;
@@ -165,26 +163,41 @@ $(function () {
             }
         });
 
-        if ($("#deckNames").find(":selected").attr("data-id") === "new-deck") {
-
-        }
-
-
         $(document).on("click", ".addCard", function (event) {
+            event.preventDefault();
 
             console.log($("#deckNames").find(":selected").attr("data-id"));
 
-            console.log("card sent!");
-            $.ajax({
-                method: "POST",
-                url: "/db/cards",
-                data: {"cardData": singleCardData, "deckId": $( "#deckNames").find(":selected").attr("data-id")}
-            }).then(function () {
-                console.log("Your card was sent to " + deckName + "!");
-            });
+            if ($("#deckNames").find(":selected").attr("data-id") === "new-deck") {
+                console.log("new deck was selected");
+                $("#addNewDeck").show();
+
+
+                $("#submitNewDeck").on("click", function(event) {
+                    event.preventDefault();
+                    $("#addNewDeck").hide();
+                    console.log($("#newDeckText").val());
+                    $.ajax({
+                        method: "POST",
+                        url: "/db/decks",
+                        data: {"newDeckName" : $("#newDeckText").val()}
+                }).then(function(data) {
+                    $("#newDeckHelpBlock").show();
+                        $("#deckNames").append(`<option class="deckName" data-id="${data.id}" selected="selected">${data.deckName}</option>`);
+                        console.log(data);
+                    })
+                })
+            } else {
+                $.ajax({
+                    method: "POST",
+                    url: "/db/cards",
+                    data: {"cardData": singleCardData, "deckId": $( "#deckNames").find(":selected").attr("data-id")}
+                }).then(function () {
+                    $("#newDeckHelpBlock").hide();
+                    console.log("Your card was sent to " + $( "#deckNames").find(":selected").val() + "!");
+                });
+            }
         });
     });
-
-
 });
 
