@@ -79,11 +79,11 @@ dbRouter.post("/cards", function (req, res) {
 
 //delete a card from your deck
 dbRouter.delete("/cards/:cardId", function (req, res) {
-    let cardId = req.params.cardId;
+    console.log(req.params.cardId);
     
     db.cards.destroy({
         where: {
-            id: cardId,
+            id: req.params.cardId
         }
     }).then(function (cardDestroyed) {
         console.log("\n");

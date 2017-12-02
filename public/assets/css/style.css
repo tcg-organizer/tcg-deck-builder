@@ -167,19 +167,6 @@ margin-right: 350px;
     color: lightgrey;
 }
 
-/*helper classes for styling*/
-.grey {
-    background-color: #9fb6cd;
-}
-/*add margin above card divs*/
-.card-margin {
-    margin-bottom: 25px;
-}
-/*horizontal center class*/
-.center {
-    display: block;
-    margin: auto;
-}
 
 /*vertical and horizontally center class*/
 .col-center {
@@ -188,3 +175,6 @@ margin-right: 350px;
     align-items: center;
 }
 
+#pokemonImage {
+    max-width: 200px;
+}

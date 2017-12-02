@@ -39,8 +39,8 @@ $(function () {
                 method: "POST",
                 url: `/api/search/pokemon/${pokemon}`,
                 timeout: 5000,
-                error: function(xmlhttprequest, textstatus, message) {
-                    if(textstatus==="timeout") {
+                error: function (xmlhttprequest, textstatus, message) {
+                    if (textstatus === "timeout") {
                         alert("got timeout");
                     } else {
                         alert(textstatus);
@@ -74,56 +74,56 @@ $(function () {
                     $("#cardHome").append(newDiv1);
                 }
 
-                var pageNum = 2;
 
                 //infinite scrolling option, but it's a little touchy...
                 // $(window).scroll(function () {
                 //     if ($(document).height() === $(window).scrollTop() + $(window).height()) {
-                        //checks for additional pages to query (the first query scrapes the first page only)
+                //checks for additional pages to query (the first query scrapes the first page only)
 
-                        if (pageNum <= data.numPages) {
+                for (var i = 2; i <= data.numPages; i++) {
 
 
-                            console.log(data.numPages);
-                            console.log(pageNum);
-                            //loading image
-                            $("#cardHome").append(loadingImg);
+                    (function(i) {
+                        console.log(data.numPages);
 
-                            //api call for each additional page from data
-                            $.ajax({
-                                method: "POST",
-                                url: `/api/search/pokemon2/${pokemon}/${pageNum}`
-                            }).then(function (data2) {
-                                console.log(`/api/search/pokemon2/${pokemon}/${pageNum}`);
-                                console.log(data2);
-                                pageNum += 1;
-                                console.log(pageNum);
+                        //loading image
+                        $("#cardHome").append(loadingImg);
 
-                                //removed loading image
-                                $("#loader").remove();
+                        //api call for each additional page from data
+                        $.ajax({
+                            method: "POST",
+                            url: `/api/search/pokemon2/${pokemon}/${i}`
+                        }).then(function (data2) {
+                            console.log(`/api/search/pokemon2/${pokemon}/${i}`);
+                            console.log(data2);
 
-                                //displays each card in the comeHard div in cardSearch.handlebars
-                                for (var j = 0; j < data2.cardData.length; j++) {
-                                    var newDiv1 = $("<div class='col-xl-4 col-md-6 col-xs-12 card-margin'></div>");
+                            //removed loading image
+                            $("#loader").remove();
 
-                                    var newDiv2 = $("<div class='card grey center' style='width: 20rem;'>");
+                            //displays each card in the comeHard div in cardSearch.handlebars
+                            for (var j = 0; j < data2.cardData.length; j++) {
+                                var newDiv1 = $("<div class='col-xl-4 col-md-6 col-xs-12 card-margin'></div>");
 
-                                    var newImg = $("<img class='card-img-top img-responsive' alt='Card Image'>");
+                                var newDiv2 = $("<div class='card grey center' style='width: 20rem;'>");
 
-                                    newImg.attr("src", data2.cardData[j].image);
-                                    newImg.appendTo(newDiv2);
-                                    newDiv2.appendTo(newDiv1);
+                                var newImg = $("<img class='card-img-top img-responsive' alt='Card Image'>");
 
-                                    var newDiv3 = $("<div class='card-body'></div>");
+                                newImg.attr("src", data2.cardData[j].image);
+                                newImg.appendTo(newDiv2);
+                                newDiv2.appendTo(newDiv1);
 
-                                    newDiv3.html("<a href='#' class='btn btn-primary cardButton' data-id='" + data2.cardData[j].url + "' data-toggle='modal' data-target='#cardModal'>View Card Data</a>");
+                                var newDiv3 = $("<div class='card-body'></div>");
 
-                                    newDiv3.appendTo(newDiv2);
-                                    $("#cardHome").append(newDiv1);
-                                }
+                                newDiv3.html("<a href='#' class='btn btn-primary cardButton' data-id='" + data2.cardData[j].url + "' data-toggle='modal' data-target='#cardModal'>View Card Data</a>");
 
-                            });
-                        }
+                                newDiv3.appendTo(newDiv2);
+                                $("#cardHome").append(newDiv1);
+                            }
+
+                        });
+                    })(i);
+
+                }
 
                 //     }
                 // });
@@ -173,27 +173,27 @@ $(function () {
             }
         });
 
-        });
+    });
     $(document).on("click", ".addCard", function (event) {
         event.preventDefault();
-        
+
         console.log($("#deckNames").find(":selected").attr("data-id"));
-        
+
         if ($("#deckNames").find(":selected").attr("data-id") === "new-deck") {
             console.log("new deck was selected");
             $("#addNewDeck").show();
-            
-            
-            $("#submitNewDeck").on("click", function(event) {
+
+
+            $("#submitNewDeck").on("click", function (event) {
                 event.preventDefault();
                 $("#addNewDeck").hide();
                 console.log($("#newDeckText").val());
                 $.ajax({
                     method: "POST",
                     url: "/db/decks",
-                    data: {"newDeckName" : $("#newDeckText").val()}
+                    data: {"newDeckName": $("#newDeckText").val()}
 
-                }).then(function(data) {
+                }).then(function (data) {
                     $("#newDeckHelpBlock").show();
                     $("#deckNames").append(`<option class="deckName" data-id="${data.id}" selected="selected">${data.deckName}</option>`);
                     console.log(data);
@@ -203,10 +203,10 @@ $(function () {
             $.ajax({
                 method: "POST",
                 url: "/db/cards",
-                data: {"cardData": singleCardData, "deckId": $( "#deckNames").find(":selected").attr("data-id")}
+                data: {"cardData": singleCardData, "deckId": $("#deckNames").find(":selected").attr("data-id")}
             }).then(function () {
                 $("#newDeckHelpBlock").hide();
-                console.log("Your card was sent to " + $( "#deckNames").find(":selected").val() + "!");
+                console.log("Your card was sent to " + $("#deckNames").find(":selected").val() + "!");
             });
         }
     });
