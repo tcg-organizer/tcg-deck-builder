@@ -183,8 +183,12 @@ htmlRouter.post("/api/search/url/:cardURL?", function (req, res) {
 //     });
 // });
 
-htmlRouter.get('*', function (req, res) {
-res.render('404');
-    });
+
+
+//TODO: Move 404 render to error handlers
+
+// htmlRouter.get('*', function (req, res) {
+// res.render('404');
+//     });
 
 module.exports = htmlRouter;
