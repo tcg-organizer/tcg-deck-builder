@@ -126,6 +126,7 @@ $(function () {
 
     var singleCardData;
     var deckName;
+    let deckData = [];
 
     $(document).on("click", ".cardButton", function (event) {
 
@@ -154,21 +155,30 @@ $(function () {
         });
 
         //call to populate deckNames dropdown with decks
-        $.ajax({
-            method: "GET",
-            url: "/decks"
-        }).then(function(data){
-            //test to see if data is returned
-            console.log(data);
-        }).catch(function(err){
-            if (err) {
-                //checks for errors
-                console.log(err);
-            }
-        })
+
+        $(document).ready(function() {
+            $.ajax({
+                method: "GET",
+                url: "/db/decks"
+            }).done(function(data) {
+                console.log(data);
+                for (let i = 0; i < data.length; i++) {
+                    $(".dropdown-menu").append(`<a class="dropdown-item" href="#">${data[i].deckName}</a>`);
+                    deckData.push(data[i].id, data[i].deckName);
+                    console.log(deckData);
+                }
+            })
+        });
+
     });
 
+
+    
     $(document).on("click", ".addCard", function (event) {
+
+        
+        
+        let deckId = $(".dropdown-item").val();
 
         console.log("card sent!");
         $.ajax({
@@ -183,6 +193,5 @@ $(function () {
             }
         });
     });
-})
-;
+});
 
