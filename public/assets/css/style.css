@@ -138,8 +138,13 @@ form {
 .card-margin {
     margin-bottom: 25px;
 }
-
+/*horizontal center class*/
 .center {
     display: block;
     margin: auto;
+}
+
+/*vertical center class*/
+.col-center {
+    margin: 0 auto;
 }
