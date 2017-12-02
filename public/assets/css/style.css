@@ -10,7 +10,6 @@
     margin-top : 25px;
 }
 
-
 .number {
     background: url("../img/numberFour.png") no-repeat center center fixed;
 }
@@ -72,7 +71,6 @@ a {
     cursor: auto;
     text-decoration: none;
 }
-
 
 .login {
     width: 50%;
@@ -166,3 +164,8 @@ margin-right: 350px;
     align-items: center;
 }
 
+.delete-btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+}

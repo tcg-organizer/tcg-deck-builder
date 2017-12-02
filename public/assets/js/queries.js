@@ -68,7 +68,7 @@ $(function () {
 
                     var newDiv2 = $("<div class='card grey center' style='width: 20rem;'>");
 
-                    var newImg = $("<img class='card-img-top img-responsive' alt='Card Image'>");
+                    var newImg = $("<img class='card-img-top img-thumbnail' alt='Card Image'>");
 
                     newImg.attr("src", data.cardData[i].image);
 
@@ -115,7 +115,7 @@ $(function () {
 
                                         var newDiv2 = $("<div class='card grey center' style='width: 20rem;'>");
 
-                                        var newImg = $("<img class='card-img-top img-responsive' alt='Card Image'>");
+                                        var newImg = $("<img class='card-img-top img-thumbnail' alt='Card Image'>");
 
                                         newImg.attr("src", data2.cardData[j].image);
                                         newImg.appendTo(newDiv2);
@@ -131,7 +131,6 @@ $(function () {
 
                                 });
                             }
-
                     }
                 });
 
@@ -142,11 +141,11 @@ $(function () {
 
 
     var singleCardData;
-    var deckName;
 
     $(document).on("click", ".cardButton", function (event) {
 
         event.preventDefault();
+        $(".alert").hide();
         $("#deckNames").empty();
 
         $("#pokemonImage").attr("src", "./assets/img/pokemon_loading.gif");
@@ -190,7 +189,6 @@ $(function () {
             console.log("new deck was selected");
             $("#addNewDeck").show();
 
-
             $("#submitNewDeck").on("click", function(event) {
                 event.preventDefault();
                 $("#addNewDeck").hide();
@@ -211,6 +209,7 @@ $(function () {
                 url: "/db/cards",
                 data: {"cardData": singleCardData, "deckId": $("#deckNames").find(":selected").attr("data-id")}
             }).then(function () {
+                $(".alert").show();
                 $("#newDeckHelpBlock").hide();
                 console.log("Your card was sent to " + $("#deckNames").find(":selected").val() + "!");
             });

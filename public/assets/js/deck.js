@@ -24,7 +24,7 @@ $(function () {
                 console.log(JSON.parse(cardData.cards[i].cardData).image);
                         $("#deckListRow").append(`
                         <div class="col-xl-4 card-margin cardDiv" data-divCardId="${cardData.cards[i].id}">
-                        <button class="delete-btn" data-cardId="${cardData.cards[i].id}">DELETE</button>
+                        <button class="delete-btn btn btn-small btn-primary" data-cardId="${cardData.cards[i].id}">DELETE</button>
                                 <img class="card-img-top" src="${JSON.parse(cardData.cards[i].cardData).image}" alt="Card image cap">
                         </div>`);
                     }
@@ -33,7 +33,7 @@ $(function () {
     
     $(document).on("click", ".delete-btn", function(event) {
         event.preventDefault();
-        // $("div").attr("data-divCardId").remove();
+
         $(".cardDiv").filter(`[data-divCardId=${$(this).attr("data-cardId")}]`).remove();
         $.ajax({
             method: "DELETE",
