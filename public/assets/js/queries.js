@@ -126,6 +126,7 @@ $(function () {
 
     var singleCardData;
     var deckName;
+    let deckData = [];
 
     $(document).on("click", ".cardButton", function (event) {
 
@@ -151,11 +152,28 @@ $(function () {
             $("#pokemonImage").attr("src", data.image);
             $("#cardType").text("Card Type: " + data.type);
         });
-
     });
 
+    $(document).ready(function() {
+        $.ajax({
+            method: "GET",
+            url: "/db/decks"
+        }).done(function(data) {
+            console.log(data);
+            for (let i = 0; i < data.length; i++) {
+                $(".dropdown-menu").append(`<a class="dropdown-item" href="#">${data[i].deckName}</a>`);
+                deckData.push(data[i].id, data[i].deckName);
+                console.log(deckData);
+            }
+        })
+    });
+    
     $(document).on("click", ".addCard", function (event) {
       
+        
+        
+        let deckId = $(".dropdown-item").val();
+        
         console.log("card sent!");
         $.ajax({
             method: "POST",
@@ -165,6 +183,5 @@ $(function () {
             console.log("Your card was sent to" + deckName + "!");
         });
     });
-})
-;
+});
 
