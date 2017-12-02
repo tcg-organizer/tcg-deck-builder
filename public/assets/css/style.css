@@ -2,6 +2,10 @@
     display: none;
 }
 
+#newDeckHelpBlock {
+    display: none;
+}
+
 .card-description {
     margin-top : 25px;
 }

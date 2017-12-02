@@ -183,6 +183,7 @@ $(function () {
                         url: "/db/decks",
                         data: {"newDeckName" : $("#newDeckText").val()}
                 }).then(function(data) {
+                    $("#newDeckHelpBlock").show();
                         $("#deckNames").append(`<option class="deckName" data-id="${data.id}" selected="selected">${data.deckName}</option>`);
                         console.log(data);
                     })
@@ -193,12 +194,11 @@ $(function () {
                     url: "/db/cards",
                     data: {"cardData": singleCardData, "deckId": $( "#deckNames").find(":selected").attr("data-id")}
                 }).then(function () {
+                    $("#newDeckHelpBlock").hide();
                     console.log("Your card was sent to " + $( "#deckNames").find(":selected").val() + "!");
                 });
             }
         });
     });
-    
-    
 });
 
