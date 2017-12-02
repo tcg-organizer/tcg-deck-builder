@@ -24,9 +24,7 @@ $(function () {
                 console.log(JSON.parse(cardData.cards[i].cardData).image);
                         $("#deckListRow").append(`
                         <div class="col-xl-4 card-margin">
-                            <div class="card center" style="width: 20rem;">
                                 <img class="card-img-top" src="${JSON.parse(cardData.cards[i].cardData).image}" alt="Card image cap">
-                            </div>
                         </div>`);
                     }
         })

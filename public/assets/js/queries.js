@@ -140,6 +140,7 @@ $(function () {
     $(document).on("click", ".cardButton", function (event) {
 
         event.preventDefault();
+        $("#deckNames").empty();
 
         $("#pokemonImage").attr("src", "./assets/img/pokemon_loading.gif");
 
@@ -169,46 +170,45 @@ $(function () {
             console.log(data);
             for (let i = 0; i < data.length; i++) {
                 $("#deckNames").append(`<option class="deckName" data-id="${data[i].id}">${data[i].deckName}</option>`);
-                console.log(data[i].id);
             }
         });
 
-    
-        $(document).on("click", ".addCard", function (event) {
-            event.preventDefault();
+        });
+    $(document).on("click", ".addCard", function (event) {
+        event.preventDefault();
+        
+        console.log($("#deckNames").find(":selected").attr("data-id"));
+        
+        if ($("#deckNames").find(":selected").attr("data-id") === "new-deck") {
+            console.log("new deck was selected");
+            $("#addNewDeck").show();
             
-            console.log($("#deckNames").find(":selected").attr("data-id"));
-    
-            if ($("#deckNames").find(":selected").attr("data-id") === "new-deck") {
-                console.log("new deck was selected");
-                $("#addNewDeck").show();
-               
-
-                $("#submitNewDeck").on("click", function(event) {
-                    event.preventDefault();
-                    $("#addNewDeck").hide();
-                    console.log($("#newDeckText").val());
-                    $.ajax({
-                        method: "POST",
-                        url: "/db/decks",
-                        data: {"newDeckName" : $("#newDeckText").val()}
-                }).then(function(data) {
-                    $("#newDeckHelpBlock").show();
-                        $("#deckNames").append(`<option class="deckName" data-id="${data.id}" selected="selected">${data.deckName}</option>`);
-                        console.log(data);
-                    })
-                })
-            } else {
+            
+            $("#submitNewDeck").on("click", function(event) {
+                event.preventDefault();
+                $("#addNewDeck").hide();
+                console.log($("#newDeckText").val());
                 $.ajax({
                     method: "POST",
-                    url: "/db/cards",
-                    data: {"cardData": singleCardData, "deckId": $( "#deckNames").find(":selected").attr("data-id")}
-                }).then(function () {
-                    $("#newDeckHelpBlock").hide();
-                    console.log("Your card was sent to " + $( "#deckNames").find(":selected").val() + "!");
-                });
-            }
-        });
+                    url: "/db/decks",
+                    data: {"newDeckName" : $("#newDeckText").val()}
+
+                }).then(function(data) {
+                    $("#newDeckHelpBlock").show();
+                    $("#deckNames").append(`<option class="deckName" data-id="${data.id}" selected="selected">${data.deckName}</option>`);
+                    console.log(data);
+                })
+            })
+        } else {
+            $.ajax({
+                method: "POST",
+                url: "/db/cards",
+                data: {"cardData": singleCardData, "deckId": $( "#deckNames").find(":selected").attr("data-id")}
+            }).then(function () {
+                $("#newDeckHelpBlock").hide();
+                console.log("Your card was sent to " + $( "#deckNames").find(":selected").val() + "!");
+            });
+        }
     });
 });
 
