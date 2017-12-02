@@ -13,7 +13,6 @@ const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const dotenv = require('dotenv');
 const passport = require('passport');
-const Auth0Strategy = require('passport-auth0');
 const flash = require('connect-flash');
 const engines = require('consolidate');
 

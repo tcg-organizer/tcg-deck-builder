@@ -1,6 +1,6 @@
-var passport = require('passport');
-var LocalStrategy = require('passport-local').Strategy;
-var db = require('../models');
+const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
+const db = require('../models');
 
 // Serialize sessions
 passport.serializeUser(function(user, done) {
@@ -8,19 +8,21 @@ passport.serializeUser(function(user, done) {
 });
 
 passport.deserializeUser(function(user, done) {
-    db.User.find({where: {id: user.id}}).success(function(user){
-        done(null, user);
-    }).error(function(err){
-        done(err, null);
-    });
+    db.User.findOne({where: {id: user.id}}).then(function(user){
+        done(null, !!user && user);
+    }).catch(done);
 });
-
 
 passport.use(new LocalStrategy(
     function(username, password, done) {
-        db.User.find({where: {username: username}}).success(function (user){
-            passwd = user ? user.password : '';
-            isMatch = db.User.validPassword(password, passwd, done, user)
-        });
+        db.User.findOne({where: {username: username}}).then(function(user){
+            if (!user) {
+                return done(null, false, { message: 'Incorrect username.' });
+            }
+            if (!user.validPassword()) {
+                return done(null, false, { message: 'Incorrect password.' });
+            }
+            return done(null, user);
+        }).catch(done);
     }
 ));

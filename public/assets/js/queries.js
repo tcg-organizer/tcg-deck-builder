@@ -40,6 +40,7 @@ $(function () {
                 url: `/api/search/pokemon/${pokemon}`
 
             }).then(function (data) {
+
                 $("#cardHome").empty();
 
                 console.log(data);
@@ -51,7 +52,7 @@ $(function () {
 
                     var newDiv2 = $("<div class='card grey center' style='width: 20rem;'>");
 
-                    var newImg = $("<img class='card-img-top' alt='Card Image'>");
+                    var newImg = $("<img class='card-img-top img-responsive' alt='Card Image'>");
 
                     newImg.attr("src", data.cardData[i].image);
 
@@ -59,8 +60,7 @@ $(function () {
                     newDiv2.appendTo(newDiv1);
 
                     var newDiv3 = $("<div class='card-body'></div>");
-                    newDiv3.html("<h4>Card Id:</h4><a href='#' class='btn btn-primary cardButton' data-id='" + data.cardData[i].url + "' data-toggle='modal' data-target='#cardModal'>View Card Data</a>");
-
+                    newDiv3.html("<a href='#' class='btn btn-primary cardButton' data-id='" + data.cardData[i].url + "' data-toggle='modal' data-target='#cardModal'>View Card Data</a>");
 
                     newDiv3.appendTo(newDiv2);
                     $("#cardHome").append(newDiv1);
@@ -99,14 +99,15 @@ $(function () {
 
                                         var newDiv2 = $("<div class='card grey center' style='width: 20rem;'>");
 
-                                        var newImg = $("<img class='card-img-top' alt='Card Image'>");
+                                        var newImg = $("<img class='card-img-top img-responsive' alt='Card Image'>");
+
                                         newImg.attr("src", data2.cardData[j].image);
                                         newImg.appendTo(newDiv2);
                                         newDiv2.appendTo(newDiv1);
 
                                         var newDiv3 = $("<div class='card-body'></div>");
 
-                                        newDiv3.html("<h4>Card Id:</h4><a href='#' class='btn btn-primary cardButton' data-id='" + data2.cardData[j].url + "' data-toggle='modal' data-target='#cardModal'>View Card Data</a>");
+                                        newDiv3.html("<a href='#' class='btn btn-primary cardButton' data-id='" + data2.cardData[j].url + "' data-toggle='modal' data-target='#cardModal'>View Card Data</a>");
 
                                         newDiv3.appendTo(newDiv2);
                                         $("#cardHome").append(newDiv1);
@@ -151,20 +152,53 @@ $(function () {
             $("#pokemonImage").attr("src", data.image);
             $("#cardType").text("Card Type: " + data.type);
         });
-
-    });
-
-    $(document).on("click", ".addCard", function (event) {
-
-        console.log("card sent!");
+    
         $.ajax({
-            method: "POST",
-            url: "/db/cards",
-            data: singleCardData
-        }).then(function () {
-            console.log("Your card was sent to" + deckName + "!");
+            method: "GET",
+            url: "/db/decks"
+        }).done(function(data) {
+            console.log(data);
+            for (let i = 0; i < data.length; i++) {
+                $("#deckNames").append(`<option class="deckName" data-id="${data[i].id}">${data[i].deckName}</option>`);
+                console.log(data[i].id);
+            }
+        });
+    
+        $(document).on("click", ".addCard", function (event) {
+            event.preventDefault();
+            
+            console.log($("#deckNames").find(":selected").attr("data-id"));
+    
+            if ($("#deckNames").find(":selected").attr("data-id") === "new-deck") {
+                console.log("new deck was selected");
+                $("#addNewDeck").show();
+               
+        
+                $("#submitNewDeck").on("click", function(event) {
+                    event.preventDefault();
+                    $("#addNewDeck").hide();
+                    console.log($("#newDeckText").val());
+                    $.ajax({
+                        method: "POST",
+                        url: "/db/decks",
+                        data: {"newDeckName" : $("#newDeckText").val()}
+                }).then(function(data) {
+                    $("#newDeckHelpBlock").show();
+                        $("#deckNames").append(`<option class="deckName" data-id="${data.id}" selected="selected">${data.deckName}</option>`);
+                        console.log(data);
+                    })
+                })
+            } else {
+                $.ajax({
+                    method: "POST",
+                    url: "/db/cards",
+                    data: {"cardData": singleCardData, "deckId": $( "#deckNames").find(":selected").attr("data-id")}
+                }).then(function () {
+                    $("#newDeckHelpBlock").hide();
+                    console.log("Your card was sent to " + $( "#deckNames").find(":selected").val() + "!");
+                });
+            }
         });
     });
-})
-;
+});
 

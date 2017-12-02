@@ -1,54 +1,42 @@
-var bcrypt = require('bcrypt-nodejs');
+var bcrypt = require('bcrypt');
 
-    module.exports = function(sequelize, DataTypes) {
+module.exports = function (sequelize, DataTypes) {
     var User = sequelize.define('User', {
-                username: {
+            username: {
                 type: DataTypes.STRING,
-                    unique: true,
-                    validate: {
+                unique: true,
+                validate: {
                     notNull: true,
-                        notEmpty: true
-                    }
-               },
+                    notEmpty: true
+                }
+            },
             password: {
                 type: DataTypes.STRING,
-                    validate: {
+                validate: {
                     notNull: true,
-                        notEmpty: true
-                    }
-               }
-        },
-        {
-            classMethods: {
-                    validPassword: function(password, passwrd, done, user){
-                            bcrypt.compare(password, passwrd, function(err, isMatch){
-                                    if (err)
-                                        console.log(err);
-                                    if (isMatch) {
-                                            return done(null, user);
-                                        } else {
-                                            return done(null, false)
-                                            }
-                                })
-                        }
+                    notEmpty: true
                 }
-        },
-        {
-            dialect: 'mysql'
+            }
         }
     );
 
-        User.hook('beforeCreate', function(user, fn){
-                var salt = bcrypt.genSalt(SALT_WORK_FACTOR, function(err, salt) {
-                        return salt
-                        });
-                bcrypt.hash(user.password, salt, null, function(err, hash){
-                        if(err)
-                            return next(err);
-                        user.password = hash;
-                        return fn(null, user);
-                    });
-            });
-
-        return User;
+    User.prototype.validPassword = function (password) {
+        return bcrypt.compareSync(password, this.password);
     };
+
+    User.hook('beforeCreate', function (user) {
+        return new sequelize.Promise(function (resolve, reject) {
+            bcrypt.genSalt(6, function (err, salt) {
+                if (err) return reject(err);
+                bcrypt.hash(user.password, salt, null, function (err, hash) {
+                    if (err)
+                        return reject(err);
+                    user.password = hash;
+                    return resolve(user);
+                });
+            });
+        });
+    });
+
+    return User;
+};

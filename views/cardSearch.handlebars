@@ -53,7 +53,8 @@
     </div>
 
     <!--Bootstrap modal code-->
-    <div class="modal fade" id="cardModal" tabindex="-1" role="dialog" aria-labelledby="cardModalLabel" aria-hidden="true">
+    <div class="modal fade" id="cardModal" tabindex="-1" role="dialog" aria-labelledby="cardModalLabel"
+         aria-hidden="true">
         <div class="modal-dialog" role="document">
 
             <div class="modal-content" id="specificCard">
@@ -65,24 +66,81 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <div id="cardData">
-                        <img src="" id="pokemonImage"> <br>
-                    </div>
-                    <div id="unitNumber">
-                        THIS WILL CONTAIN THE NUMBER OF CARDS TO ADD
+                    <div class="row">
+                        <div class="col-xl-6 col-center">
+                            <div id="cardData">
+                                <img src="" id="pokemonImage" class="img-responsive"> <br>
+                            </div>
+                        </div>
+                        <div class="col-xl-6">
+                            <h6 id="cardType"></h6>
+                            <div id="deckName">
+                                <!--<div id="unitNumber">-->
+                                <!--THIS WILL CONTAIN THE NUMBER OF CARDS TO ADD-->
 
-                    </div>
-                    <div id="deckName">
-                        <div class="dropdown">
-                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <!--</div>-->
+                                <form bg-primary>
+                                    <div class="form-group">
+                                        <label for="exampleFormControlSelect1">Quantity</label>
+                                        <select class="form-control custom-select" id="exampleFormControlSelect1">
+                                            <option>1</option>
+                                            <option>2</option>
+                                            <option>3</option>
+                                            <option>4</option>
+                                            <option>5</option>
+                                            <option>6</option>
+                                            <option>7</option>
+                                            <option>8</option>
+                                            <option>9</option>
+                                            <option>10</option>
+                                            <option>11</option>
+                                            <option>12</option>
+                                            <option>13</option>
+                                            <option>14</option>
+                                            <option>15</option>
+                                            <option>16</option>
+                                            <option>17</option>
+                                            <option>18</option>
+                                            <option>19</option>
+                                            <option>20</option>
+                                        </select>
+                                        <small id="quantityHelpBlock" class="form-text text-muted">
+                                            Choose the quantity of cards you would like to add to the deck
+                                        </small>
+                                    </div>
 
-                                Dropdown button
+                                    <div class="form-group">
+                                        <label for="deckNames">Deck Name</label>
 
-                            </button>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item" href="#">Action</a>
-                                <a class="dropdown-item" href="#">Another action</a>
-                                <a class="dropdown-item" href="#">Something else here</a>
+                                        <select class="form-control custom-select" id="deckNames">
+                                            <option class="deckName" data-id="new-deck">New Deck</option>
+                                        </select>
+
+                                        <small id="deckHelpBlock" class="form-text text-muted">
+                                            Choose the deck that will receive the card(s)
+                                        </small>
+                                    </div>
+
+                                    <div id="addNewDeck" class="form-group">
+                                        <input id="newDeckText" type="text">
+                                        <button id="submitNewDeck">Add Deck</button>
+                                    </div>
+                                    <small id="newDeckHelpBlock" class="form-text text-muted">
+                                        Choose the deck that will receive the card(s)
+                                    </small>
+                                </form>
+                                <!--<div class="dropdown">-->
+                                <!--<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
+
+                                <!--Deck-->
+
+                                <!--</button>-->
+                                <!--<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">-->
+                                <!--<a class="dropdown-item" href="#">Action</a>-->
+                                <!--<a class="dropdown-item" href="#">Another action</a>-->
+                                <!--<a class="dropdown-item" href="#">Something else here</a>-->
+                                <!--</div>-->
+                                <!--</div>-->
                             </div>
                         </div>
                     </div>
