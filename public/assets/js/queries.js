@@ -159,23 +159,31 @@ $(function () {
         }).done(function(data) {
             console.log(data);
             for (let i = 0; i < data.length; i++) {
-                $("#deckNames").append(`<option class="deckName" data-id="${data[i].deckId}">${data[i].deckName}</option>`);
+                $("#deckNames").append(`<option class="deckName" data-id="${data[i].id}">${data[i].deckName}</option>`);
+                console.log(data[i].id);
             }
-        })
-    });
+        });
     
-    $(document).on("click", ".addCard", function (event) {
+        $(document).on("click", ".addCard", function (event) {
+            
+            console.log($( "#deckNames").find(":selected").attr("data-id"));
         
-        console.log($(this).attr("data-id"));
-        
-        console.log("card sent!");
-        $.ajax({
-            method: "POST",
-            url: "/db/cards",
-            data: {"cardData": singleCardData, "deckId":$(this).attr("data-id")}
-        }).then(function () {
-            console.log("Your card was sent to" + deckName + "!");
+            console.log("card sent!");
+            $.ajax({
+                method: "POST",
+                url: "/db/cards",
+                data: {"cardData": singleCardData, "deckId": $( "#deckNames").find(":selected").attr("data-id")}
+            }).then(function () {
+                console.log("Your card was sent to " + deckName + "!");
+            }).catch(function(err) {
+                if (err) {
+                    
+                }
+            });
+            
         });
     });
+    
+    
 });
 
