@@ -5,19 +5,21 @@ const db = require("./models");
 const path = require("path");
 const dbRoutes = require('./routes/dbRoutes');
 const htmlRoutes = require('./routes/htmlRoutes');
-const logger = require('morgan');
+const flash = require('connect-flash');
+const passportCF = require('./config/passport.js');
 const passport = require('passport');
 const expressSession = require('express-session');
 const cookieParser = require('cookie-parser');
+// const cookieSession = require('cookie-session');
 const chai = require('chai');
 //auth0
-const dotenv = require('dotenv');
-dotenv.load();
+const dotenv = require('dotenv').config();
+// dotenv.load();
 
 const app = express();
 const PORT = process.env.PORT || 8080;
 
-app.use(logger('dev'));
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.text());
@@ -37,26 +39,15 @@ app.use('/', htmlRoutes);
 app.use('/db', dbRoutes);
 
 
-// Initialize Passport
-const initPassport = require('./config/passport.js');
-// Configuring Passport
-// app.config(function () {
-//     app.use(passport.initialize());
-//     app.use(passport.session());
-// });
-
+// express session over cookie session
 app.use(expressSession({secret: process.env.SECRET}));
-// app.use(passport.initialize());
-// app.use(passport.session());
-// Using the flash middleware provided by connect-flash to store messages in session
-// and displaying in templates
-const flash = require('connect-flash');
+app.use(passport.initialize());
+app.use(passport.session());
+// Using the flash middleware provided by connect-flash to store messages in session and displaying in templates
 app.use(flash());
 
-
-
-
 const routes = require('./routes/index')(passport);
+// set up routes
 app.use('/', routes);
 
 /// catch 404 and forward to error handler
@@ -84,4 +75,3 @@ db.sequelize.sync().then(function() {
     });
 });
 
-// module.exports = app;

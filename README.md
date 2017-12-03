@@ -18,12 +18,10 @@ List of Packages
 | async                           | Utility library that provides asynchronous control flow.              |
 | handlebars.js  :wavy_dash:      | Templating engine                                                     |
 | bcrypt-nodejs                   | Library for hashing and salting user passwords.                       |
-| dotenv  :question:              | Loads environment variables from .env file.                           |
+| dotenv                          | Loads environment variables from .env file.                           |
 | express                         | Node.js web framework.                                                |
 | body-parser                     | Express 4 middleware.                                                 |
 | express-session                 | Express 4 middleware.                                                 |
-| morgan :question:               | Express 4 middleware.                                                 |
-| nodemailer :question:           | Node.js library for sending emails.                                   |
 | passport                        | Simple and elegant authentication library for node.js                 |
 | passport-oauth :question:       | Allows you to set up your own OAuth 1.0a and OAuth 2.0 strategies.    |
 | request                         | Simplified HTTP request library.                                      |
@@ -47,6 +45,14 @@ Compiled Design Resources
 *   Model: Where the business logic of the app resides. Interacts with data store.
 *   View:  Where UI is managed.
 *   Controller: Where routes were created, and logic set up within those routes where required. User requests managed here and data from the model received and based on the users authorization the request or denied request is passed back to the view.
+
+Storage Sessions Considerations
+-------------------------------
+|                                 | Client-side storage (cookie)        | Server-side storage (in memory, db...) |
+| ------------------------------- | ------------------------------------|--------------------------------------  |
+| middleware                      | Used?                               | Used?                                  |
+| express session                 | :+1: Session ID                     | :+1:    Session Data                   |
+| :cookie: cookie session         | :+1: Session Data                   | :-1:    N/A                            |
 
 
 
