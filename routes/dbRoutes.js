@@ -51,16 +51,6 @@ dbRouter.post("/decks", function (req, res) {
 
 //adding a new card to your deck
 dbRouter.post("/cards", function (req, res) {
-
-    // console.log("\n");
-    // console.log("------------------------");
-    // console.log(req.body.cardData);
-    // console.log("------------------------");
-    // console.log(req.body.cardData.name);
-    // console.log("------------------------");
-    // console.log(req.body.deckId);
-    // console.log("\n");
-
     db.cards.create({
         cardName: req.body.cardData.name,
         cardData: JSON.stringify(req.body.cardData),
@@ -74,7 +64,6 @@ dbRouter.post("/cards", function (req, res) {
         console.log("\n");
         res.json(userCard);
     });
-    // res.send("hello");
 });
 
 //delete a card from your deck

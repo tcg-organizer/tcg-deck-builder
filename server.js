@@ -5,6 +5,8 @@ const db = require("./models");
 const path = require("path");
 const dbRoutes = require('./routes/dbRoutes');
 const htmlRoutes = require('./routes/htmlRoutes');
+const userRoutes = require('./routes/userRoutes');
+// const authRoutes = require('./routes/authRoutes');
 const flash = require('connect-flash');
 const passportCF = require('./config/passport.js');
 const passport = require('passport');
@@ -13,8 +15,8 @@ const cookieParser = require('cookie-parser');
 // const cookieSession = require('cookie-session');
 const chai = require('chai');
 //auth0
-const dotenv = require('dotenv').config();
-// dotenv.load();
+const dotenv = require('dotenv');
+dotenv.load();
 
 const app = express();
 const PORT = process.env.PORT || 8080;
@@ -37,6 +39,7 @@ app.set("view engine", "handlebars");
 
 app.use('/', htmlRoutes);
 app.use('/db', dbRoutes);
+app.use('/', userRoutes);
 
 
 // express session over cookie session
@@ -46,7 +49,7 @@ app.use(passport.session());
 // Using the flash middleware provided by connect-flash to store messages in session and displaying in templates
 app.use(flash());
 
-const routes = require('./routes/index')(passport);
+const routes = require('./routes/authRoutes')(passport);
 // set up routes
 app.use('/', routes);
 

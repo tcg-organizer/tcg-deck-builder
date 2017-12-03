@@ -1,5 +1,6 @@
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
+//possibly add Facebook Strategy allowing the user to login with facebook or google team discussion needed to confirm preference
 const db = require('../models');
 
 // Serialize sessions

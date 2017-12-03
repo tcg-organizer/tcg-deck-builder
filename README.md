@@ -34,12 +34,6 @@ Resources Referenced
 --------------------
 - [The Difference Between URLs and URIs](https://danielmiessler.com/study/url-uri/) - Rest APIs
 
-Compiled Design Resources
--------------------------
-- [Bootsnipp](http://bootsnipp.com/) - Code snippets for Bootstrap.
-- [Bootstrap Zero](https://www.bootstrapzero.com) - Free Bootstrap templates themes.
-
-
  MVC Design Model Employed (Model, View & Control)
 --------------------------------------------------
 *   Model: Where the business logic of the app resides. Interacts with data store.
