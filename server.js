@@ -42,8 +42,12 @@ app.use('/db', dbRoutes);
 app.use('/', userRoutes);
 
 
-// express session over cookie session
+// express session depreciated
 app.use(expressSession({secret: process.env.SECRET}));
+// const middlewareSession = require('./config/nothingHere.js');
+// set up middleware session
+// app.use(middlewareSession);
+
 app.use(passport.initialize());
 app.use(passport.session());
 // Using the flash middleware provided by connect-flash to store messages in session and displaying in templates
@@ -72,7 +76,7 @@ if (app.get('env') === 'development') {
     });
 }
 
-db.sequelize.sync().then(function() {
+db.sequelize.sync({}).then(function() {
     app.listen(PORT, function() {
         console.log("App listening on PORT " + PORT);
     });
