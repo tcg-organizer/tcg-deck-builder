@@ -5,7 +5,7 @@ const db = require("../models/index");
 //view all decks
 dbRouter.get("/decks", function (req, res) {
     
-    db.deck.findAll().then(function (allDecks) {
+    db.decks.findAll().then(function (allDecks) {
         console.log("\n");
         console.log("------------------------");
         console.log("the deck has been read");
@@ -19,7 +19,7 @@ dbRouter.get("/decks", function (req, res) {
 //view specific deck
 dbRouter.get("/decks/:id", function (req, res) {
     
-    db.deck.findOne({
+    db.decks.findOne({
         where: {id: req.params.id},
         include: [db.cards]
     }).then(function (readDeck) {
@@ -36,7 +36,7 @@ dbRouter.get("/decks/:id", function (req, res) {
 //add new deck
 dbRouter.post("/decks", function (req, res) {
     
-    db.deck.create({
+    db.decks.create({
         deckName: req.body.newDeckName
     }).then(function (newDeck) {
         console.log("\n");
@@ -55,7 +55,7 @@ dbRouter.delete("/decks/:id", function (req, res) {
     console.log(req.params.id);
 
     //cards are removed from cards table where associated with selected deck
-    db.card.destroy({
+    db.cards.destroy({
         where: {
             foreignKey: req.params.id
         }
@@ -69,7 +69,7 @@ dbRouter.delete("/decks/:id", function (req, res) {
         res.send("all cards have been removed from the deck");
 
         //empty deck is deleted where id is associated with selected deck
-        db.deck.destroy({
+        db.decks.destroy({
             where: {
                 id: req.params.id
             }
@@ -99,7 +99,7 @@ dbRouter.post("/cards", function (req, res) {
     // console.log(req.body.deckId);
     // console.log("\n");
     
-    db.card.create({
+    db.cards.create({
         cardName: req.body.cardData.name,
         cardData: JSON.stringify(req.body.cardData),
         deckId: req.body.deckId
@@ -119,7 +119,7 @@ dbRouter.post("/cards", function (req, res) {
 dbRouter.delete("/cards/:cardId", function (req, res) {
     console.log(req.params.cardId);
     
-    db.card.destroy({
+    db.cards.destroy({
         where: {
             id: req.params.cardId
         }
