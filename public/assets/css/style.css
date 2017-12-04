@@ -10,6 +10,7 @@
     margin-top : 25px;
 }
 
+
 .number {
     background: url("../img/numberFour.png") no-repeat center center fixed;
 }
@@ -65,6 +66,15 @@
     display: inline-block;
 }
 
+.footer-links a {
+    text-decoration: none;
+}
+
+.footer-links a:hover {
+    text-decoration: none;
+    color:lightgrey;
+}
+
 a {
     color:gray;
     margin-top:5px;
@@ -85,6 +95,15 @@ a {
 /*helper classes for styling*/
 .grey {
     background-color: #9fb6cd;
+}
+
+.card-margin {
+    margin-bottom: 25px;
+}
+
+.center {
+    display: block;
+    margin: auto;
 }
 
 .footer-section {
@@ -124,14 +143,6 @@ margin-right: 350px;
 .right {
     right: 0;
     position: absolute;
-}
-
-.footer-links a {
-    text-decoration: none;
-}
-.footer-links a:hover {
-    text-decoration: none;
-    color: lightgrey;
 }
 
 /*helper classes for styling*/

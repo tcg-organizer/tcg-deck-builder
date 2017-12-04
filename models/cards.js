@@ -22,7 +22,3 @@ module.exports = function (sequelize, DataTypes) {
     };
     return cards;
 };
-
-
-
-// db.cards.belongsTo(db.decks, {foreignKey: 'deckName'});
