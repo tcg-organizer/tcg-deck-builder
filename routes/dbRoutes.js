@@ -57,7 +57,7 @@ dbRouter.delete("/decks/:id", function (req, res) {
     //cards are removed from cards table where associated with selected deck
     db.cards.destroy({
         where: {
-            foreignKey: req.params.id
+            deckId: req.params.id
         }
     }).then(function (cardDestroyed) {
         console.log("\n");
