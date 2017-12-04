@@ -41,6 +41,7 @@
     height: 500px;
 }
 
+
 /* CAROUSEL ENDS
 -------------------------------------------------- */
 
@@ -119,11 +120,17 @@ a {
     /*border-bottom-left-radius: 6px;*/
     z-index: 1;
 
+
 }
+
 
 .upTop {
     margin-bottom: 2.6rem;
     padding-bottom: 20px;
+
+.checkbox-text {
+    font-size: 85%;
+    color: #777;
 }
 
 a {

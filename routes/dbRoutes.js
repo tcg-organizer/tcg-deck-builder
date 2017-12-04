@@ -1,6 +1,6 @@
 const express = require("express");
 const dbRouter = express.Router();
-const db = require("../models/index");
+const db = "cardsdb";
 
 //view all decks
 dbRouter.get("/decks", function (req, res) {
