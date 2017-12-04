@@ -1,5 +1,4 @@
 // On click function to grab search value after page load
-
 $(function () {
 
     //if enter pressed while search bar is focused
@@ -173,7 +172,7 @@ $(function () {
         if ($("#deckNames").find(":selected").attr("data-id") === "new-deck") {
             console.log("new deck was selected");
             $("#addNewDeck").show();
-            
+            $("#newDeckText").empty();
             
             $("#submitNewDeck").on("click", function(event) {
                 event.preventDefault();

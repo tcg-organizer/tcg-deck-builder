@@ -8,7 +8,7 @@ module.exports = function (sequelize, DataTypes) {
     
     decks.associate = function(models) {
         decks.hasMany(models.cards, {
-            onDelete: "cascade"
+            onDelete: 'cascade'
         });
     };
     return decks;

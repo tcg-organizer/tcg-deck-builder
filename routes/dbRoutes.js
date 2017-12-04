@@ -49,25 +49,25 @@ dbRouter.post("/decks", function (req, res) {
     })
 });
 
-dbRouter.delete("/decks/:id", function(req,res) {
-    
-    console.log("deck Id");
-    console.log(req.params.id);
-   
-    db.decks.destroy({
-        where: {
-            id: req.params.id
-        }
-    }).then(function(deleteDeck) {
-        console.log("\n");
-        console.log("------------------------");
-        console.log("the deck has been Deleted");
-        console.log(deleteDeck);
-        console.log("------------------------");
-        console.log("\n");
-        res.send("Deck Deleted");
-    })
-});
+// dbRouter.delete("/decks/:id", function(req,res) {
+//
+//     console.log("deck Id");
+//     console.log(req.params.id);
+//
+//     db.decks.destroy({
+//         where: {
+//             id: req.params.id
+//         }
+//     }).then(function(deleteDeck) {
+//         console.log("\n");
+//         console.log("------------------------");
+//         console.log("the deck has been Deleted");
+//         console.log(deleteDeck);
+//         console.log("------------------------");
+//         console.log("\n");
+//         res.send("Deck Deleted");
+//     })
+// });
 
 //adding a new card to your deck
 dbRouter.post("/cards", function (req, res) {
