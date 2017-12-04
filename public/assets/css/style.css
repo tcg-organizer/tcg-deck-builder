@@ -10,7 +10,6 @@
     margin-top : 25px;
 }
 
-
 .number {
     background: url("../img/numberFour.png") no-repeat center center fixed;
 }
@@ -134,6 +133,14 @@ a {
         bottom: 0px;
     }
 
+}
+
+.footer-links a {
+    text-decoration: none;
+}
+.footer-links a:hover {
+    text-decoration: none;
+    color: lightgrey;
 }
 
 .footer-links a {

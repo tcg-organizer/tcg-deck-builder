@@ -1,8 +1,6 @@
 const express = require("express");
 const htmlRouter = express.Router();
 const scraper = require('pokemon-tcg-scraper');
-const passport = require('passport');
-
 
 let cardData = [];
 let specificCardData = [];
@@ -61,7 +59,7 @@ htmlRouter.post("/api/search/pokemon/:pokemon?", function (req, res) {
 htmlRouter.post("/api/search/pokemon2/:pokemon?/:pageNum?", function (req, res) {
 
     let pokeSearch = req.params.pokemon;
-    let pageNum = req.params.j;
+    let pageNum = req.params.pageNum;
 
     // console.log(pokeSearch);
 
@@ -90,6 +88,8 @@ htmlRouter.post("/api/search/pokemon2/:pokemon?/:pageNum?", function (req, res) 
     }
 
     initialQuery(pokeSearch);
+    // res.render("cardSearch", {cardData: cardData});
+    // res.json(data);
 
     cardData = [];
 });
@@ -137,5 +137,10 @@ htmlRouter.post("/api/search/url/:cardURL?", function (req, res) {
 
     specificCardData = [];
 });
+
+// // 404 Error Page
+// htmlRouter.get('/*', function (req, res) {
+//         res.render('404');
+// });
 
 module.exports = htmlRouter;
