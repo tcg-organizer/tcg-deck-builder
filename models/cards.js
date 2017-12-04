@@ -15,7 +15,8 @@ module.exports = function (sequelize, DataTypes) {
         cards.belongsTo(models.decks, {
             foreignKey: {
                 allowNull: false
-            }
+            },
+            onDelete: 'cascade'
         });
     };
     return cards;

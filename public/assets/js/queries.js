@@ -170,7 +170,8 @@ $(function () {
                 $.ajax({
                     method: "POST",
                     url: "/db/decks",
-                    data: {"newDeckName" : $("#newDeckText").val()}
+                    data: {"newDeckName" : $("#newDeckText").val()},
+                    async: false
                 }).then(function(data) {
                     $("#newDeckHelpBlock").show();
                     $("#deckNames").append(`<option class="deckName" data-id="${data.id}" selected="selected">${data.deckName}</option>`);
