@@ -53,20 +53,38 @@ dbRouter.delete("/decks/:id", function (req, res) {
     
     console.log("deck Id");
     console.log(req.params.id);
-    
-    db.decks.destroy({
+
+    //cards are removed from cards table where associated with selected deck
+    db.cards.destroy({
         where: {
-            id: req.params.id
+            foreignKey: req.params.id
         }
-    }).then(function (deleteDeck) {
+    }).then(function (cardDestroyed) {
         console.log("\n");
         console.log("------------------------");
-        console.log("the deck has been Deleted");
-        console.log(deleteDeck);
+        console.log("all cards been removed from the deck");
+        console.log(cardDestroyed);
         console.log("------------------------");
         console.log("\n");
-        res.send("Deck Deleted");
+        res.send("all cards have been removed from the deck");
+
+        //empty deck is deleted where id is associated with selected deck
+        db.decks.destroy({
+            where: {
+                id: req.params.id
+            }
+        }).then(function (deleteDeck) {
+            console.log("\n");
+            console.log("------------------------");
+            console.log("the deck has been Deleted");
+            console.log(deleteDeck);
+            console.log("------------------------");
+            console.log("\n");
+            res.send("Deck Deleted");
+        })
     })
+    
+
 });
 
 //adding a new card to your deck
