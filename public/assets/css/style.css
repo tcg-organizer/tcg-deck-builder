@@ -65,12 +65,22 @@
     display: inline-block;
 }
 
+.footer-links a {
+    text-decoration: none;
+}
+
+.footer-links a:hover {
+    text-decoration: none;
+    color:lightgrey;
+}
+
 a {
     color:gray;
     margin-top:5px;
     cursor: auto;
     text-decoration: none;
 }
+
 
 .login {
     width: 50%;
@@ -85,6 +95,15 @@ a {
 /*helper classes for styling*/
 .grey {
     background-color: #9fb6cd;
+}
+
+.card-margin {
+    margin-bottom: 25px;
+}
+
+.center {
+    display: block;
+    margin: auto;
 }
 
 .footer-section {
@@ -126,23 +145,15 @@ margin-right: 350px;
     position: absolute;
 }
 
-.footer-links a {
-    text-decoration: none;
-}
-.footer-links a:hover {
-    text-decoration: none;
-    color: lightgrey;
-}
-
 /*helper classes for styling*/
 .grey {
     background-color: #9fb6cd;
 }
-/*add margin above card divs*/
+
 .card-margin {
     margin-bottom: 25px;
 }
-/*horizontal center class*/
+
 .center {
     display: block;
     margin: auto;

@@ -4,7 +4,7 @@ const db = require("../models/index");
 
 //view all decks
 dbRouter.get("/decks", function (req, res) {
-    
+
     db.decks.findAll().then(function (allDecks) {
         console.log("\n");
         console.log("------------------------");
@@ -18,7 +18,7 @@ dbRouter.get("/decks", function (req, res) {
 
 //view specific deck
 dbRouter.get("/decks/:id", function (req, res) {
-    
+
     db.decks.findOne({
         where: {id: req.params.id},
         include: [db.cards]
@@ -35,7 +35,7 @@ dbRouter.get("/decks/:id", function (req, res) {
 
 //add new deck
 dbRouter.post("/decks", function (req, res) {
-    
+
     db.decks.create({
         deckName: req.body.newDeckName
     }).then(function(newDeck) {
@@ -51,16 +51,6 @@ dbRouter.post("/decks", function (req, res) {
 
 //adding a new card to your deck
 dbRouter.post("/cards", function (req, res) {
-    
-    // console.log("\n");
-    // console.log("------------------------");
-    // console.log(req.body.cardData);
-    // console.log("------------------------");
-    // console.log(req.body.cardData.name);
-    // console.log("------------------------");
-    // console.log(req.body.deckId);
-    // console.log("\n");
-    
     db.cards.create({
         cardName: req.body.cardData.name,
         cardData: JSON.stringify(req.body.cardData),
@@ -74,13 +64,12 @@ dbRouter.post("/cards", function (req, res) {
         console.log("\n");
         res.json(userCard);
     });
-    // res.send("hello");
 });
 
 //delete a card from your deck
 dbRouter.delete("/cards/:cardId", function (req, res) {
     console.log(req.params.cardId);
-    
+
     db.cards.destroy({
         where: {
             id: req.params.cardId
