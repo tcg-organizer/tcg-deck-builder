@@ -1,6 +1,8 @@
 const express = require("express");
 const htmlRouter = express.Router();
 const scraper = require('pokemon-tcg-scraper');
+const passport = require('passport');
+
 
 let cardData = [];
 let specificCardData = [];
@@ -27,26 +29,25 @@ htmlRouter.post("/api/search/pokemon/:pokemon?", function (req, res) {
 // query for a list of cards including matching the query value, pokemon
     function initialQuery(pokemon) {
         scraper.scrapeSearchPage("http://www.pokemon.com/us/pokemon-tcg/pokemon-cards/?cardName=" + pokemon).then(function (data) {
-            
-            // returns an object with the following information: numPages, cards
-            console.log(JSON.stringify(data, null, 4));
-            
-            // we will show each card as an image and store the url of the card within the image
-            
-            const cards = data.cards;
-            for (let i = 0; i < cards.length; i++) {
-                // data is sent to cardSearch.handlebars for display
-                // each displayed card has a stored URL used for a second query when clicked
-                const newCard = {
-                    url: cards[i].url,
-                    image: cards[i].image,
-                    id: cards[i].id
-                };
-                cardData.push(newCard);
-            }
 
-            res.json({cardData: cardData, numPages: data.numPages});
+                // returns an object with the following information: numPages, cards
+                console.log(JSON.stringify(data, null, 4));
 
+                // we will show each card as an image and store the url of the card within the image
+
+                const cards = data.cards;
+                for (let i = 0; i < cards.length; i++) {
+                    // data is sent to cardSearch.handlebars for display
+                    // each displayed card has a stored URL used for a second query when clicked
+                    const newCard = {
+                        url: cards[i].url,
+                        image: cards[i].image,
+                        id: cards[i].id
+                    };
+                    cardData.push(newCard);
+                }
+
+                res.json({cardData: cardData, numPages: data.numPages});
         });
     }
     
@@ -60,7 +61,7 @@ htmlRouter.post("/api/search/pokemon/:pokemon?", function (req, res) {
 htmlRouter.post("/api/search/pokemon2/:pokemon?/:pageNum?", function (req, res) {
 
     let pokeSearch = req.params.pokemon;
-    let pageNum = req.params.pageNum;
+    let pageNum = req.params.j;
 
     // console.log(pokeSearch);
 
@@ -89,8 +90,6 @@ htmlRouter.post("/api/search/pokemon2/:pokemon?/:pageNum?", function (req, res) 
     }
 
     initialQuery(pokeSearch);
-    // res.render("cardSearch", {cardData: cardData});
-    // res.json(data);
 
     cardData = [];
 });
@@ -138,10 +137,5 @@ htmlRouter.post("/api/search/url/:cardURL?", function (req, res) {
 
     specificCardData = [];
 });
-
-// // 404 Error Page
-// htmlRouter.get('/*', function (req, res) {
-//         res.render('404');
-// });
 
 module.exports = htmlRouter;

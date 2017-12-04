@@ -10,7 +10,7 @@ module.exports = function (sequelize, DataTypes) {
             allowNull: false
         }
     }, {timestamps: false});
-    
+
     cards.associate = function(models) {
         cards.belongsTo(models.decks, {
             foreignKey: {
@@ -20,7 +20,3 @@ module.exports = function (sequelize, DataTypes) {
     };
     return cards;
 };
-
-
-
-// db.cards.belongsTo(db.decks, {foreignKey: 'deckName'});
