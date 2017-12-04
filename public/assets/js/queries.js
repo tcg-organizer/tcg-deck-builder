@@ -60,8 +60,10 @@ $(function () {
 
                 console.log(data);
 
+
+
                 //checks for and displays additional pages for scrape
-                for (var i = 2; i <= data.numPages; i++) {
+                for (var i = 1; i <= data.numPages; i++) {
 
                     //asynchronous function nested in for loop to prevent the for loop from continuing without async data
                     (function (i) {
