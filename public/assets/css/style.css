@@ -87,15 +87,6 @@ a {
     background-color: #9fb6cd;
 }
 
-.card-margin {
-    margin-bottom: 25px;
-}
-
-.center {
-    display: block;
-    margin: auto;
-}
-
 .footer-section {
     margin-top: 100px;
  /*Set the fixed height of the footer here */
@@ -164,6 +155,7 @@ margin-right: 350px;
     align-items: center;
 }
 
+/*positioning for the delete button*/
 .delete-btn {
     position: absolute;
     top: 0;

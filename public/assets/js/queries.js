@@ -44,7 +44,7 @@ $(function () {
                        $("#cardHome").html(`
                        <div class="card border-danger mb-3 center" style="max-width: 1000rem;">
                             <div class="card-body text-danger">
-                            <h4 class="card-title">We couldn't a card that matches that search</h4>
+                            <h4 class="card-title">We couldn't find a card that matches that search</h4>
                         <ul>
                         <li class="card-text">Try checking your spelling</li>
                         <li class="card-text">Try searching just the pokemon's name</li>
@@ -66,7 +66,7 @@ $(function () {
 
                     var newDiv1 = $("<div class='col-xl-4 col-md-6 col-xs-12 card-margin'></div>");
 
-                    var newDiv2 = $("<div class='card grey center' style='width: 20rem;'>");
+                    var newDiv2 = $("<div class='card center grey' style='width: 20rem;'>");
 
                     var newImg = $("<img class='card-img-top img-thumbnail' alt='Card Image'>");
 
@@ -113,7 +113,7 @@ $(function () {
                                     for (var j = 0; j < data2.cardData.length; j++) {
                                         var newDiv1 = $("<div class='col-xl-4 col-md-6 col-xs-12 card-margin'></div>");
 
-                                        var newDiv2 = $("<div class='card grey center' style='width: 20rem;'>");
+                                        var newDiv2 = $("<div class='card center grey' style='width: 20rem;'>");
 
                                         var newImg = $("<img class='card-img-top img-thumbnail' alt='Card Image'>");
 
