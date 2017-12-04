@@ -2,7 +2,7 @@ $.ajax({
     method: "GET",
     url: "/db/decks"
 }).done(function(data) {
-    console.log(data);
+    // console.log(data);
     for (let i = 0; i < data.length; i++) {
         $("#deckList").append(`<option class="deckName" data-id="${data[i].id}">${data[i].deckName}</option>`);
     }
@@ -17,11 +17,11 @@ $(function () {
             method: "GET",
             url: `db/decks/${$("#deckList").find(":selected").attr("data-id")}`
         }).then(function(cardData) {
-            console.log(cardData);
-            console.log(JSON.parse(cardData.cards[0].cardData).image);
+            // console.log(cardData);
+            // console.log(JSON.parse(cardData.cards[0].cardData).image);
             for (let i = 0; i < cardData.cards.length; i++) {
-                console.log("inside for loop");
-                console.log(JSON.parse(cardData.cards[i].cardData).image);
+                // console.log("inside for loop");
+                // console.log(JSON.parse(cardData.cards[i].cardData).image);
                         $("#deckListRow").append(`
                         <div class="col-xl-4 card-margin cardDiv" data-divCardId="${cardData.cards[i].id}">
                         <button class="delete-btn btn btn-small btn-primary" data-cardId="${cardData.cards[i].id}">DELETE</button>
@@ -39,7 +39,7 @@ $(function () {
             method: "DELETE",
             url: `/db/cards/${$(this).attr("data-cardId")}`
         }).then(function(deletedCard) {
-            console.log(deletedCard);
+            // console.log(deletedCard);
         });
         
     })

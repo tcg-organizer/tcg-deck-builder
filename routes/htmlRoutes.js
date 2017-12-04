@@ -31,7 +31,7 @@ htmlRouter.post("/api/search/pokemon/:pokemon?", function (req, res) {
         scraper.scrapeSearchPage("http://www.pokemon.com/us/pokemon-tcg/pokemon-cards/?cardName=" + pokemon).then(function (data) {
 
                 // returns an object with the following information: numPages, cards
-                console.log(JSON.stringify(data, null, 4));
+                // console.log(JSON.stringify(data, null, 4));
 
                 // we will show each card as an image and store the url of the card within the image
 
@@ -101,14 +101,14 @@ htmlRouter.post("/api/search/url/:cardURL?", function (req, res) {
     cardSearch = cardSearch.split("+");
     cardSearch = cardSearch.join("/");
 
-    console.log(cardSearch);
+    // console.log(cardSearch);
 
     function singleCardQuery(cardURL) {
         // query for a specific card based on a specific URL (can be received from the basic query above)
 
         scraper.scrapeCard(cardURL).then(function (data) {
             // returns an object with the following information: id, name, image, type, superType, hp, abilities, rules, color, weaknesses, resistances, retreatCost
-            console.log(JSON.stringify(data, null, 4));
+            // console.log(JSON.stringify(data, null, 4));
             // this will lead to a modal opening with displayed data from the query
 
            const chosenCard =
