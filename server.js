@@ -42,38 +42,38 @@ app.use('/db', dbRoutes);
 app.use('/', userRoutes);
 
 
-// express session depreciated
-app.use(expressSession({secret: process.env.SECRET}));
-// const middlewareSession = require('./config/nothingHere.js');
-// set up middleware session
-// app.use(middlewareSession);
-
-app.use(passport.initialize());
-app.use(passport.session());
-// Using the flash middleware provided by connect-flash to store messages in session and displaying in templates
-app.use(flash());
-
-const routes = require('./routes/authRoutes')(passport);
-// set up routes
-app.use('/', routes);
-
-/// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-    const err = new Error('Not Found');
-    err.status = 404;
-    next(err);
-});
-
-// development error handler
-// will print stacktrace
-if (app.get('env') === 'development') {
-    app.use(function(err, req, res, next) {
-        res.status(err.status || 500);
-        res.render('error', {
-            message: err.message,
-            error: err
-        });
-    });
+// // express session depreciated
+// app.use(expressSession({secret: process.env.SECRET}));
+// // const middlewareSession = require('./config/nothingHere.js');
+// // set up middleware session
+// // app.use(middlewareSession);
+//
+// app.use(passport.initialize());
+// app.use(passport.session());
+// // Using the flash middleware provided by connect-flash to store messages in session and displaying in templates
+// app.use(flash());
+//
+// const routes = require('./routes/authRoutes')(passport);
+// // set up routes
+// app.use('/', routes);
+//
+// /// catch 404 and forward to error handler
+// app.use(function(req, res, next) {
+//     const err = new Error('Not Found');
+//     err.status = 404;
+//     next(err);
+// });
+//
+// // development error handler
+// // will print stacktrace
+// if (app.get('env') === 'development') {
+//     app.use(function(err, req, res, next) {
+//         res.status(err.status || 500);
+//         res.render('error', {
+//             message: err.message,
+//             error: err
+//         });
+//     });
 }
 
 
