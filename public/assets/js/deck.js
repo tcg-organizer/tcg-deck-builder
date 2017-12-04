@@ -31,6 +31,17 @@ $(function () {
         })
     });
     
+    $("#deleteDeckButton").on("click", function(event){
+        event.preventDefault();
+        console.log($("#deckList").find(":selected").attr("data-id"));
+        $.ajax({
+            method: "DELETE",
+            url: `/db/decks/${$("#deckList").find(":selected").attr("data-id")}`,
+        }).then(function(deleteDeck) {
+            console.log(deleteDeck);
+        })
+    });
+    
     $(document).on("click", ".delete-btn", function(event) {
         event.preventDefault();
         // $("div").attr("data-divCardId").remove();
