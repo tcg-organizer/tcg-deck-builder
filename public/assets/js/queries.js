@@ -1,5 +1,4 @@
 // On click function to grab search value after page load
-
 $(function () {
 
     //if enter pressed while search bar is focused
@@ -105,15 +104,13 @@ $(function () {
 
                         });
                     })(i);
-
                 }
 
             });
         }
 
     });
-
-
+    
     var singleCardData;
 
     $(document).on("click", ".cardButton", function (event) {
@@ -154,6 +151,7 @@ $(function () {
         });
 
         });
+    
     $(document).on("click", ".addCard", function (event) {
         event.preventDefault();
 
@@ -162,10 +160,12 @@ $(function () {
         if ($("#deckNames").find(":selected").attr("data-id") === "new-deck") {
             console.log("new deck was selected");
             $("#addNewDeck").show();
+            $("#newDeckText").val("");
 
-            $("#submitNewDeck").on("click", function(event) {
+            $(document).one("click", "#submitNewDeck", function(event) {
                 event.preventDefault();
                 $("#addNewDeck").hide();
+                
                 console.log($("#newDeckText").val());
                 $.ajax({
                     method: "POST",
