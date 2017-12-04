@@ -38,7 +38,7 @@ $(function () {
             $.ajax({
                 method: "POST",
                 url: `/api/search/pokemon/${pokemon}`,
-                timeout: 5000,
+                timeout: 10000,
                 error: function(xmlhttprequest, textstatus, message) {
                     if(textstatus==="timeout") {
                        $("#cardHome").html(`
