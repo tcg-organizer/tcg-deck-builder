@@ -12,13 +12,17 @@ $(function () {
 
     $("#submit").on("click", function (event) {
 
-        if ($("#search").val().trim().length === 0) {
+        if ((/^[a-zA-Z]+$/i.test($("#search").val().trim())) === false) {
+            console.log("ERROR cannot use numbers");
+        }
+        else {
+
 
             // Usually show some kind of error message here
 
             // Prevent the form from submitting
             event.preventDefault();
-        } else {
+
 
             $("#cardHome").empty();
 
@@ -36,11 +40,13 @@ $(function () {
             //ajax call to send data to the server
             $.ajax({
                 method: "POST",
-                url: `/api/search/pokemon/${pokemon}`,
-                timeout: 5000,
-                error: function(xmlhttprequest, textstatus, message) {
-                    if(textstatus==="timeout") {
-                       $("#cardHome").html(`
+                url: `/api/search/pokemon/${pokemon}`
+            }).then(function (data) {
+
+                console.log(data);
+
+                if (data.cardData[0] === undefined) {
+                    $("#cardHome").html(`
                        <div class="card border-danger mb-3 center" style="max-width: 1000rem;">
                             <div class="card-body text-danger">
                             <h4 class="card-title">We couldn't find a card that matches that search</h4>
@@ -50,60 +56,62 @@ $(function () {
                         <li class="card-text">Try being nicer to yourself you try really hard and deserve some credit.</li>
                         </ul>
                         </div>
-                        </div>`
-                       );
-                    }
+                        </div>`);
                 }
-            }).then(function (data) {
+                else {
+                    $("#cardHome").empty();
 
-                $("#cardHome").empty();
+                    console.log(data);
 
-                console.log(data);
+                    console.log(data.numPages);
 
-                console.log(data.numPages);
+                    //loading image
+                    $("#cardHome").append(loadingImg);
 
-                //loading image
-                $("#cardHome").append(loadingImg);
+                    //api call for each additional page from data
+                    $.ajax({
+                        method: "POST",
+                        url: `/api/search/pokemon/${pokemon}`,
+                        async: false
+                    }).then(function (data2) {
+                        console.log(`/api/search/pokemon/${pokemon}`);
+                        console.log(data2);
 
-                //api call for each additional page from data
-                $.ajax({
-                    method: "POST",
-                    url: `/api/search/pokemon/${pokemon}`,
-                    async: false
-                }).then(function (data2) {
-                    console.log(`/api/search/pokemon/${pokemon}`);
-                    console.log(data2);
+                        //removed loading image
+                        $("#loader").remove();
 
-                    //removed loading image
-                    $("#loader").remove();
+                        //displays each card in the comeHard div in cardSearch.handlebars
+                        for (var j = 0; j < data2.cardData.length; j++) {
+                            var newDiv1 = $("<div class='col-xl-4 col-md-6 col-xs-12 card-margin'></div>");
 
-                    //displays each card in the comeHard div in cardSearch.handlebars
-                    for (var j = 0; j < data2.cardData.length; j++) {
-                        var newDiv1 = $("<div class='col-xl-4 col-md-6 col-xs-12 card-margin'></div>");
+                            var newDiv2 = $("<div class='card grey center' style='width: 20rem;'>");
 
-                        var newDiv2 = $("<div class='card grey center' style='width: 20rem;'>");
-
-                        var newImg = $("<img class='card-img-top img-thumbnail' alt='Card Image'>");
+                            var newImg = $("<img class='card-img-top img-thumbnail' alt='Card Image'>");
 
 
-                        newImg.attr("src", data2.cardData[j].imageUrl);
-                        newImg.appendTo(newDiv2);
-                        newDiv2.appendTo(newDiv1);
+                            newImg.attr("src", data2.cardData[j].imageUrl);
+                            newImg.appendTo(newDiv2);
+                            newDiv2.appendTo(newDiv1);
 
-                        var newDiv3 = $("<div class='card-body'></div>");
+                            var newDiv3 = $("<div class='card-body'></div>");
 
-                        newDiv3.html("<a href='#' class='btn btn-primary cardButton' data-toggle='modal' data-target='#cardModal' data-id='" + data2.cardData[j].id + "'>View Card Data</a>");
+                            newDiv3.html("<a href='#' class='btn btn-primary cardButton' data-toggle='modal' data-target='#cardModal' data-id='" + data2.cardData[j].id + "'>View Card Data</a>");
 
-                        newDiv3.appendTo(newDiv2);
-                        $("#cardHome").append(newDiv1);
-                    }
+                            newDiv3.appendTo(newDiv2);
+                            $("#cardHome").append(newDiv1);
+                        }
 
-                });
+                    });
+                }
+
+
             });
+
         }
 
+
     });
-    
+
     var singleCardData;
 
     $(document).on("click", ".cardButton", function (event) {
@@ -130,11 +138,11 @@ $(function () {
             $("#pokemonImage").attr("src", data.cardData[0].imageUrl);
             $("#cardType").text("Card Type: " + data.cardData[0].type);
         });
-    
+
         $.ajax({
             method: "GET",
             url: "/db/decks"
-        }).done(function(data) {
+        }).done(function (data) {
             console.log(data);
             $("#deckNames").append('<option class="deckName" data-id="new-deck">New Deck</option>');
             for (let i = 0; i < data.length; i++) {
@@ -142,8 +150,8 @@ $(function () {
             }
         });
 
-        });
-    
+    });
+
     $(document).on("click", ".addCard", function (event) {
         event.preventDefault();
 
@@ -155,7 +163,7 @@ $(function () {
             $("#newDeckText").focus();
             $("#newDeckText").val("");
 
-            $(document).one("click", "#submitNewDeck", function(event) {
+            $(document).one("click", "#submitNewDeck", function (event) {
                 event.preventDefault();
 
                 if ($("#newDeckText").val() !== "") {
@@ -165,9 +173,9 @@ $(function () {
                     $.ajax({
                         method: "POST",
                         url: "/db/decks",
-                        data: {"newDeckName" : $("#newDeckText").val()},
+                        data: {"newDeckName": $("#newDeckText").val()},
                         async: false
-                    }).then(function(data) {
+                    }).then(function (data) {
                         // $("#newDeckHelpBlock").show();
                         $("#deckNames").append(`<option class="deckName" data-id="${data.id}" selected="selected">${data.deckName}</option>`);
                         console.log(data);
