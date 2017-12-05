@@ -147,3 +147,7 @@ a {
     top: 0;
     right: 0;
 }
+
+.fill {
+    width: 100%;
+}
