@@ -32,7 +32,7 @@ htmlRouter.post("/api/search/pokemon/:pokemon?", function (req, res) {
         scraper.scrapeSearchPage("http://www.pokemon.com/us/pokemon-tcg/pokemon-cards/?cardName=" + pokemon).then(function (data) {
 
                 // returns an object with the following information: numPages, cards
-                // console.log(JSON.stringify(data, null, 4));
+                console.log(JSON.stringify(data, null, 4));
 
                 // we will show each card as an image and store the url of the card within the image
 
@@ -52,32 +52,11 @@ htmlRouter.post("/api/search/pokemon/:pokemon?", function (req, res) {
         });
     }
     
-    // initialQuery(pokeSearch);
+    initialQuery(pokeSearch);
     // res.render("cardSearch", {cardData: cardData});
     // res.json(data);
 
     cardData = [];
-
-    function newInitialQuery(pokemon){
-        scraperNew.card.where({name: pokemon}).then(function(data){
-            const cards = data;
-            for (let i = 0; i < cards.length; i++) {
-                // data is sent to cardSearch.handlebars for display
-                // each displayed card has a stored URL used for a second query when clicked
-                const newCard = {
-                    name: cards[i].name,
-                    image: cards[i].imageUrl,
-                    id: cards[i].id
-                };
-                cardData.push(newCard);
-            }
-
-            res.json(cardData);
-            console.log(data);
-        });
-    }
-
-    newInitialQuery(pokeSearch);
 });
 
 htmlRouter.post("/api/search/pokemon2/:pokemon?/:pageNum?", function (req, res) {
@@ -123,14 +102,14 @@ htmlRouter.post("/api/search/url/:cardURL?", function (req, res) {
     cardSearch = cardSearch.split("+");
     cardSearch = cardSearch.join("/");
 
-    // console.log(cardSearch);
+    console.log(cardSearch);
 
     function singleCardQuery(cardURL) {
         // query for a specific card based on a specific URL (can be received from the basic query above)
 
         scraper.scrapeCard(cardURL).then(function (data) {
             // returns an object with the following information: id, name, image, type, superType, hp, abilities, rules, color, weaknesses, resistances, retreatCost
-            // console.log(JSON.stringify(data, null, 4));
+            console.log(JSON.stringify(data, null, 4));
             // this will lead to a modal opening with displayed data from the query
 
            const chosenCard =

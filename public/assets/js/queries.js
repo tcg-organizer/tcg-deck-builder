@@ -30,9 +30,9 @@ $(function () {
             let pokemon = $("#search").val().trim();
 
             // spaces are replaced with "-" to match query syntax
-            // pokemon = pokemon.replace(" ", "-");
+            pokemon = pokemon.replace(" ", "-");
 
-            // console.log(pokemon);
+            console.log(pokemon);
 
             //ajax call to send data to the server
             $.ajax({
@@ -59,26 +59,28 @@ $(function () {
 
                 $("#cardHome").empty();
 
-                // console.log(data);
+                console.log(data);
+
+
 
                 //checks for and displays additional pages for scrape
-                for (var i = 1; i <= data.length; i++) {
+                for (var i = 1; i <= data.numPages; i++) {
 
                     //asynchronous function nested in for loop to prevent the for loop from continuing without async data
+                    (function (i) {
+                        console.log(data.numPages);
 
-                    console.log(data.numPages);
+                        //loading image
+                        $("#cardHome").append(loadingImg);
 
-                    //loading image
-                    $("#cardHome").append(loadingImg);
-
-                    //api call for each additional page from data
-                    $.ajax({
-                        method: "POST",
-                        url: `/api/search/pokemon2/${pokemon}/${i}`,
-                        async: false
-                    }).then(function (data2) {
-                        // console.log(`/api/search/pokemon2/${pokemon}/${i}`);
-                        // console.log(data2);
+                        //api call for each additional page from data
+                        $.ajax({
+                            method: "POST",
+                            url: `/api/search/pokemon2/${pokemon}/${i}`,
+                            async: false
+                        }).then(function (data2) {
+                            console.log(`/api/search/pokemon2/${pokemon}/${i}`);
+                            console.log(data2);
 
                         //removed loading image
                         $("#loader").remove();
@@ -104,15 +106,14 @@ $(function () {
                             $("#cardHome").append(newDiv1);
                         }
 
-                    });
-
+                        });
+                    })(i);
                 }
 
             });
         }
 
     });
-
 
     var singleCardData;
 
@@ -129,13 +130,13 @@ $(function () {
         cardURL = cardURL.split("/");
         cardURL = cardURL.join("+");
 
-        // console.log(cardURL);
+        console.log(cardURL);
 
         $.ajax({
             method: "POST",
             url: `/api/search/url/${cardURL}`
         }).then(function (data) {
-            // console.log(data);
+            console.log(data);
             singleCardData = data;
             $("#pokemonName").text(data.name);
             $("#pokemonImage").attr("src", data.image);
@@ -146,7 +147,7 @@ $(function () {
             method: "GET",
             url: "/db/decks"
         }).done(function(data) {
-            // console.log(data);
+            console.log(data);
             $("#deckNames").append('<option class="deckName" data-id="new-deck">New Deck</option>');
             for (let i = 0; i < data.length; i++) {
                 $("#deckNames").append(`<option class="deckName" data-id="${data[i].id}">${data[i].deckName}</option>`);
@@ -154,27 +155,31 @@ $(function () {
         });
 
         });
+
     $(document).on("click", ".addCard", function (event) {
         event.preventDefault();
 
-        // console.log($("#deckNames").find(":selected").attr("data-id"));
+        console.log($("#deckNames").find(":selected").attr("data-id"));
 
         if ($("#deckNames").find(":selected").attr("data-id") === "new-deck") {
-            // console.log("new deck was selected");
+            console.log("new deck was selected");
             $("#addNewDeck").show();
+            $("#newDeckText").val("");
 
-            $("#submitNewDeck").on("click", function(event) {
+            $(document).one("click", "#submitNewDeck", function(event) {
                 event.preventDefault();
                 $("#addNewDeck").hide();
-                // console.log($("#newDeckText").val());
+
+                console.log($("#newDeckText").val());
                 $.ajax({
                     method: "POST",
                     url: "/db/decks",
-                    data: {"newDeckName" : $("#newDeckText").val()}
+                    data: {"newDeckName" : $("#newDeckText").val()},
+                    async: false
                 }).then(function(data) {
                     $("#newDeckHelpBlock").show();
                     $("#deckNames").append(`<option class="deckName" data-id="${data.id}" selected="selected">${data.deckName}</option>`);
-                    // console.log(data);
+                    console.log(data);
                 })
             })
         } else {
@@ -185,7 +190,7 @@ $(function () {
             }).then(function () {
                 $(".alert").show();
                 $("#newDeckHelpBlock").hide();
-                // console.log("Your card was sent to " + $("#deckNames").find(":selected").val() + "!");
+                console.log("Your card was sent to " + $("#deckNames").find(":selected").val() + "!");
             });
         }
     });

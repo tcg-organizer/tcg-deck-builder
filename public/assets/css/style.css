@@ -165,3 +165,9 @@ a {
     align-items: center;
 }
 
+/*positioning for the delete button*/
+.delete-btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
