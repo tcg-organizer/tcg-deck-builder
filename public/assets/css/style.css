@@ -92,11 +92,7 @@ a {
     background-color: #3c3d41;
     padding: 5px;
     color: white;
-    border-bottom-right-radius: 6px;
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 6px;
     z-index: 1;
-
 }
 
 #pokemonImage {
