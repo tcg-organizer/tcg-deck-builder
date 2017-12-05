@@ -1,9 +1,6 @@
 {
   "name": "tcg-deck-builder",
   "version": "1.0.0",
-  "engines": {
-    "node": "6.11.1"
-  },
   "description": "",
   "main": "server.js",
   "dependencies": {
