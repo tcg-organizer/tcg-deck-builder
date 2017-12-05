@@ -125,7 +125,7 @@ $(function () {
             console.log(`/api/search/id/${id}`);
             console.log(data);
 
-            singleCardData = data[0];
+            singleCardData = data;
             $("#pokemonName").text(data.cardData[0].name);
             $("#pokemonImage").attr("src", data.cardData[0].imageUrl);
             $("#cardType").text("Card Type: " + data.cardData[0].type);

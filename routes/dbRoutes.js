@@ -92,7 +92,7 @@ dbRouter.post("/cards", function (req, res) {
 
     // console.log("\n");
     // console.log("------------------------");
-    // console.log(req.body.cardData);
+    console.log(req.body);
     // console.log("------------------------");
     // console.log(req.body.cardData.name);
     // console.log("------------------------");
@@ -100,8 +100,8 @@ dbRouter.post("/cards", function (req, res) {
     // console.log("\n");
 
     db.cards.create({
-        cardName: req.body.cardData.name,
-        cardData: JSON.stringify(req.body.cardData),
+        cardName: req.body.cardData.cardData[0].name,
+        cardData: JSON.stringify(req.body.cardData.cardData[0]),
         deckId: req.body.deckId
     }).then(function (userCard) {
         console.log("\n");
