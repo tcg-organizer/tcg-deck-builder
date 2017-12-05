@@ -23,7 +23,7 @@
     "pokemon-tcg-scraper": "0.0.5",
     "pokemontcgsdk": "^1.0.0",
     "pug": "^2.0.0-rc.4",
-    "sequelize": "^4.25.1",
+    "sequelize": "^4.26.0",
     "serve-favicon": "^2.4.5"
   },
   "devDependencies": {},
