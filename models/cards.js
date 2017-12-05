@@ -1,3 +1,4 @@
+
 module.exports = function (sequelize, DataTypes) {
     const cards = sequelize.define("cards", {
         cardName: {

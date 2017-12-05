@@ -40,3 +40,23 @@ module.exports = function (sequelize, DataTypes) {
 
     return User;
 };
+
+// User.associate = (models) => {
+//     User.hasMany(models.Task, {
+//         onDelete: "cascade"
+//     });
+// };
+//
+// User.associate = (models) => {
+//     User.hasMany(models.Assignment, {
+//         onDelete: "cascade"
+//     });
+// };
+//
+// User.associate = (models) => {
+//     User.hasMany(models.Ratings, {
+//         onDelete: "cascade"
+//     });
+// };
+
+

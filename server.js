@@ -14,7 +14,7 @@ const expressSession = require('express-session');
 const cookieParser = require('cookie-parser');
 // const cookieSession = require('cookie-session');
 const chai = require('chai');
-//auth0
+
 const dotenv = require('dotenv');
 dotenv.load();
 
