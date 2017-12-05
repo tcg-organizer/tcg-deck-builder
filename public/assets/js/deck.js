@@ -18,16 +18,28 @@ $(function () {
             url: `db/decks/${$("#deckList").find(":selected").attr("data-id")}`
         }).then(function(cardData) {
             console.log(cardData);
-            console.log(JSON.parse(cardData.cards[0].cardData).image);
+            console.log(JSON.parse(cardData.cards[0].cardData).imageUrl);
             for (let i = 0; i < cardData.cards.length; i++) {
                 console.log("inside for loop");
-                console.log(JSON.parse(cardData.cards[i].cardData).image);
+                console.log(JSON.parse(cardData.cards[i].cardData).imageUrl);
                         $("#deckListRow").append(`
                         <div class="col-xl-4 card-margin cardDiv" data-divCardId="${cardData.cards[i].id}">
                         <button class="delete-btn btn btn-small btn-primary" data-cardId="${cardData.cards[i].id}">DELETE</button>
-                                <img class="card-img-top" src="${JSON.parse(cardData.cards[i].cardData).image}" alt="Card image cap">
+                                <img class="card-img-top" src="${JSON.parse(cardData.cards[i].cardData).imageUrl}" alt="Card image cap">
                         </div>`);
                     }
+        })
+    });
+    
+    $("#deleteDeckButton").on("click", function(event){
+        event.preventDefault();
+        console.log($("#deckList").find(":selected").attr("data-id"));
+        $.ajax({
+            method: "DELETE",
+            url: `/db/decks/${$("#deckList").find(":selected").attr("data-id")}`,
+        }).then(function(deleteDeck) {
+            console.log(deleteDeck);
+            location.reload();
         })
     });
     
@@ -44,6 +56,3 @@ $(function () {
         
     })
 });
-
-
-// $("#deckNames").find(":selected").attr("data-id")

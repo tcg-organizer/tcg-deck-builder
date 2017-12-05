@@ -4,7 +4,7 @@ const db = require("../models/index");
 
 //view all decks
 dbRouter.get("/decks", function (req, res) {
-
+    
     db.decks.findAll().then(function (allDecks) {
         console.log("\n");
         console.log("------------------------");
@@ -18,7 +18,7 @@ dbRouter.get("/decks", function (req, res) {
 
 //view specific deck
 dbRouter.get("/decks/:id", function (req, res) {
-
+    
     db.decks.findOne({
         where: {id: req.params.id},
         include: [db.cards]
@@ -35,10 +35,10 @@ dbRouter.get("/decks/:id", function (req, res) {
 
 //add new deck
 dbRouter.post("/decks", function (req, res) {
-
+    
     db.decks.create({
         deckName: req.body.newDeckName
-    }).then(function(newDeck) {
+    }).then(function (newDeck) {
         console.log("\n");
         console.log("------------------------");
         console.log("the deck has been Created");
@@ -49,11 +49,50 @@ dbRouter.post("/decks", function (req, res) {
     })
 });
 
+dbRouter.delete("/decks/:id", function (req, res) {
+    
+    console.log("deck Id");
+    console.log(req.params.id);
+
+    //cards are removed from cards table where associated with selected deck
+    db.cards.destroy({
+        where: {
+            deckId: req.params.id
+        }
+    }).then(function (cardDestroyed) {
+        console.log("\n");
+        console.log("------------------------");
+        console.log("all cards been removed from the deck");
+        console.log(cardDestroyed);
+        console.log("------------------------");
+        console.log("\n");
+        res.send("all cards have been removed from the deck");
+
+        //empty deck is deleted where id is associated with selected deck
+        db.decks.destroy({
+            where: {
+                id: req.params.id
+            }
+        }).then(function (deleteDeck) {
+            console.log("\n");
+            console.log("------------------------");
+            console.log("the deck has been Deleted");
+            console.log(deleteDeck);
+            console.log("------------------------");
+            console.log("\n");
+            res.send("Deck Deleted");
+        })
+    })
+    
+
+});
+
 //adding a new card to your deck
 dbRouter.post("/cards", function (req, res) {
+
     db.cards.create({
-        cardName: req.body.cardData.name,
-        cardData: JSON.stringify(req.body.cardData),
+        cardName: req.body.cardData.cardData[0].name,
+        cardData: JSON.stringify(req.body.cardData.cardData[0]),
         deckId: req.body.deckId
     }).then(function (userCard) {
         console.log("\n");
@@ -69,7 +108,7 @@ dbRouter.post("/cards", function (req, res) {
 //delete a card from your deck
 dbRouter.delete("/cards/:cardId", function (req, res) {
     console.log(req.params.cardId);
-
+    
     db.cards.destroy({
         where: {
             id: req.params.cardId
@@ -84,6 +123,5 @@ dbRouter.delete("/cards/:cardId", function (req, res) {
         res.send("card has been removed from the deck");
     })
 });
-
 
 module.exports = dbRouter;

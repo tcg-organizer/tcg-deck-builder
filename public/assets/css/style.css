@@ -10,40 +10,9 @@
     margin-top : 25px;
 }
 
-
 .number {
     background: url("../img/numberFour.png") no-repeat center center fixed;
 }
-
-/* CUSTOMIZE THE CAROUSEL
--------------------------------------------------- */
-
-/* Carousel base class */
-.carousel {
-    height: 500px;
-    margin-bottom: 60px;
-}
-/* Since positioning the image, we need to help out the caption */
-.carousel-caption {
-    z-index: 10;
-}
-
-/* Declare heights because of positioning of img element */
-.carousel .item {
-    width: 25%;
-    /*height: 500px;*/
-    background-color: #777;
-}
-.carousel-inner > .item > img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    min-width: 100%;
-    height: 500px;
-}
-
-/* CAROUSEL ENDS
--------------------------------------------------- */
 
 .left-block .right-block{
     display:inline-block;
@@ -51,14 +20,19 @@
     margin: 15px 0;
 }
 
-
-#lostPage {
+#lostPage.container {
     text-align: center;
-    margin-bottom: 1.2rem;
+    max-width: 760px;
 }
 
+/*padding under cards on cardsSearch page*/
 #cardHome {
-    margin-bottom: 100px;
+    margin-bottom: 150px;
+}
+
+/*padding under cards in deckList page*/
+#deckListRow {
+    margin-bottom: 150px;
 }
 
 .center-block {
@@ -66,18 +40,8 @@
     display: inline-block;
 }
 
-.footer-links a {
-    text-decoration: none;
-}
-
-.footer-links a:hover {
-    text-decoration: none;
-    color:lightgrey;
-}
-
 a {
     color:gray;
-    margin-top:5px;
     cursor: auto;
     text-decoration: none;
 }
@@ -92,6 +56,7 @@ a {
     left: 0 ; right: 0; bottom: 0;
     height: 50px;
 }
+
 /*helper classes for styling*/
 .grey {
     background-color: #9fb6cd;
@@ -106,43 +71,53 @@ a {
     margin: auto;
 }
 
+.hidden-label {
+    position: absolute;
+    height: 0;
+    width: 0;
+    overflow: hidden;
+    visibility: hidden;
+}
+
+.checkbox-text {
+    font-size: 85%;
+    color: #777;
+}
+
+.select {
+    color: gray;
+}
+
 .footer-section {
-    margin-top: 100px;
- /*Set the fixed height of the footer here */
-    height: 60px;
-    line-height: 14px; /* Vertically centered the text here */
     background-color: #3c3d41;
     padding: 5px;
     color: white;
-    /*border-bottom-right-radius: 6px;*/
-    /*border-top-left-radius: 0;*/
-    /*border-bottom-left-radius: 6px;*/
+    border-bottom-right-radius: 6px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 6px;
     z-index: 1;
 
 }
 
-.upTop {
-    margin-bottom: 2.6rem;
-    padding-bottom: 20px;
+#pokemonImage {
+    width: 250px;
 }
 
-a {
-    padding: 1px 0 4px 0;
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px){
+    .footer-section {
+        position: static;
+        left: 0px;
+        bottom: 0px;
+    }
+
 }
 
-.left {
-    text-align: left;
-    margin-bottom:1%;
+.footer-links a {
+    text-decoration: none;
 }
-
-.center-align2 {
-margin-right: 350px;
-}
-
-
-.right {
-    right: 0;
-    position: absolute;
+.footer-links a:hover {
+    text-decoration: none;
+    color: lightgrey;
 }
 
 /*helper classes for styling*/
@@ -171,4 +146,8 @@ margin-right: 350px;
     position: absolute;
     top: 0;
     right: 0;
+}
+
+.fill {
+    width: 100%;
 }

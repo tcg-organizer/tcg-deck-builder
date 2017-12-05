@@ -1,5 +1,4 @@
 // On click function to grab search value after page load
-
 $(function () {
 
     //if enter pressed while search bar is focused
@@ -13,19 +12,26 @@ $(function () {
 
     $("#submit").on("click", function (event) {
 
-        if ($("#search").val().trim().length === 0) {
+        if ((/^[a-zA-Z]+$/i.test($("#search").val().trim())) === false) {
+            console.log("ERROR cannot use numbers");
+        }
+        else {
+
 
             // Usually show some kind of error message here
 
             // Prevent the form from submitting
             event.preventDefault();
-        } else {
+
 
             $("#cardHome").empty();
 
             var loadingImg = $("<img class='img-responsive center' alt='Loading Image' id='loader'>");
             loadingImg.attr("src", "./assets/img/pokemon_loading.gif");
-            $("#cardHome").append(loadingImg);
+
+            var imgDiv = $("<div class='col-xl-12 col-center'></div>");
+            imgDiv.append(loadingImg);
+            $("#cardHome").append(imgDiv);
 
             let pokemon = $("#search").val().trim();
 
@@ -37,11 +43,13 @@ $(function () {
             //ajax call to send data to the server
             $.ajax({
                 method: "POST",
-                url: `/api/search/pokemon/${pokemon}`,
-                timeout: 5000,
-                error: function(xmlhttprequest, textstatus, message) {
-                    if(textstatus==="timeout") {
-                       $("#cardHome").html(`
+                url: `/api/search/pokemon/${pokemon}`
+            }).then(function (data) {
+
+                console.log(data);
+
+                if (data.cardData[0] === undefined) {
+                    $("#cardHome").html(`
                        <div class="card border-danger mb-3 center" style="max-width: 1000rem;">
                             <div class="card-body text-danger">
                             <h4 class="card-title">We couldn't find a card that matches that search</h4>
@@ -51,68 +59,61 @@ $(function () {
                         <li class="card-text">Try being nicer to yourself you try really hard and deserve some credit.</li>
                         </ul>
                         </div>
-                        </div>`
-                       );
-                    }
+                        </div>`);
                 }
-            }).then(function (data) {
+                else {
+                    $("#cardHome").empty();
 
-                $("#cardHome").empty();
+                    console.log(data);
 
-                console.log(data);
+                    console.log(data.numPages);
 
-                //checks for and displays additional pages for scrape
-                for (var i = 2; i <= data.numPages; i++) {
+                    // //loading image
+                    // $("#cardHome").append(loadingImg);
 
-                    //asynchronous function nested in for loop to prevent the for loop from continuing without async data
-                    (function (i) {
-                        console.log(data.numPages);
+                    //api call for each additional page from data
+                    $.ajax({
+                        method: "POST",
+                        url: `/api/search/pokemon/${pokemon}`,
+                        async: false
+                    }).then(function (data2) {
+                        console.log(`/api/search/pokemon/${pokemon}`);
+                        console.log(data2);
 
-                        //loading image
-                        $("#cardHome").append(loadingImg);
+                        //removed loading image
+                        $("#loader").remove();
 
-                        //api call for each additional page from data
-                        $.ajax({
-                            method: "POST",
-                            url: `/api/search/pokemon2/${pokemon}/${i}`
-                        }).then(function (data2) {
-                            console.log(`/api/search/pokemon2/${pokemon}/${i}`);
-                            console.log(data2);
+                        //displays each card in the comeHard div in cardSearch.handlebars
+                        for (var j = 0; j < data2.cardData.length; j++) {
+                            var newDiv1 = $("<div class='col-xl-4 col-md-6 col-xs-12 card-margin'></div>");
 
-                            //removed loading image
-                            $("#loader").remove();
+                            var newDiv2 = $("<div class='card grey center' style='width: 20rem;'>");
 
-                            //displays each card in the comeHard div in cardSearch.handlebars
-                            for (var j = 0; j < data2.cardData.length; j++) {
-                                var newDiv1 = $("<div class='col-xl-4 col-md-6 col-xs-12 card-margin'></div>");
-
-                                var newDiv2 = $("<div class='card grey center' style='width: 20rem;'>");
-
-                                var newImg = $("<img class='card-img-top img-thumbnail' alt='Card Image'>");
+                            var newImg = $("<img class='card-img-top img-thumbnail' alt='Card Image'>");
 
 
-                                newImg.attr("src", data2.cardData[j].image);
-                                newImg.appendTo(newDiv2);
-                                newDiv2.appendTo(newDiv1);
+                            newImg.attr("src", data2.cardData[j].imageUrl);
+                            newImg.appendTo(newDiv2);
+                            newDiv2.appendTo(newDiv1);
 
-                                var newDiv3 = $("<div class='card-body'></div>");
+                            var newDiv3 = $("<div class='card-body'></div>");
 
-                                newDiv3.html("<a href='#' class='btn btn-primary cardButton' data-id='" + data2.cardData[j].url + "' data-toggle='modal' data-target='#cardModal'>View Card Data</a>");
+                            newDiv3.html("<a href='#' class='btn btn-primary cardButton' data-toggle='modal' data-target='#cardModal' data-id='" + data2.cardData[j].id + "'>View Card Data</a>");
 
-                                newDiv3.appendTo(newDiv2);
-                                $("#cardHome").append(newDiv1);
-                            }
+                            newDiv3.appendTo(newDiv2);
+                            $("#cardHome").append(newDiv1);
+                        }
 
-                        });
-                    })(i);
-
+                    });
                 }
+
 
             });
+
         }
 
-    });
 
+    });
 
     var singleCardData;
 
@@ -124,28 +125,27 @@ $(function () {
 
         $("#pokemonImage").attr("src", "./assets/img/pokemon_loading.gif");
 
-        let cardURL = $(this).attr("data-id");
-        cardURL = cardURL.substring(23);
-        cardURL = cardURL.split("/");
-        cardURL = cardURL.join("+");
-
-        console.log(cardURL);
+        var id = $(this).attr("data-id");
+        console.log("id: " + id);
 
         $.ajax({
             method: "POST",
-            url: `/api/search/url/${cardURL}`
+            url: `/api/search/id/${id}`,
+            async: false
         }).then(function (data) {
+            console.log(`/api/search/id/${id}`);
             console.log(data);
+
             singleCardData = data;
-            $("#pokemonName").text(data.name);
-            $("#pokemonImage").attr("src", data.image);
-            $("#cardType").text("Card Type: " + data.type);
+            $("#pokemonName").text(data.cardData[0].name);
+            $("#pokemonImage").attr("src", data.cardData[0].imageUrl);
+            $("#cardType").text("Card Type: " + data.cardData[0].type);
         });
-    
+
         $.ajax({
             method: "GET",
             url: "/db/decks"
-        }).done(function(data) {
+        }).done(function (data) {
             console.log(data);
             $("#deckNames").append('<option class="deckName" data-id="new-deck">New Deck</option>');
             for (let i = 0; i < data.length; i++) {
@@ -153,7 +153,8 @@ $(function () {
             }
         });
 
-        });
+    });
+
     $(document).on("click", ".addCard", function (event) {
         event.preventDefault();
 
@@ -162,20 +163,28 @@ $(function () {
         if ($("#deckNames").find(":selected").attr("data-id") === "new-deck") {
             console.log("new deck was selected");
             $("#addNewDeck").show();
+            $("#newDeckText").focus();
+            $("#newDeckText").val("");
 
-            $("#submitNewDeck").on("click", function(event) {
+            $(document).one("click", "#submitNewDeck", function (event) {
                 event.preventDefault();
-                $("#addNewDeck").hide();
-                console.log($("#newDeckText").val());
-                $.ajax({
-                    method: "POST",
-                    url: "/db/decks",
-                    data: {"newDeckName" : $("#newDeckText").val()}
-                }).then(function(data) {
-                    $("#newDeckHelpBlock").show();
-                    $("#deckNames").append(`<option class="deckName" data-id="${data.id}" selected="selected">${data.deckName}</option>`);
-                    console.log(data);
-                })
+
+                if ($("#newDeckText").val() !== "") {
+                    $("#addNewDeck").hide();
+
+                    console.log($("#newDeckText").val());
+                    $.ajax({
+                        method: "POST",
+                        url: "/db/decks",
+                        data: {"newDeckName": $("#newDeckText").val()},
+                        async: false
+                    }).then(function (data) {
+                        // $("#newDeckHelpBlock").show();
+                        $("#deckNames").append(`<option class="deckName" data-id="${data.id}" selected="selected">${data.deckName}</option>`);
+                        console.log(data);
+                    })
+                }
+
             })
         } else {
             $.ajax({
