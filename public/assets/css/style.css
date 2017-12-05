@@ -10,22 +10,15 @@
     margin-top : 25px;
 }
 
-
 .number {
     background: url("../img/numberFour.png") no-repeat center center fixed;
 }
-
 
 .left-block .right-block{
     display:inline-block;
     width: 15% !important;
     margin: 15px 0;
 }
-
-/*#footer {*/
-/*height: 50%;*/
-/*background-color: #f5f5f5;*/
-/*}*/
 
 #lostPage.container {
     text-align: center;
@@ -53,14 +46,6 @@ a {
     text-decoration: none;
 }
 
-
-/* mouse over link */
-/*a:hover {*/
-/*color: red;*/
-/*cursor: auto;*/
-/*text-decoration: underline;*/
-/*}*/
-
 .login {
     width: 50%;
     height: 50%;
@@ -71,6 +56,7 @@ a {
     left: 0 ; right: 0; bottom: 0;
     height: 50px;
 }
+
 /*helper classes for styling*/
 .grey {
     background-color: #9fb6cd;
@@ -85,13 +71,6 @@ a {
     margin: auto;
 }
 
-/* Form Styles */
-/*form {*/
-/*background-color: #212529;*/
-/*color: gray;*/
-/*padding: 30px 40px;*/
-/*}*/
-
 .hidden-label {
     position: absolute;
     height: 0;
@@ -105,20 +84,11 @@ a {
     color: #777;
 }
 
-
-/*div.container {*/
-/*border-image-source: url("../img/borderv1.png");*/
-
-/*}*/
-
 .select {
     color: gray;
 }
 
-
 .footer-section {
-    /*position: absolute;*/
-    /*left: 0 ; right: 0; bottom: 0;*/
     background-color: #3c3d41;
     padding: 5px;
     color: white;

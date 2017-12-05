@@ -56,6 +56,3 @@ $(function () {
         
     })
 });
-
-
-// $("#deckNames").find(":selected").attr("data-id")
