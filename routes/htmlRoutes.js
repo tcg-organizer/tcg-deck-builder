@@ -2,6 +2,7 @@ const express = require("express");
 const htmlRouter = express.Router();
 const scraper = require('pokemon-tcg-scraper');
 const passport = require('passport');
+const scraperNew = require('pokemontcgsdk')
 
 
 let cardData = [];
@@ -51,11 +52,32 @@ htmlRouter.post("/api/search/pokemon/:pokemon?", function (req, res) {
         });
     }
     
-    initialQuery(pokeSearch);
+    // initialQuery(pokeSearch);
     // res.render("cardSearch", {cardData: cardData});
     // res.json(data);
 
     cardData = [];
+
+    function newInitialQuery(pokemon){
+        scraperNew.card.where({name: pokemon}).then(function(data){
+            const cards = data;
+            for (let i = 0; i < cards.length; i++) {
+                // data is sent to cardSearch.handlebars for display
+                // each displayed card has a stored URL used for a second query when clicked
+                const newCard = {
+                    name: cards[i].name,
+                    image: cards[i].imageUrl,
+                    id: cards[i].id
+                };
+                cardData.push(newCard);
+            }
+
+            res.json(cardData);
+            console.log(data);
+        });
+    }
+
+    newInitialQuery(pokeSearch);
 });
 
 htmlRouter.post("/api/search/pokemon2/:pokemon?/:pageNum?", function (req, res) {

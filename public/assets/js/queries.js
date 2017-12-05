@@ -30,7 +30,7 @@ $(function () {
             let pokemon = $("#search").val().trim();
 
             // spaces are replaced with "-" to match query syntax
-            pokemon = pokemon.replace(" ", "-");
+            // pokemon = pokemon.replace(" ", "-");
 
             // console.log(pokemon);
 
@@ -62,50 +62,49 @@ $(function () {
                 // console.log(data);
 
                 //checks for and displays additional pages for scrape
-                for (var i = 1; i <= data.numPages; i++) {
+                for (var i = 1; i <= data.length; i++) {
 
                     //asynchronous function nested in for loop to prevent the for loop from continuing without async data
-                    (function (i) {
-                        console.log(data.numPages);
 
-                        //loading image
-                        $("#cardHome").append(loadingImg);
+                    console.log(data.numPages);
 
-                        //api call for each additional page from data
-                        $.ajax({
-                            method: "POST",
-                            url: `/api/search/pokemon2/${pokemon}/${i}`,
-                            async: false
-                        }).then(function (data2) {
-                            // console.log(`/api/search/pokemon2/${pokemon}/${i}`);
-                            // console.log(data2);
+                    //loading image
+                    $("#cardHome").append(loadingImg);
 
-                            //removed loading image
-                            $("#loader").remove();
+                    //api call for each additional page from data
+                    $.ajax({
+                        method: "POST",
+                        url: `/api/search/pokemon2/${pokemon}/${i}`,
+                        async: false
+                    }).then(function (data2) {
+                        // console.log(`/api/search/pokemon2/${pokemon}/${i}`);
+                        // console.log(data2);
 
-                            //displays each card in the comeHard div in cardSearch.handlebars
-                            for (var j = 0; j < data2.cardData.length; j++) {
-                                var newDiv1 = $("<div class='col-xl-4 col-md-6 col-xs-12 card-margin'></div>");
+                        //removed loading image
+                        $("#loader").remove();
 
-                                var newDiv2 = $("<div class='card grey center' style='width: 20rem;'>");
+                        //displays each card in the comeHard div in cardSearch.handlebars
+                        for (var j = 0; j < data2.cardData.length; j++) {
+                            var newDiv1 = $("<div class='col-xl-4 col-md-6 col-xs-12 card-margin'></div>");
 
-                                var newImg = $("<img class='card-img-top img-thumbnail' alt='Card Image'>");
+                            var newDiv2 = $("<div class='card grey center' style='width: 20rem;'>");
+
+                            var newImg = $("<img class='card-img-top img-thumbnail' alt='Card Image'>");
 
 
-                                newImg.attr("src", data2.cardData[j].image);
-                                newImg.appendTo(newDiv2);
-                                newDiv2.appendTo(newDiv1);
+                            newImg.attr("src", data2.cardData[j].imageUrl);
+                            newImg.appendTo(newDiv2);
+                            newDiv2.appendTo(newDiv1);
 
-                                var newDiv3 = $("<div class='card-body'></div>");
+                            var newDiv3 = $("<div class='card-body'></div>");
 
-                                newDiv3.html("<a href='#' class='btn btn-primary cardButton' data-id='" + data2.cardData[j].url + "' data-toggle='modal' data-target='#cardModal'>View Card Data</a>");
+                            newDiv3.html("<a href='#' class='btn btn-primary cardButton' data-id='" + data2.cardData[j].url + "' data-toggle='modal' data-target='#cardModal'>View Card Data</a>");
 
-                                newDiv3.appendTo(newDiv2);
-                                $("#cardHome").append(newDiv1);
-                            }
+                            newDiv3.appendTo(newDiv2);
+                            $("#cardHome").append(newDiv1);
+                        }
 
-                        });
-                    })(i);
+                    });
 
                 }
 
