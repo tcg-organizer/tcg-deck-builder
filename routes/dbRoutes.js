@@ -54,11 +54,17 @@ dbRouter.delete("/decks/:id", function (req, res) {
     console.log("deck Id");
     console.log(req.params.id);
     
-    db.decks.destroy({
+    db.cards.destroy({
         where: {
-            id: req.params.id
+            deckId: req.params.id
         }
-    }).then(function (deleteDeck) {
+    }).then(function () {
+        db.decks.destroy({
+            where: {
+                id: req.params.id
+            }
+        })
+    }).done(function (deleteDeck) {
         console.log("\n");
         console.log("------------------------");
         console.log("the deck has been Deleted");
@@ -71,15 +77,6 @@ dbRouter.delete("/decks/:id", function (req, res) {
 
 //adding a new card to your deck
 dbRouter.post("/cards", function (req, res) {
-    
-    // console.log("\n");
-    // console.log("------------------------");
-    // console.log(req.body.cardData);
-    // console.log("------------------------");
-    // console.log(req.body.cardData.name);
-    // console.log("------------------------");
-    // console.log(req.body.deckId);
-    // console.log("\n");
     
     db.cards.create({
         cardName: req.body.cardData.name,
