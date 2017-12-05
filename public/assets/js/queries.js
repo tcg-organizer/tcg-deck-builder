@@ -74,7 +74,8 @@ $(function () {
                         //api call for each additional page from data
                         $.ajax({
                             method: "POST",
-                            url: `/api/search/pokemon2/${pokemon}/${i}`
+                            url: `/api/search/pokemon2/${pokemon}/${i}`,
+                            async: false
                         }).then(function (data2) {
                             // console.log(`/api/search/pokemon2/${pokemon}/${i}`);
                             // console.log(data2);
