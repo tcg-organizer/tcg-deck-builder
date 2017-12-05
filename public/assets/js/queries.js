@@ -11,6 +11,12 @@ $(function () {
     });
 
     $("#submit").on("click", function (event) {
+        if (/^[a-zA-Z]+$/i.test($("#search").val().trim()) === false) {
+            console.log("ERROR cannot use numbers");
+        }
+        else {
+            console.log("just alphabetical");
+        }
 
         if ($("#search").val().trim().length === 0) {
 
