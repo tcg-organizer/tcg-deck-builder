@@ -5,8 +5,7 @@ const db = require("./models");
 const path = require("path");
 const dbRoutes = require('./routes/dbRoutes');
 const htmlRoutes = require('./routes/htmlRoutes');
-const chai = require('chai');
-//auth0
+
 const dotenv = require('dotenv');
 dotenv.load();
 

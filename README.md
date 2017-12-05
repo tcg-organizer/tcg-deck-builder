@@ -15,32 +15,15 @@ List of Packages
 ----------------
 | Package                         | Description                                                           |
 | ------------------------------- | --------------------------------------------------------------------- |
-| async                           | Utility library that provides asynchronous control flow.              |
 | handlebars.js  :wavy_dash:      | Templating engine                                                     |
-| bcrypt-nodejs                   | Library for hashing and salting user passwords.                       |
-| dotenv  :question:              | Loads environment variables from .env file.                           |
 | express                         | Node.js web framework.                                                |
 | body-parser                     | Express 4 middleware.                                                 |
-| express-session                 | Express 4 middleware.                                                 |
-| morgan :question:               | Express 4 middleware.                                                 |
-| nodemailer :question:           | Node.js library for sending emails.                                   |
-| passport                        | Simple and elegant authentication library for node.js                 |
-| passport-oauth :question:       | Allows you to set up your own OAuth 1.0a and OAuth 2.0 strategies.    |
-| request                         | Simplified HTTP request library.                                      |
-| lodash                          | Handy JavaScript utlities library.                                    |
-| mocha  :question:               | Test framework.                                                       |
-| chai   :question:               | BDD/TDD assertion library.                                            |
-| supertest  :question:           | HTTP assertion library.                                               |
+| Pokemontcgsdk                   | An api that searches the pokemon tcg website for card data            |
+| dotenv                          | Handles environment variables                                         |
 
 Resources Referenced
 --------------------
 - [The Difference Between URLs and URIs](https://danielmiessler.com/study/url-uri/) - Rest APIs
-
-Compiled Design Resources
--------------------------
-- [Bootsnipp](http://bootsnipp.com/) - Code snippets for Bootstrap.
-- [Bootstrap Zero](https://www.bootstrapzero.com) - Free Bootstrap templates themes.
-
 
  MVC Design Model Employed (Model, View & Control)
 --------------------------------------------------
