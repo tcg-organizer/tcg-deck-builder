@@ -152,6 +152,7 @@ $(function () {
         if ($("#deckNames").find(":selected").attr("data-id") === "new-deck") {
             console.log("new deck was selected");
             $("#addNewDeck").show();
+            $("#newDeckText").focus();
             $("#newDeckText").val("");
 
             $(document).one("click", "#submitNewDeck", function(event) {
