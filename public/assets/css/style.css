@@ -32,8 +32,14 @@
     max-width: 760px;
 }
 
+/*padding under cards on cardsSearch page*/
 #cardHome {
-    margin-bottom: 100px;
+    margin-bottom: 150px;
+}
+
+/*padding under cards in deckList page*/
+#deckListRow {
+    margin-bottom: 150px;
 }
 
 .center-block {
@@ -165,3 +171,9 @@ a {
     align-items: center;
 }
 
+/*positioning for the delete button*/
+.delete-btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
