@@ -28,7 +28,10 @@ $(function () {
 
             var loadingImg = $("<img class='img-responsive center' alt='Loading Image' id='loader'>");
             loadingImg.attr("src", "./assets/img/pokemon_loading.gif");
-            $("#cardHome").append(loadingImg);
+
+            var imgDiv = $("<div class='col-xl-12 col-center'></div>");
+            imgDiv.append(loadingImg);
+            $("#cardHome").append(imgDiv);
 
             let pokemon = $("#search").val().trim();
 
@@ -65,8 +68,8 @@ $(function () {
 
                     console.log(data.numPages);
 
-                    //loading image
-                    $("#cardHome").append(loadingImg);
+                    // //loading image
+                    // $("#cardHome").append(loadingImg);
 
                     //api call for each additional page from data
                     $.ajax({
