@@ -100,14 +100,14 @@ a {
     width: 250px;
 }
 
-@media only screen and (min-device-width : 320px) and (max-device-width : 480px){
-    .footer-section {
-        position: static;
-        left: 0px;
-        bottom: 0px;
-    }
+/*@media only screen and (min-device-width : 320px) and (max-device-width : 480px){*/
+    /*.footer-section {*/
+        /*position: static;*/
+        /*left: 0px;*/
+        /*bottom: 0px;*/
+    /*}*/
 
-}
+/*}*/
 
 .footer-links a {
     text-decoration: none;
