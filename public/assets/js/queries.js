@@ -155,7 +155,7 @@ $(function () {
         
     });
     
-    $(document).on("click", ".addCard", addCard());
+    $(document).on("click", ".addCard", addCard(event));
 });
 
 function addCard(event) {
